@@ -28,9 +28,8 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-container">
             
-            <Link to="/" className="navbar-logo">Travelgram</Link>
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu} >Travelgram</Link>
             <div className="menu-icon" onClick={handleClick}>
-                {/* add menu icon from font awesomr */}
                 <i className={click ? "fas fa-times" : 'fas fa-bars'}></i>
             </div>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
