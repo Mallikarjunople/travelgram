@@ -1,24 +1,20 @@
-import React from 'react';
-import '../../App.css';
-import Cards from '../Cards';
-import HeroSection from '../HeroSection';
-import Footer from '../Footer'
-import Theme from '../Theme'
-// import City from '../city/City';
-import Cities from '../Cities';
+import React from "react";
+import "../../App.css";
+import Cards from "../Cards";
+import HeroSection from "../HeroSection";
 
+import Theme from "../Theme";
+// import City from '../city/City';
+import Cities from "../Cities";
 
 function Home() {
-
   return (
     <>
-      
-      <HeroSection/>
-      <Cities/>
+      <HeroSection />
+      <Cities />
       {/* <City/> */}
-      <Theme/>
+      <Theme />
       <Cards />
-      
     </>
   );
 }

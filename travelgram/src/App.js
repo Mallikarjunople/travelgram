@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Home from './components/pages/Home';
@@ -25,6 +25,7 @@ function App() {
          <Route path='/citypage' exact component={Citypage} />
          <Route path='/tlogpost' exact component={Tlogpost} />
          <Route path='/signup' exact component={SignUp} />
+         <Redirect to='/' />
         </Switch>          
         <Footer/>
        </Router>

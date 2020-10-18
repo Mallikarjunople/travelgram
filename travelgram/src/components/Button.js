@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './Button.css'
+import './css/main.css'
 
 const STYLES=['btn--primary','btn--outline'];
 const SIZES = ['btn--medium', 'btn--large'];

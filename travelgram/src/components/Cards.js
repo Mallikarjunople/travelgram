@@ -1,5 +1,5 @@
 import React from 'react';
-import './Cards.css';
+import './css/main.css';
 import CardItem from './CardItem';
 import {useState,useEffect} from 'react'
 import Axios from 'axios';
@@ -29,19 +29,19 @@ useEffect(() => {
               src='images/img-8.jpg'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
               label='Mystery'
-              path='/tlogs'
+              path='/tlogpost'
             />
             <CardItem
               src='images/img-7.jpg'
               text='Experience Football on Top of the Himilayan Mountains'
               label='Adventure'
-              path='/tlogs'
+              path='/tlogpost'
             />
             <CardItem
               src='images/img-9.jpg'
               text='Ride through the Sahara Desert on a guided camel tour'
               label='Adrenaline'
-              path='/tlogs'
+              path='/tlogpost'
             />
           </ul>
           <ul className='cards__items'>
@@ -49,19 +49,19 @@ useEffect(() => {
               src='images/img-8.jpg'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
               label='Mystery'
-              path='/tlogs'
+              path='/tlogpost'
             />
             <CardItem
               src='images/img-9.jpg'
               text='Experience Football on Top of the Himilayan Mountains'
               label='Adventure'
-              path='/tlogs'
+              path='/tlogpost'
             />
             <CardItem
               src='images/img-7.jpg'
               text='Ride through the Sahara Desert on a guided camel tour'
               label='Adrenaline'
-              path='/tlogs'
+              path='/tlogpost'
             />
           </ul>
 
