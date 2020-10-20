@@ -1,12 +1,13 @@
 import React from "react";
 
+
 function About() {
   return (
     <>
       {/* <!-- Header --> */}
       <header className="bg-dark text-center py-5 mb-4">
         <div className="container">
-          <h1 className="font-weight-light text-white">Meet the Team</h1>
+  <h1 className="font-weight-light text-white">Meet The Team</h1>
         </div>
       </header>
 

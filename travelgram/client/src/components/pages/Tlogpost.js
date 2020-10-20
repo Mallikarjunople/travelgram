@@ -14,7 +14,7 @@ function Tlogpost() {
             {/* <!-- Author --> */}
             <p className="lead">
               by
-              <a href="#">Start Bootstrap</a>
+              <a href="google.com">Start Bootstrap</a>
             </p>
 
             {/* <hr> */}
@@ -93,8 +93,9 @@ function Tlogpost() {
                   style={{
                     backgroundColor: "grey",
                     width: "200px",
-                    height: "200px",
+                    height: "200px"
                   }}
+                  alt=""
                 />
                 <h5 style={{ marginTop: "10px" }}>Firstname LastName</h5>
                 <button className="btn btn-danger  ">view post</button>

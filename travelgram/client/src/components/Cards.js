@@ -1,22 +1,10 @@
 import React from 'react';
 import './css/main.css';
 import CardItem from './CardItem';
-import {useState,useEffect} from 'react'
-import Axios from 'axios';
+
+
 function Cards() {
   
-  const [state, setstate] = useState("")
-useEffect(() => {
-  
-  Axios.get("https://jsonplaceholder.typicode.com/photos")
-  .then(res=>{
-    const data = res.data[0].url;
-    setstate(data)
-  })
-  .catch(err=>{console.log(err)})
- 
-  
-}, [])
 
   return (
     <div className='cards'>

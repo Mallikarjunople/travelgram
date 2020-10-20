@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
-import CardItem from "../CardItem";
-import HeroSection from "../HeroSection";
 import TlogCard from "./TlogCard";
 import "../css/main.css";
+import axios from "axios";
 
 export default function Tlogs() {
+  const [detail, setDetail] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/posts")
+      .then((res) => {
+        console.log(res.data);
+        setDetail(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       {/* hero container for background hero image */}
@@ -18,22 +29,22 @@ export default function Tlogs() {
             <TlogCard />
             <TlogCard /> <TlogCard />   
           </div> */}
-<div className='row'>
-  <div className="col-lg-6">
-    <TlogCard/> 
-  </div>
-  <div className="col-lg-6">
-    <TlogCard/> 
-  </div>
-  <div className="col-lg-6">
-    <TlogCard/> 
-  </div>
-  <div className="col-lg-6">
-    <TlogCard/> 
-  </div>
-</div>
-
-
+          <div className="row">
+            {
+              detail.map(item=>{
+                return(
+                  <div className="col-lg-6" key={item._id}>
+                  <TlogCard 
+                  title={item.title}
+                  desc={item.desc}
+                  id={item.id}
+                  />
+                </div>
+                )
+              })
+            }
+            
+          </div>
         </div>
       </div>
     </>

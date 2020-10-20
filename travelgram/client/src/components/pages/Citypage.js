@@ -26,7 +26,7 @@ export default function Citypage() {
             <div class="col-lg-5">
               <h1 class="font-weight-light">CityName</h1>
               <p>{lorem}</p>
-              <a class="btn btn-primary" href="#">
+              <a class="btn btn-primary" href="google.com">
                 Call to Action!
               </a>
             </div>
