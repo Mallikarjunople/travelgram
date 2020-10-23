@@ -1,34 +1,26 @@
 import React from "react";
 
-
 function About() {
   return (
     <>
-      {/* <!-- Header --> */}
       <header className="bg-dark text-center py-5 mb-4">
         <div className="container">
-  <h1 className="font-weight-light text-white">Meet The Team</h1>
+          <h1 className="font-weight-light text-white">Meet The Team</h1>
         </div>
       </header>
 
-      {/* <!-- Page Content --> */}
       <div className="container">
         <div className="row">
-          {/* <!-- Team Member 1 --> */}
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
-              <img
-                src="https://source.unsplash.com/TMgQMXoglsM/500x350"
-                className="card-img-top"
-                alt="..."
-              />
+              <img src="/images/ople.jpg" className="about_image" alt="..." />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Team Member</h5>
+                <h5 className="card-title mb-0">Mallikarjun Ople</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>
           </div>
-          {/* <!-- Team Member 2 --> */}
+
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
@@ -42,7 +34,7 @@ function About() {
               </div>
             </div>
           </div>
-          {/* <!-- Team Member 3 --> */}
+
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
@@ -56,7 +48,7 @@ function About() {
               </div>
             </div>
           </div>
-          {/* <!-- Team Member 4 --> */}
+
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
@@ -70,9 +62,7 @@ function About() {
               </div>
             </div>
           </div>
-          {/* <!-- /.row --> */}
         </div>
-        {/* <!-- /.container --> */}
       </div>
     </>
   );
