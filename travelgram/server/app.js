@@ -28,7 +28,7 @@ app.get('/',function(req,res){
 });
 
 
-app.listen(5000,function(){
+server = app.listen(5000,function(){
   console.log("Server started at port 5000");
 });
 
