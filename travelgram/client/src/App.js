@@ -20,6 +20,7 @@ import Landing from "./components/Landing";
 import AdminLogin from "./components/auth/admin/AdminLogin";
 import UserSignup from "./components/auth/user/UserSignup";
 import UserLogin from "./components/auth/user/UserLogin";
+import Chat from "./components/pages/Chat";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/tlogpost" exact component={Tlogpost} />
 
           <Route path="/themepage" exact component={ThemePage} />
+          <Route path="/chat" exact component={Chat} />
           <Redirect to="/" />
         </Switch>
         {/* <Footer /> */}

@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const bodyParser=require('body-parser');
 const postsRoute = require('./routes/posts');
+var socket = require('socket.io');
+
 require('dotenv/config');
 
 //require the route handlers
@@ -21,13 +23,21 @@ mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser:true,useUnifiedTopol
 app.use('/posts',postsRoute);
 
 
-
 app.get('/',function(req,res){
   res.send("we are at home");
 });
 
 
-
 app.listen(5000,function(){
   console.log("Server started at port 5000");
+});
+
+io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    socket.on('SEND_MESSAGE', function(data){
+      io.emit('RECEIVE_MESSAGE', data);
+  })
 });
