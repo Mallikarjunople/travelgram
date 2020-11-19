@@ -3,16 +3,17 @@ import "../../css/main.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
+//check whole code ...needs a lot of changes
 const UserLogin = () => {
   const initialState = localStorage.getItem("token");
   const [custToken, setCustToken] = useState(initialState);
-  const [mess, setUser] = useState({
+  const [user, setUser] = useState({
     password: "",
     email: "",
   });
 
   useEffect(() => {
-    if (custToken) window.location = "/customer/dashboard";
+    if (custToken) window.location = "/";
   }, [custToken]);
 
   const inputEvent = (e) => {
@@ -28,19 +29,19 @@ const UserLogin = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(mess);
+    console.log(user); // sent object
     axios
-      .post("api/login/customer", {
-        email: mess.email,
-        password: mess.password,
+      .post("/users/login", {
+        email: user.email,
+        password: user.password,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
+        // console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.userId);
-        setCustToken(response.data);
-        // change the location for 200 status
-        if (response.status === 200) window.location = "";
+        // setCustToken(response.data);
+        window.location = "/";
       })
       .catch((error) => {
         alert("Wrong username or password");
@@ -69,7 +70,7 @@ const UserLogin = () => {
                           className="form-control"
                           placeholder="Enter Your EmailID"
                           onChange={inputEvent}
-                          value={mess.email}
+                          value={user.email}
                           autoFocus
                         />
                       </div>
@@ -81,7 +82,7 @@ const UserLogin = () => {
                           className="form-control"
                           placeholder="Enter Your password"
                           onChange={inputEvent}
-                          value={mess.password}
+                          value={user.password}
                         />
                       </div>
 
@@ -102,14 +103,18 @@ const UserLogin = () => {
                         className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                         type="submit"
                       >
-                        Sign in
+                        LOGIN
                       </button>
                       <div className="text-center">
                         <a className="small" href="userlogin">
                           Forgot password?
                         </a>
 
-                        <NavLink exact to="usersignup" className="text-decoration-none" >
+                        <NavLink
+                          exact
+                          to="usersignup"
+                          className="text-decoration-none"
+                        >
                           <button
                             className="btn btn-lg  mt-5 btn-warning btn-block btn-login text-uppercase font-weight-bold mb-2"
                             type="button"

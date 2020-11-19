@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-
+//check whole code ...needs a lot of changes
 const UserSignup = () => {
   const [user, setState] = useState({
     fullName: "",
@@ -23,18 +23,18 @@ const UserSignup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user); //data sent by form
     axios
-      .post("api/register/customer", {
+      .post("/users/signup", {
         name: user.fullName,
         email: user.email,
         password: user.password,
         phone: user.phone,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response.data);
         alert("sign Up successfully");
-        if (response.status === 200) window.location = ""; //add the location for stats 200 
+        if (response.status === 201) window.location = "/userlogin"; //add the location for stats 200 
       })
       .catch((error) => {
         console.log(error);

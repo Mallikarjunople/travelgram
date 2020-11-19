@@ -6,6 +6,7 @@ import "./css/main.css";
 function Navbar() {
   const [click, setClick] = useState(false); //states
   const [button, setButton] = useState(true);
+  const usertoken = localStorage.getItem("token");
 
   const handleClick = () => setClick(!click); //handlers
   const closeMobileMenu = () => setClick(false);
@@ -68,8 +69,29 @@ function Navbar() {
             </li>
           </ul>
 
-          {button && <Button route="/usersignup" buttonStyle="btn--outline">Sign Up</Button>}
-          {button && <Button route="/userlogin" buttonStyle="btn--outline">Login</Button>}
+          {button && !usertoken && (
+            <Button route="/usersignup" buttonStyle="btn--outline">
+              Sign Up
+            </Button>
+          )}
+
+          {button && !usertoken && (
+            <Button route="/userlogin" buttonStyle="btn--outline">
+              Login
+            </Button>
+          )}
+          {button && usertoken && (
+            <Button
+           
+              route="/userlogin"
+              buttonStyle="btn--outline"
+              onClick={() => {
+                localStorage.removeItem("token");
+              }}
+            >
+              Logout
+            </Button>
+          )}
         </div>
       </nav>
     </>

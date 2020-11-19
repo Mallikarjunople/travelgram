@@ -9,7 +9,7 @@ export default function Tlogs() {
 
   useEffect(() => {
     axios
-      .get("/posts")
+      .get("/users/posts")  //NEED CHANGES
       .then((res) => {
         console.log(res.data);
         setDetail(res.data);
@@ -30,20 +30,13 @@ export default function Tlogs() {
             <TlogCard /> <TlogCard />   
           </div> */}
           <div className="row">
-            {
-              detail.map(item=>{
-                return(
-                  <div className="col-lg-6" key={item._id}>
-                  <TlogCard 
-                  title={item.title}
-                  desc={item.desc}
-                  id={item.id}
-                  />
+            {detail.map((item) => {
+              return (
+                <div className="col-lg-6" key={item._id}>
+                  <TlogCard title={item.title} desc={item.desc} id={item.id} />
                 </div>
-                )
-              })
-            }
-            
+              );
+            })}
           </div>
         </div>
       </div>

@@ -21,6 +21,8 @@ import AdminLogin from "./components/auth/admin/AdminLogin";
 import UserSignup from "./components/auth/user/UserSignup";
 import UserLogin from "./components/auth/user/UserLogin";
 import Chat from "./components/pages/Chat";
+import CreatePost from "./components/userposts/CreatePost";
+import EditPost from "./components/userposts/EditPost";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
@@ -41,6 +43,8 @@ function App() {
           <Route path="/about" exact component={About} />
           <Route path="/citypage" exact component={Citypage} />
           <Route path="/tlogpost" exact component={Tlogpost} />
+          <Route path="/createpost" exact component={CreatePost} />
+          <Route path="/editpost" exact component={EditPost} />
 
           <Route path="/themepage" exact component={ThemePage} />
           <Route path="/chat" exact component={Chat} />
