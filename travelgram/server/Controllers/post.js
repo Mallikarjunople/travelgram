@@ -2,7 +2,7 @@ const Post = require('../models/Post');
 exports.getPosts = async (req,res)=>{
     try{
       const posts = await Post.find();
-      res.json(posts);  
+      res.staus(200).json(posts);  
     }catch(err){
         res.json({message:err});
     }
@@ -11,7 +11,7 @@ exports.getPosts = async (req,res)=>{
   exports.getPostsById = async (req,res)=>{
     try{
         const post = await Post.findById(req.params.postId);
-    res.json(post);
+    res.status(200).json(post);
     }catch(err){
         res.json({message:err});
     }
@@ -21,7 +21,7 @@ exports.getPosts = async (req,res)=>{
 exports.deletePostById = async (req,res)=>{
     try{
         const removedPost = await Post.remove({_id:req.params.postId});
-        res.json(removedPost);
+        res.status(200).json(removedPost);
     }catch(err){
         res.json({ message : err});
     }
