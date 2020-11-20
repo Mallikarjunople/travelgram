@@ -6,7 +6,7 @@ function EditPost() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-10">
-            <h1 className=" ">Add your post</h1>
+            <h1 className=" ">Edit your post</h1>
             <div className="form-area">
               <form role="form">
                 <br styles="clear:both" />
