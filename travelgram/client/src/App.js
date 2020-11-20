@@ -24,7 +24,7 @@ import Chat from "./components/pages/Chat";
 import CreatePost from "./components/user/CreatePost";
 import EditPost from "./components/user/EditPost";
 import UserProfile from "./components/user/UserProfile";
-
+import PageNotFound from "./components/pages/PageNotFound";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
@@ -51,7 +51,7 @@ function App() {
 
           <Route path="/themepage" exact component={ThemePage} />
           <Route path="/chat" exact component={Chat} />
-          <Redirect to="/" />
+          <Route component={PageNotFound} />
         </Switch>
         {/* <Footer /> */}
       </Router>
