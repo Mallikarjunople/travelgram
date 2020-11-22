@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import "../css/main.css";
 
 function TlogCard(props) {
- 
-
   return (
     <>
       <div className="card tlog__card ">
@@ -15,13 +13,12 @@ function TlogCard(props) {
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
           </p>
-          <Link to="/tlogpost">
-          
-            <button className="btn btn-danger">Show post</button>
+          <Link to={`/tlogpost/${props.id}`}>
+            <button className="btn btn-danger" >Show post</button>
           </Link>
         </div>
         <div className="card-footer">
-          <small className="text-muted">Last updated 3 mins ago</small>
+          <p className="text-muted">Posted on {props.lastupdated}</p>
         </div>
       </div>
     </>

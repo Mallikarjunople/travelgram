@@ -1,39 +1,52 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function Tlogpost() {
+  const getId = useParams();
+  const [blog, setBlog] = useState([]);
+  const [userDetail, setUserDetail] = useState([]);
+  const token = localStorage.getItem("token");
+  
+
+  useEffect(() => {
+    axios
+      .get(`/blogs/${getId.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+       
+        setBlog(res.data.blog);
+        setUserDetail(res.data.blog.user);
+        console.log(userDetail);
+        // let onlyDate = blog.date.split('T')[0];
+        // alert(onlyDate);
+       })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
-      {/* <!-- Page Content --> */}
       <div className="container">
         <div className="row">
-          {/* <!-- Post Content Column --> */}
           <div className="col-lg-8">
-            {/* <!-- Title --> */}
-            <h1 className="mt-4">Post Title</h1>
+            <h1 className="mt-4">{blog.Title}</h1>
 
-            {/* <!-- Author --> */}
-            <p className="lead">
+            <p className="lead ">
               by
-              <a href="google.com">Start Bootstrap</a>
+              <a href="google.com" style={{marginLeft:"5px"}}>{userDetail.name}</a>
             </p>
 
-            {/* <hr> */}
-
-            {/* <!-- Date/Time --> */}
             <p>Posted on January 1, 2019 at 12:00 PM</p>
 
-            {/* <hr> */}
-
-            {/* <!-- Preview Image --> */}
             <img
               className="img-fluid rounded"
               src="http://placehold.it/900x300"
               alt=""
             />
 
-            {/* <hr> */}
-
-            {/* <!-- Post Content --> */}
             <p className="lead">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
               vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit
@@ -79,11 +92,8 @@ function Tlogpost() {
               quidem voluptates cupiditate voluptas illo saepe quaerat numquam
               recusandae? Qui, necessitatibus, est!
             </p>
-
-            {/* <hr> */}
-            {/* <!-- Side Widget --> */}
           </div>
-          {/* <!-- /.row --> */}
+
           <div className="col-lg-4">
             <div className="card my-4">
               <h5 className="card-header">Related posts </h5>
@@ -93,7 +103,7 @@ function Tlogpost() {
                   style={{
                     backgroundColor: "grey",
                     width: "200px",
-                    height: "200px"
+                    height: "200px",
                   }}
                   alt=""
                 />
@@ -103,7 +113,6 @@ function Tlogpost() {
             </div>
           </div>
         </div>
-        {/* <!-- /.container --> */}
       </div>
     </>
   );

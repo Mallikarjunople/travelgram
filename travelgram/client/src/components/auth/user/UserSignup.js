@@ -104,9 +104,9 @@ const UserSignup = () => {
                     >
                       Register
                     </button>
-                    <a class="d-block text-center mt-2 small" href="/userlogin">
+                    <NavLink class="d-block text-center mt-2 small" to="/userlogin">
                       Sign In
-                    </a>
+                    </NavLink>
                   </form>
                 </div>
               </div>

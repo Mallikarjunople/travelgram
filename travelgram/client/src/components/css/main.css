@@ -1116,6 +1116,9 @@ body .themepage{
 .shadow-none {
   box-shadow: none!important;
 }
+.userpersonalinfo{
+  font-size: 20px;
+}
 
 /*  ********************* UserProfile css *********************** */
 
@@ -1159,4 +1162,10 @@ text-decoration: none;
 
 .backimg{
   background: url(/images/delhi.jpg);
+}
+
+
+.modaledit{
+  height: 400px;
+  width: 400px;
 }
