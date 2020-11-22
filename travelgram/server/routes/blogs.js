@@ -161,7 +161,7 @@ router.get('/:blogId',checkAuth,async(req,res,next)=>{
 });
 
 router.patch('/:blogId',async (req,res,next) => {
-
+    const id = req.params.blogId;
     const updateOps = {};
     for(const ops of req.body){
         updateOps[ops.propName]=ops.value;
