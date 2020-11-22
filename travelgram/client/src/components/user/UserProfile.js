@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Modal from "react-modal";
+import { authUser } from "../../App";
+import PostList from "./PostList";
+
+Modal.setAppElement("#root");
 
 function UserProfile() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -11,29 +15,53 @@ function UserProfile() {
     name: "",
     email: "",
     phone: "",
-    blogs:[],
-    
+    blogs: [],
   });
+  console.log(user);
+  const inputEvent = (e) => {
+    const { name, value } = e.target;
 
+    setUser((preValue) => {
+      return {
+        ...preValue,
+        [name]: value,
+      };
+    });
+  };
+
+  const saveChanges = (e) => {
+    e.preventDefault();
+    console.log(user);
+    authUser
+      .patch(`/users/${userId}`, [
+        { propName: "name", value: user.name },
+        { propName: "email", value: user.email },
+        { propName: "phone", value: user.phone },
+      ])
+      .then((response) => {
+        console.log(response);
+        alert("User Information Updated Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setModalIsOpen(false);
+  };
   useEffect(() => {
     //request for user information
 
-    axios
-      .get(`/users/${userId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
+    authUser
+      .get(`/users/${userId}`)
       .then((res) => {
-        console.log(res.data.user);
-        setUser(res.data.user)
+        setUser(res.data.user);
       })
       .catch((err) => {
         console.log(err);
       });
 
     //request for user posts
-  },[]);
+  }, []);
 
   const modalOpener = () => {
     setModalIsOpen(true);
@@ -45,8 +73,7 @@ function UserProfile() {
     <>
       <div className="container">
         <div className="main-body">
-          {/*     
-          <!-- Breadcrumb --> */}
+          {/* <!-- Breadcrumb --> */}
           <nav aria-label="breadcrumb" className="main-breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
@@ -141,20 +168,71 @@ function UserProfile() {
               </div>
             </div>
 
-            <Modal isOpen={modalIsOpen} className="">
-              <div
-                className="modal fade bd-example-modal-lg"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="myLargeModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-lg">
-                  <div className="modal-content">...</div>
-                </div>
+            <Modal isOpen={modalIsOpen}>
+              <div className="modal-body">
+                <form onSubmit={saveChanges}>
+                  <div className="form-group">
+                    <label for="editname" className="col-form-label">
+                      Name:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="editname"
+                      name="name"
+                      value={user.name}
+                      onChange={inputEvent}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label for="editemail" className="col-form-label">
+                      Email:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="editemail"
+                      name="email"
+                      value={user.email}
+                      onChange={inputEvent}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label for="editphone" className="col-form-label">
+                      Phone:
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="editphone"
+                      name="phone"
+                      value={user.phone}
+                      onChange={inputEvent}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label for="editabout" className="col-form-label">
+                      About:
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="editabout"
+                    ></textarea>
+                  </div>
+                </form>
               </div>
-              <button classNameName="" onClick={() => setModalIsOpen(false)}>
+              <button
+                className="btn btn-danger mx-1"
+                onClick={() => setModalIsOpen(false)}
+              >
                 Close
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary mx-1"
+                onClick={saveChanges}
+              >
+                Save changes
               </button>
             </Modal>
 
@@ -217,38 +295,9 @@ function UserProfile() {
             <div className="card mb-3">
               <div className="card-body w-auto">
                 <h3>My posts</h3>
-
-                <div className="container-fluid">
-                  <div className="row">
-                    <div className="col-12 mt-3 my-3">
-                      <div className="card">
-                        <div className="card-horizontal">
-                          <div className="row">
-                            <div className="col-4 ">
-                              <div className="img-square-wrapper">
-                                <img
-                                  className=""
-                                  src="http://via.placeholder.com/300x180"
-                                  alt="Card image cap"
-                                />
-                              </div>
-                            </div>
-                            <div className="col-8">
-                              <div className="card-body">
-                                <h4 className="card-title">Card title</h4>
-                                <p className="card-text">
-                                  Some quick example text to build on the card
-                                  title and make up the bulk of the card's
-                                  content.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {
+                  user.blogs.map(blogid => <PostList  blogid={blogid}/>)
+                }
               </div>
             </div>
           </div>

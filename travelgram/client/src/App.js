@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -26,6 +22,14 @@ import UserProfile from "./components/user/UserProfile";
 import PageNotFound from "./components/pages/PageNotFound";
 import AdminPage from "./components/auth/admin/AdminPage";
 
+const token = localStorage.getItem("token");
+export const authUser = axios.create({
+  baseURL: "http://localhost:5000/",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
 
@@ -45,14 +49,13 @@ function App() {
           <Route path="/tlogpost/:id" exact component={Tlogpost} />
           <Route path="/about" exact component={About} />
           <Route path="/citypage" exact component={Citypage} />
-          
+
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/userprofile" exact component={UserProfile} />
-         
 
           <Route path="/themepage" exact component={ThemePage} />
-          
+
           <Route component={PageNotFound} />
         </Switch>
         {/* <Footer /> */}
