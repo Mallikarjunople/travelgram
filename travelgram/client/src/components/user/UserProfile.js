@@ -1,34 +1,39 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 import Modal from "react-modal";
-
-
 
 function UserProfile() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
   const [user, setUser] = useState({
-    name:"",
-    email:"",
-    phone:"",
-  })
+    name: "",
+    email: "",
+    phone: "",
+    blogs:[],
+    
+  });
 
- 
-//   useEffect(()=>{
-//     //request for user information
-//     axios.get(`/users`)
-//     .then(res=>{console.log(res.data)
-//     })
-//     .catch(err => {console.log(err)})
-// //request for user posts
-// axios.get(`/users/${userId}`)
-// .then(res=>{console.log(res.data)
-// })
-// .catch(err => {console.log(err)})
+  useEffect(() => {
+    //request for user information
 
-// })
+    axios
+      .get(`/users/${userId}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.user);
+        setUser(res.data.user)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
+    //request for user posts
+  },[]);
 
   const modalOpener = () => {
     setModalIsOpen(true);
@@ -83,7 +88,6 @@ function UserProfile() {
               </div>
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
-                
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">
                       <svg
@@ -172,7 +176,7 @@ function UserProfile() {
                       <div className="mb-0 my-3">Full Name</div>
                     </div>
                     <div className="col-sm-9 my-3 text-secondary">
-                     {user.name}
+                      {user.name}
                     </div>
                   </div>
                   <div className="row">
