@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
-
+const jwt_decode = require('jwt-decode');
 const Blog = require('../models/blog');
 const checkAuth = require('../middleware/check-auth');
 
@@ -10,7 +10,7 @@ const checkAuth = require('../middleware/check-auth');
 router.get('/',async(req,res,next)=>{
     
     try{
-        const allBlogs =await Blog.find().populate('user','name email');
+        const allBlogs =await Blog.find().populate('user','name email _id');
         res.status(200).json({
             count:allBlogs.length,
             blogs:allBlogs.map(allBlogs => {
@@ -39,47 +39,66 @@ router.get('/',async(req,res,next)=>{
 
 
 router.post('/',checkAuth,async(req,res,next)=>{
-    try{
-        const findUser= await User.findById(req.body.user);
-        if(!findUser){
-            return res.status(404).json({
-                message:'user not found'
-            });
-        }
-        const blog= new Blog({
-            _id: new mongoose.Types.ObjectId(),
-            user:req.body.user,
-            Body:req.body.Body,
-            Location:req.body.Location,
-            Title:req.body.Title,
-            Pictures:req.body.Pictures,
-            date:req.body.date
-        });
     
-        try{
-            const createdBlog = await blog.save();
-            console.log(createdBlog);
-            res.status(201).json({
-                message:'Blog stored',
-                newBlog:createdBlog,
-                request:{
-                    type:'GET',
-                    url:'http://localhost:5000/blogs/'+createdBlog._id
-                }
-            });
-        }catch(err){
-            console.log(err);
-            res.status(500).json({
-                error:err
-            });
-        }
+    const token = req.headers.authorization.split(" ")[1];
+    var decoded = jwt_decode(token);
 
-    }catch(err){
-        res.status(500).json({
-            message:'User not found',
-            error:err
-        })
+    if(req.userData.userId === decoded.userId){
+        try{
+            const findUser= await User.findById(req.userData.userId);
+            if(!findUser){
+                return res.status(404).json({
+                    message:'user not found'
+                });
+            }
+            console.log(findUser);
+            const blog= new Blog({
+                _id: new mongoose.Types.ObjectId(),
+                Tags:req.body.Tags,
+                user:req.userData.userId,
+                Body:req.body.Body,
+                Location:req.body.Location,
+                Title:req.body.Title,
+                Pictures:req.body.Pictures,
+                date:req.body.date
+            });
+        
+            try{
+                const createdBlog = await blog.save();
+                console.log(createdBlog);
+                
+                   
+                findUser.blogs.push(createdBlog._id);
+                await findUser.save();
+                console.log(findUser);
+                res.status(201).json({
+                    message:'Blog stored',
+                    newBlog:createdBlog,
+                    request:{
+                        type:'GET',
+                        url:'http://localhost:5000/blogs/'+createdBlog._id
+                    }
+                });
+            }catch(err){
+                console.log(err);
+                res.status(500).json({
+                    error:err
+                });
+            }
+    
+        }catch(err){
+            res.status(500).json({
+                message:'User not found',
+                error:err
+            })
+        }
+    }else{
+        res.status(404).json({
+            message:'You are not same user'
+        });
     }
+
+    
    
 
     
@@ -90,18 +109,48 @@ router.post('/',checkAuth,async(req,res,next)=>{
 router.get('/:blogId',checkAuth,async(req,res,next)=>{
     try{
         const findBlog = await  Blog.findById(req.params.blogId).populate('user');
+        
         if(!findBlog){
             return res.status(404).json({
                 message:'Blog not found'
             });
         }
-        res.status(200).json({
-            blog:findBlog,
-            request:{
-                type:'GET',
-                url:'http://localhost:5000/blogs'
+        console.log(findBlog);
+
+        
+        const uId = findBlog.user.blogs;
+        
+        var flag = false;
+        
+        
+        for(var i=0;i<uId.length;i++){
+            
+            if( uId[i] == req.params.blogId ){
+                
+                flag=true;
+                break;
             }
-        });
+            
+            
+        }
+        
+        
+        if(flag){
+            res.status(200).json({
+                blog:findBlog,
+                request:{
+                    type:'GET',
+                    url:'http://localhost:5000/blogs'
+                }
+            });
+        }else{
+            res.status(500).json({
+                mesaage:"Blog doesn't belong to you"
+            });
+        }
+
+        
+        
     }catch(err){
         res.status(500).json({
             error:err
@@ -111,20 +160,111 @@ router.get('/:blogId',checkAuth,async(req,res,next)=>{
 
 });
 
+router.patch('/:blogId',async (req,res,next) => {
 
-router.delete('/:blogId',checkAuth,async (req,res,next)=>{
+    const updateOps = {};
+    for(const ops of req.body){
+        updateOps[ops.propName]=ops.value;
+    }
     try{
-        const removedBlog = await Blog.remove({_id:req.params.blogId});
+        const updatedBlog = await Blog.updateOne(
+            {_id:id},
+            { $set: updateOps}
+        );
         res.status(200).json({
-            message:'Blog deleted',
+            message:'Blog updated',
+            newBlog:updatedBlog,
             request:{
-                type:'POST',
-                url:'http://localhost:5000/blogs'
+                type:'GET',
+                url:'http://localhost:5000/users/'+id
             }
         });
     }catch(err){
-        res.json({ message : err});
-    }
+        res.status(500).json({ message : err});
+    }  
 });
+
+
+router.delete('/:blogId',checkAuth,async (req,res,next)=>{
+    try{
+        console.log('hii');
+        const findBlog = await Blog.findById(req.params.blogId);
+        if(findBlog==0){
+            return res.status(404).json({
+                message:'blog not found'
+            });
+        }else{
+            
+            const nuser =await  User.findOne({_id:findBlog.user}).exec();
+            console.log(nuser.blogs);
+        //console.log(uId);
+        var flag = false;
+        console.log('here');
+        
+        for(var i=0;i<uId.length;i++){
+            console.log(uId[i]);
+            if( uId[i] == req.params.blogId ){
+                
+                flag=true;
+                break;
+            }
+            
+            
+        }
+        console.log('here1');
+        if(flag){
+            // res.status(200).json({
+            //     message:'Blog deleted',
+            //     request:{
+            //         type:'POST',
+            //         url:'http://localhost:5000/blogs'
+            //     }
+            // });
+
+            console.log('here2');
+
+            await Blog.findByIdAndDelete(req.params.blogId,function(err,docs){
+                if(err){
+                    console.log('here3');
+                    res.status(500).json({
+                        message:'error deleting blog',
+                        error:err
+                    })
+                }else{
+                    console.log('here4');
+                    res.status(200).json({
+                        message:'Blog deleted',
+                        doc:docs,
+                        request:{
+                            type:'POST',
+                            url:'http://localhost:5000/blogs'
+                        }
+                    });
+                }
+            });
+
+        }else{
+            console.log('here5');
+            res.status(404).json({
+                mesaage:"Blog doesn't belong to you"
+            });
+        }
+        }
+        
+        
+    }catch(err){
+        console.log('here6');
+        res.status(500).json({ message : err});
+    }
+
+    
+});
+
+
+
+
+
+
+
 
 module.exports=router;

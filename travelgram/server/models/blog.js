@@ -4,10 +4,10 @@ const blogSchema = mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required:true
+        ref:'User'
+        
     },
-    Body:{
+    Title:{
         type:String,
         required:true
     },
@@ -15,7 +15,11 @@ const blogSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    Title:{
+    Body:{
+        type:String,
+        required:true
+    },
+    Tags:{
         type:String,
         required:true
     },

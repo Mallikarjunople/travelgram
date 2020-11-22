@@ -11,7 +11,11 @@ const userSchema = mongoose.Schema({
     },
     phone:{type:Number,required:true},
     password:{type:String,required:true},
-    profilePhoto:{type:String}
+    profilePhoto:{type:String},
+    blogs:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Blog'
+      }]
 });
 
 module.exports = mongoose.model('User',userSchema);

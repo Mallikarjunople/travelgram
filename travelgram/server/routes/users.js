@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const checkAuth = require('../middleware/check-auth');
-
+const jwt_decode = require('jwt-decode');
 
 
 router.get('/',async (req,res,next)=>{
@@ -107,7 +107,7 @@ router.post('/login',async(req,res,next)=>{
                     userId:user[0]._id
                 },"secret",
                 {
-                    expiresIn:"1h"
+                    expiresIn:"10h"
                 }
     
                 );
@@ -168,8 +168,12 @@ router.post('/login',async(req,res,next)=>{
 
 router.get('/:userId',checkAuth,async (req,res)=>{
     const id = req.params.userId;
+    const token = req.headers.authorization.split(" ")[1];
+    var decoded = jwt_decode(token);
+ console.log(req.userData);
+if(req.userData.userId === id){
     try{
-        const userById = await User.findById(id).select('name email phone _id password');
+        const userById = await User.findById(id).select('name email phone _id password blogs');
         console.log(userById);
         if(userById){
             res.status(200).json({
@@ -187,6 +191,16 @@ router.get('/:userId',checkAuth,async (req,res)=>{
         console.log(err);
         res.status(500).json({error:err});
     }
+}else{
+
+res.status(404).json({
+    message:"Not same user"
+});
+
+}
+
+
+   
     
 });
 
@@ -194,7 +208,11 @@ router.get('/:userId',checkAuth,async (req,res)=>{
 
 router.patch('/:userId',checkAuth,async (req,res,next) => {
     const id = req.params.userId;
-    const updateOps = {};
+    const token = req.headers.authorization.split(" ")[1];
+    var decoded = jwt_decode(token);
+
+    if(req.userData.userId === id){
+        const updateOps = {};
     for(const ops of req.body){
         updateOps[ops.propName]=ops.value;
     }
@@ -213,32 +231,44 @@ router.patch('/:userId',checkAuth,async (req,res,next) => {
         });
     }catch(err){
         res.status(500).json({ message : err});
-    }  
+    }
+    }
+
+
+      
 });
 
 router.delete('/:userId',checkAuth,async (req,res,next)=>{
-    try{
-        const removedUser = await User.remove({_id:req.params.userId});
-        res.status(200).json({
-            message:'User deleted',
-            request:{
-                type:'POST',
-                url:'http://localhost:5000/users',
-                body : {
-                    name:'String',
-                    email:'String',
-                    phone:'Number',
-                    password:'String'
+    const id = req.params.userId;
+    const token = req.headers.authorization.split(" ")[1];
+    var decoded = jwt_decode(token);
+    if(req.userData.userId === id){
+        try{
+            const removedUser = await User.remove({_id:req.params.userId});
+            res.status(200).json({
+                message:'User deleted',
+                request:{
+                    type:'POST',
+                    url:'http://localhost:5000/users',
+                    body : {
+                        name:'String',
+                        email:'String',
+                        phone:'Number',
+                        password:'String'
+                    }
                 }
-            }
+                
+            });
             
-        });
-        
-        
-    }catch(err){
-        console.log(err);
-        res.status(500).json({ message : err});
+            
+        }catch(err){
+            console.log(err);
+            res.status(500).json({ message : err});
+        }
     }
+
+
+    
 });
 
 

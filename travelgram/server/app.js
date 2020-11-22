@@ -19,7 +19,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan('dev'));
 
 //connect to db
-mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser:true,useUnifiedTopology:true},function(){
+mongoose.connect(process.env.DB_CONNECTION,{ 
+  useCreateIndex: true,useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false},function(){
   console.log("connected to database");
 });
 
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
 
 
 //routes
-app.use('/posts',postsRoute);
+//app.use('/posts',postsRoute);
 app.use('/users',userRoute);
 app.use('/blogs',blogRoute);
 
