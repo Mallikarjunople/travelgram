@@ -24,6 +24,7 @@ import CreatePost from "./components/user/CreatePost";
 import EditPost from "./components/user/EditPost";
 import UserProfile from "./components/user/UserProfile";
 import PageNotFound from "./components/pages/PageNotFound";
+import AdminPage from "./components/auth/admin/AdminPage";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
@@ -36,7 +37,7 @@ function App() {
           {/* Authentication routes */}
           <Route path="/usersignup" exact component={UserSignup} />
           <Route path="/userlogin" exact component={UserLogin} />
-          <Route path="/adminlogin" exact component={AdminLogin} />
+          <Route path="/adminpage" exact component={AdminPage} />
 
           <Route path="/landing" exact component={Landing} />
           <Route path="/" exact component={Home} />
@@ -48,6 +49,7 @@ function App() {
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/userprofile" exact component={UserProfile} />
+         
 
           <Route path="/themepage" exact component={ThemePage} />
           
