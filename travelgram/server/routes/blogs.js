@@ -202,16 +202,21 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
         
         
         for(var i=0;i<blogsArray.length;i++){
-            console.log(blogsArray[i]);
+            //console.log(blogsArray[i]);
             if( blogsArray[i] == req.params.blogId ){
                 
                 flag=true;
+                blogsArray.splice(i,1);
                 break;
             }
             
             
         }
-        console.log('here1');
+        console.log(blogsArray);
+        nuser.blogs = blogsArray;
+        console.log(nuser.blogs);
+        await nuser.save();
+        console.log(nuser);
         if(flag){
             // res.status(200).json({
             //     message:'Blog deleted',
