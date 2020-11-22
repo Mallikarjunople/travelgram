@@ -111,10 +111,11 @@ router.post('/login',async(req,res,next)=>{
                 }
     
                 );
+                var decoded = jwt_decode(token);
                 return res.status(200).json({
                     message:"Auth successful",
                     token:token,
-                    userId:req.userData.userId
+                    userId:decoded.userId
                 });
             }
             res.status(401).json({

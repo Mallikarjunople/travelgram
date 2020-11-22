@@ -187,7 +187,7 @@ router.patch('/:blogId',async (req,res,next) => {
 
 router.delete('/:blogId',checkAuth,async (req,res,next)=>{
     try{
-        console.log('hii');
+        
         const findBlog = await Blog.findById(req.params.blogId);
         if(findBlog==0){
             return res.status(404).json({
@@ -197,13 +197,13 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
             
             const nuser =await  User.findOne({_id:findBlog.user}).exec();
             const blogsArray = nuser.blogs;
-        //console.log(uId);
+        console.log(blogsArray);
         var flag = false;
-        console.log('here');
         
-        for(var i=0;i<uId.length;i++){
-            console.log(uId[i]);
-            if( uId[i] == req.params.blogId ){
+        
+        for(var i=0;i<blogsArray.length;i++){
+            console.log(blogsArray[i]);
+            if( blogsArray[i] == req.params.blogId ){
                 
                 flag=true;
                 break;
@@ -221,17 +221,17 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
             //     }
             // });
 
-            console.log('here2');
+            
 
             await Blog.findByIdAndDelete(req.params.blogId,function(err,docs){
                 if(err){
-                    console.log('here3');
+                    
                     res.status(500).json({
                         message:'error deleting blog',
                         error:err
                     })
                 }else{
-                    console.log('here4');
+                    
                     res.status(200).json({
                         message:'Blog deleted',
                         doc:docs,
@@ -244,7 +244,7 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
             });
 
         }else{
-            console.log('here5');
+            
             res.status(404).json({
                 mesaage:"Blog doesn't belong to you"
             });
@@ -253,7 +253,7 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
         
         
     }catch(err){
-        console.log('here6');
+        
         res.status(500).json({ message : err});
     }
 
