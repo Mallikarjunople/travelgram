@@ -196,7 +196,7 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
         }else{
             
             const nuser =await  User.findOne({_id:findBlog.user}).exec();
-            console.log(nuser.blogs);
+            const blogsArray = nuser.blogs;
         //console.log(uId);
         var flag = false;
         console.log('here');
