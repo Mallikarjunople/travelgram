@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { Route } from "react-router-dom";
 import { authUser } from "../../App";
 import UserProfile from "../user/UserProfile";

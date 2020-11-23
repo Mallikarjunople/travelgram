@@ -67,6 +67,7 @@ function Navbar() {
                 Login
               </Link>
             </li>
+            <Link to="/role" className="btn btn-success" ><li >MY Profile</li></Link>
           </ul>
 
           {button && !usertoken && (
