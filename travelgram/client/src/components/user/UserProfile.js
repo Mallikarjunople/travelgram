@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import Modal from "react-modal";
 import { authUser } from "../../App";
 import PostList from "./PostList";
+import AdminPage from "../auth/admin/AdminPage";
 
 Modal.setAppElement("#root");
 
 function UserProfile() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const userId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
   const [user, setUser] = useState({
     name: "",
     email: "",
     phone: "",
     blogs: [],
+    role: "",
   });
-  console.log(user);
+
   const inputEvent = (e) => {
     const { name, value } = e.target;
 
@@ -28,10 +28,17 @@ function UserProfile() {
       };
     });
   };
+  const addPostHandle = () => {
+    // window.location = "/createpost";
+    // authUser
+    //   .post(`/blogs/`)
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log(err));
+  };
 
   const saveChanges = (e) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user);
     authUser
       .patch(`/users/${userId}`, [
         { propName: "name", value: user.name },
@@ -54,13 +61,12 @@ function UserProfile() {
     authUser
       .get(`/users/${userId}`)
       .then((res) => {
+        console.log(res.data.user)
         setUser(res.data.user);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    //request for user posts
   }, []);
 
   const modalOpener = () => {
@@ -69,7 +75,8 @@ function UserProfile() {
   const onRequestClose = () => {
     setModalIsOpen(false);
   };
-  return (
+  return user.role == "admin" ? <AdminPage/> : (
+    
     <>
       <div className="container">
         <div className="main-body">
@@ -294,10 +301,22 @@ function UserProfile() {
           <div className="">
             <div className="card mb-3">
               <div className="card-body w-auto">
-                <h3>My posts</h3>
-                {
-                  user.blogs.map(blogid => <PostList  blogid={blogid}/>)
-                }
+                <div className="row">
+                  <div className="col-lg-10 col-md-9 col-8">
+                    <h3>My posts</h3>
+                  </div>
+                  <div className="col-lg-2 col-md-3 col-4 justify-content-end">
+                    <button
+                      className="btn btn-primary mx-1 "
+                      onClick={addPostHandle}
+                    >
+                      Add post
+                    </button>
+                  </div>
+                </div>
+                {user.blogs.map((blogid) => (
+                  <PostList blogid={blogid} />
+                ))}
               </div>
             </div>
           </div>

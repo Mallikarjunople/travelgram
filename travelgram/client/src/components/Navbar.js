@@ -87,6 +87,7 @@ function Navbar() {
               buttonStyle="btn--outline"
               onClick={() => {
                 localStorage.removeItem("token");
+                localStorage.removeItem("userId");
               }}
             >
               Logout
