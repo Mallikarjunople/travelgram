@@ -170,8 +170,6 @@ router.post('/login',async(req,res,next)=>{
 
 router.get('/:userId',checkAuth,async (req,res)=>{
     const id = req.params.userId;
-    const token = req.headers.authorization.split(" ")[1];
-    var decoded = jwt_decode(token);
  console.log(req.userData);
 if(req.userData.userId === id){
     try{

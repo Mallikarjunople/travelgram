@@ -5,7 +5,7 @@ const User = require('../models/user');
 const jwt_decode = require('jwt-decode');
 const Blog = require('../models/blog');
 const checkAuth = require('../middleware/check-auth');
-
+const PBlog = require('../models/pendingBlog');
 
 router.get('/',async(req,res,next)=>{
     
@@ -39,10 +39,11 @@ router.get('/',async(req,res,next)=>{
 
 
 router.post('/',checkAuth,async(req,res,next)=>{
-    
     const token = req.headers.authorization.split(" ")[1];
     var decoded = jwt_decode(token);
-
+    
+console.log(req.userData.userId);
+console.log(decoded.userId);
     if(req.userData.userId === decoded.userId){
         try{
             const findUser= await User.findById(req.userData.userId);
@@ -52,7 +53,18 @@ router.post('/',checkAuth,async(req,res,next)=>{
                 });
             }
             console.log(findUser);
-            const blog= new Blog({
+            const nblog= new Blog({
+                _id: new mongoose.Types.ObjectId(),
+                Tags:req.body.Tags,
+                user:req.userData.userId,
+                Body:req.body.Body,
+                Location:req.body.Location,
+                Title:req.body.Title,
+                Pictures:req.body.Pictures,
+                date:req.body.date
+            });
+
+            const pblog = new PBlog({
                 _id: new mongoose.Types.ObjectId(),
                 Tags:req.body.Tags,
                 user:req.userData.userId,
@@ -64,19 +76,24 @@ router.post('/',checkAuth,async(req,res,next)=>{
             });
         
             try{
-                const createdBlog = await blog.save();
-                console.log(createdBlog);
                 
-                   
-                findUser.blogs.push(createdBlog._id);
-                await findUser.save();
-                console.log(findUser);
+                const npblog = await pblog.save();
+                console.log(npblog);
+
+                // const createdBlog = await nblog.save();
+                // console.log(createdBlog);
+                
+                
+                
+                // findUser.blogs.push(createdBlog._id);
+                // await findUser.save();
+                // console.log(findUser);
                 res.status(201).json({
                     message:'Blog stored',
-                    newBlog:createdBlog,
                     request:{
                         type:'GET',
-                        url:'http://localhost:5000/blogs/'+createdBlog._id
+                        pendingblog:pblog
+                        //url:'http://localhost:5000/blogs/'+createdBlog._id
                     }
                 });
             }catch(err){
