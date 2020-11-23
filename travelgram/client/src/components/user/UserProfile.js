@@ -14,8 +14,9 @@ function UserProfile() {
     email: "",
     phone: "",
     blogs: [],
+    role: "",
   });
-  console.log(user);
+
   const inputEvent = (e) => {
     const { name, value } = e.target;
 
@@ -36,7 +37,7 @@ function UserProfile() {
 
   const saveChanges = (e) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user);
     authUser
       .patch(`/users/${userId}`, [
         { propName: "name", value: user.name },
@@ -59,6 +60,7 @@ function UserProfile() {
     authUser
       .get(`/users/${userId}`)
       .then((res) => {
+        console.log(res.data.user)
         setUser(res.data.user);
       })
       .catch((err) => {
@@ -72,7 +74,8 @@ function UserProfile() {
   const onRequestClose = () => {
     setModalIsOpen(false);
   };
-  return (
+  return user.role == "admin" ? <AdminPage/> : (
+    
     <>
       <div className="container">
         <div className="main-body">

@@ -175,7 +175,7 @@ router.get('/:userId',checkAuth,async (req,res)=>{
  console.log(req.userData);
 if(req.userData.userId === id){
     try{
-        const userById = await User.findById(id).select('name email phone _id password blogs');
+        const userById = await User.findById(id).select('name email phone _id password blogs role');
         console.log(userById);
         if(userById){
             res.status(200).json({
