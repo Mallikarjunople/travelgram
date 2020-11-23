@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import Modal from "react-modal";
 import { authUser } from "../../App";
 import PostList from "./PostList";
-import AdminPage from "../auth/admin/AdminPage";
+
 
 Modal.setAppElement("#root");
 
@@ -17,6 +17,14 @@ function UserProfile() {
     blogs: [],
     role: "",
   });
+
+  //Modal Handlers
+  const modalOpener = () => {
+    setModalIsOpen(true);
+  };
+  const onRequestClose = () => {
+    setModalIsOpen(false);
+  };
 
   const inputEvent = (e) => {
     const { name, value } = e.target;
@@ -61,7 +69,7 @@ function UserProfile() {
     authUser
       .get(`/users/${userId}`)
       .then((res) => {
-        console.log(res.data.user)
+        console.log(res.data.user);
         setUser(res.data.user);
       })
       .catch((err) => {
@@ -69,14 +77,7 @@ function UserProfile() {
       });
   }, []);
 
-  const modalOpener = () => {
-    setModalIsOpen(true);
-  };
-  const onRequestClose = () => {
-    setModalIsOpen(false);
-  };
-  return user.role == "admin" ? <AdminPage/> : (
-    
+  return (
     <>
       <div className="container">
         <div className="main-body">
