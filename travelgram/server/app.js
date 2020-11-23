@@ -9,7 +9,9 @@ const userRoute = require('./routes/users');
 const blogRoute = require('./routes/blogs');
 var socket = require('socket.io');
 const morgan = require('morgan');
-
+const checkAuth = require('./middleware/check-auth');
+const isAdmin = require('./middleware/isadmin');
+const adminRoute = require('./routes/admin');
 require('dotenv/config');
 
 //require the route handlers
@@ -45,6 +47,8 @@ app.use((req, res, next) => {
 //app.use('/posts',postsRoute);
 app.use('/users',userRoute);
 app.use('/blogs',blogRoute);
+
+app.use('/admin',checkAuth,isAdmin,adminRoute);
 
 
 app.use((req,res,next)=>{

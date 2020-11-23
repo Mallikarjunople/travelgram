@@ -15,7 +15,11 @@ const userSchema = mongoose.Schema({
     blogs:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Blog'
-      }]
+      }],
+      role:{
+          type:String,
+          default:"user"
+        }
 });
 
 module.exports = mongoose.model('User',userSchema);
