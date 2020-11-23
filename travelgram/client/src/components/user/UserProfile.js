@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import { authUser } from "../../App";
 import PostList from "./PostList";
+import AdminPage from "../auth/admin/AdminPage";
 
 Modal.setAppElement("#root");
 
