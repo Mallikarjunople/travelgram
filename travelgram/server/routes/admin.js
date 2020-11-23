@@ -53,6 +53,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
             { $set: { flag : req.body.flag}}
         );
         res.json(updatedBlog);
+        
     }catch(err){
         res.json({ message : err});
     }  
