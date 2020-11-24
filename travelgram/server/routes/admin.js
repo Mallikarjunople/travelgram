@@ -7,7 +7,7 @@ const PBlog = require('../models/pendingBlog');
 
 router.get('/blogreq',async (req,res,next)=>{
     try{
-      const allpendingblogs = await PBlog.find();
+      const allpendingblogs = await PBlog.find({flag:0});
     //   const response = {
     //       count: allUsers.length,
     //       users:allUsers.map(allUsers => {
@@ -52,7 +52,44 @@ router.patch('/blogreq/:blogId',async (req,res) => {
             {_id:req.params.blogId},
             { $set: { flag : req.body.flag}}
         );
-        res.json(updatedBlog);
+
+        const pblog = await PBlog.findById(req.params.blogId);
+        console.log(pblog);
+        if(pblog.flag==0){
+            await PBlog.findByIdAndDelete(pblog._id,function(err,docs){
+                if(err){
+                    
+                    res.status(500).json({
+                        message:'error deleting blog',
+                        error:err
+                    })
+                }else{
+                    
+                    res.status(200).json({
+                        message:'inappropriate content,blog deleted',
+                        doc:pblog,
+                        request:{
+                            type:'POST',
+                            url:'http://localhost:5000/blogs'
+                        }
+                    });
+                }
+            });
+        }else{
+            const findUser= await User.findById(pblog.user);
+            console.log(findUser);
+
+            findUser.blogs.push(pblog._id);
+                await findUser.save();
+                console.log(findUser);
+
+            res.status(200).json({
+                message:"blog saved in db",
+                bog:pblog
+            });
+        }
+        
+            
         
     }catch(err){
         res.json({ message : err});
