@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { authUser } from "../../App";
+import { authUser } from "../../../App";
 
-function PostList(props) {
-  const [blog, setBlog] = useState({});
+function BlogRequest(props) {
+  const [blog, setBlog] = useState({
+      id:""
+  });
 const viewHandle = ()=>{
   
 }
-const editHandle = ()=>{
-  
-}
-const deleteHandle = ()=>{
-  
-}
+
   // useEffect(() => {
   //   authUser
-  //     .get(`/blogs/${props.blogid}`)
+  //     .get(`/admin`)
   //     .then((res) => {
   //       // setBlog(res.data.blog);
-  //      console.log(res.data.blog)
+  //       console.log(res.data)
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
@@ -45,8 +42,7 @@ const deleteHandle = ()=>{
                     </div>
                     <div className="">
                       <button className="btn btn-primary mx-1" onClick={viewHandle}>View</button>
-                      <button className="btn btn-success mx-1" onClick={editHandle}>Edit</button>
-                      <button className="btn btn-danger  mx-1" onClick={deleteHandle}>Delete</button>
+               
                     </div>
                   </div>
                 </div>
@@ -59,4 +55,4 @@ const deleteHandle = ()=>{
   );
 }
 
-export default PostList;
+export default BlogRequest;

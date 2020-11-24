@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import Modal from "react-modal";
 import { authUser } from "../../App";
 import PostList from "./PostList";
-import AdminPage from "../auth/admin/AdminPage";
+
 
 Modal.setAppElement("#root");
 
@@ -18,6 +18,14 @@ function UserProfile() {
     role: "",
   });
 
+  //Modal Handlers
+  const modalOpener = () => {
+    setModalIsOpen(true);
+  };
+  const onRequestClose = () => {
+    setModalIsOpen(false);
+  };
+
   const inputEvent = (e) => {
     const { name, value } = e.target;
 
@@ -28,14 +36,7 @@ function UserProfile() {
       };
     });
   };
-  const addPostHandle = () => {
-    // window.location = "/createpost";
-    // authUser
-    //   .post(`/blogs/`)
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => console.log(err));
-  };
-
+ 
   const saveChanges = (e) => {
     e.preventDefault();
     // console.log(user);
@@ -56,12 +57,12 @@ function UserProfile() {
     setModalIsOpen(false);
   };
   useEffect(() => {
-    //request for user information
+    //REQUEST FOR USER INFORMATION 
 
     authUser
       .get(`/users/${userId}`)
       .then((res) => {
-        console.log(res.data.user)
+        console.log(res.data.user);
         setUser(res.data.user);
       })
       .catch((err) => {
@@ -69,14 +70,7 @@ function UserProfile() {
       });
   }, []);
 
-  const modalOpener = () => {
-    setModalIsOpen(true);
-  };
-  const onRequestClose = () => {
-    setModalIsOpen(false);
-  };
-  return user.role == "admin" ? <AdminPage/> : (
-    
+  return (
     <>
       <div className="container">
         <div className="main-body">
@@ -308,7 +302,7 @@ function UserProfile() {
                   <div className="col-lg-2 col-md-3 col-4 justify-content-end">
                     <button
                       className="btn btn-primary mx-1 "
-                      onClick={addPostHandle}
+                      onClick={()=>window.location= "/createpost"}
                     >
                       Add post
                     </button>

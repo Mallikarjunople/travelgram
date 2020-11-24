@@ -1,0 +1,25 @@
+## /users routes
+POST /login 
+    - logs in existing user
+POST /signup
+     - creates new user  
+GET /users/:userId 
+    - gets user Object (name,email,phone){password updation yet to be added}
+PATCH /users/:userId 
+    - name email phone can be updated
+DELETE /users/:userId (NOT USEFUL YET)
+
+## /blogs routes
+
+GET /blogs - GETS all blogs (needs fixes)
+POST /blogs - ADDS new blog 
+
+GET /blogs/:blogId - GETS blog by blogId for logged in user
+PATCH /blogs/:blogId -  UPDATEes blog details for logged in user
+DELETE /blogs/:blogId - DELETEs blog 
+
+# /admin routes
+
+GET /admin/blogreq - GETS all pending blogs
+GET /admin/blogreq/:blogId - GETS one blog by Id from pending blogs
+PATCH /admin/blogreq/:blogId - to UPDATE the flag of blog from pending blogs
