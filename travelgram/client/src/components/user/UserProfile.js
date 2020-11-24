@@ -36,14 +36,7 @@ function UserProfile() {
       };
     });
   };
-  const addPostHandle = () => {
-    // window.location = "/createpost";
-    // authUser
-    //   .post(`/blogs/`)
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => console.log(err));
-  };
-
+ 
   const saveChanges = (e) => {
     e.preventDefault();
     // console.log(user);
@@ -309,7 +302,7 @@ function UserProfile() {
                   <div className="col-lg-2 col-md-3 col-4 justify-content-end">
                     <button
                       className="btn btn-primary mx-1 "
-                      onClick={addPostHandle}
+                      onClick={()=>window.location= "/createpost"}
                     >
                       Add post
                     </button>

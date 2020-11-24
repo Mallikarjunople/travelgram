@@ -11,10 +11,10 @@ const viewHandle = ()=>{
 
   useEffect(() => {
     authUser
-      .get(`/admin/${blog.id}`)
+      .get(`/admin`)
       .then((res) => {
-        setBlog(res.data.blog);
-        // console.log(res.data.blog)
+        // setBlog(res.data.blog);
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }, []);
