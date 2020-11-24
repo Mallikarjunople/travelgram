@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { authUser } from "../../App";
 
 function Tlogpost() {
   const getId = useParams();
@@ -10,12 +10,8 @@ function Tlogpost() {
   
 
   useEffect(() => {
-    axios
-      .get(`/blogs/${getId.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    authUser
+      .get(`/blogs/${getId.id}`)
       .then((res) => {
        
         setBlog(res.data.blog);

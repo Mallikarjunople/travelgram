@@ -57,7 +57,7 @@ function UserProfile() {
     setModalIsOpen(false);
   };
   useEffect(() => {
-    //request for user information
+    //REQUEST FOR USER INFORMATION 
 
     authUser
       .get(`/users/${userId}`)

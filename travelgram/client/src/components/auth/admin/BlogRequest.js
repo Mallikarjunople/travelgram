@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { authUser } from "../../../App";
 
-function PostList(props) {
+function BlogRequest(props) {
   const [blog, setBlog] = useState({
       id:""
   });
@@ -9,15 +9,15 @@ const viewHandle = ()=>{
   
 }
 
-  useEffect(() => {
-    authUser
-      .get(`/admin`)
-      .then((res) => {
-        // setBlog(res.data.blog);
-        console.log(res.data)
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   authUser
+  //     .get(`/admin`)
+  //     .then((res) => {
+  //       // setBlog(res.data.blog);
+  //       console.log(res.data)
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
   return (
     <>
       <div className="container-fluid">
@@ -55,4 +55,4 @@ const viewHandle = ()=>{
   );
 }
 
-export default PostList;
+export default BlogRequest;

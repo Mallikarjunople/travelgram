@@ -12,15 +12,15 @@ const editHandle = ()=>{
 const deleteHandle = ()=>{
   
 }
-  useEffect(() => {
-    authUser
-      .get(`blogs/${props.blogid}`)
-      .then((res) => {
-        setBlog(res.data.blog);
-        // console.log(res.data.blog)
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   authUser
+  //     .get(`/blogs/${props.blogid}`)
+  //     .then((res) => {
+  //       // setBlog(res.data.blog);
+  //      console.log(res.data.blog)
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
   return (
     <>
       <div className="container-fluid">
