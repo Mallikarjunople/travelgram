@@ -11,7 +11,7 @@ function AdminPage() {
     authUser
       .get("/admin/blogreq")
       .then((res) => {
-        console.log(res.data.blogs);
+        console.log(res.data);
         // setBlogRequests(res.data.blogs);
       })
       .catch((err) => console.log(err));
@@ -22,9 +22,9 @@ function AdminPage() {
 
       <h2>Blog requests</h2>
       <div>
-        {/* {blogRequests.map((item) => (
+        {blogRequests.map((item) => (
           <BlogRequest id={item._id} />
-        ))} */}
+        ))}
       </div>
     </>
   );

@@ -7,16 +7,16 @@ function BlogRequest({ id }) {
   });
   const viewHandle = () => {};
   const approveHandle = () => {
-    // setBlog({
-    //   flag:"1",
-    // })
+    setBlog({
+      flag:"1",
+    })
 
-    // authUser.patch(`/admin/blogreq/${id}`,blog)
-    // .then((res)=> {
-    //  console.log(res)
-    //  console.log(blog.flag)
-    // })
-    // .catch((err)=>console.log(err))
+    authUser.patch(`/admin/blogreq/${id}`,blog)
+    .then((res)=> {
+     console.log(res)
+     console.log(blog.flag)
+    })
+    .catch((err)=>console.log(err))
 
   };
   const disapproveHandle = () => {};
