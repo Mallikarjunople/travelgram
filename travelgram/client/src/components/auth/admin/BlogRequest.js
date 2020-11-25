@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { authUser } from "../../../App";
-
 function BlogRequest({ id }) {
-  const [blog, setBlog] = useState({
-
-  });
+  const [blog, setBlog] = useState({});
   const viewHandle = () => {};
   const approveHandle = () => {
-    setBlog({
-      flag:"1",
-    })
+   
+    
+    
 
-    authUser.patch(`/admin/blogreq/${id}`,blog)
+    authUser.patch(`/admin/blogreq/${id}`,{flag:1})
     .then((res)=> {
      console.log(res)
-     console.log(blog.flag)
+    //  console.log(blog.flag)
     })
     .catch((err)=>console.log(err))
 
   };
+  
   const disapproveHandle = () => {};
 
   useEffect(() => {
@@ -26,7 +24,7 @@ function BlogRequest({ id }) {
       .get(`/admin/blogreq/${id}`)
       .then((res) => {
         setBlog(res.data);
-        // console.log(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

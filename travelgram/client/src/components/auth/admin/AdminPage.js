@@ -11,8 +11,8 @@ function AdminPage() {
     authUser
       .get("/admin/blogreq")
       .then((res) => {
-        console.log(res.data);
-        // setBlogRequests(res.data.blogs);
+        // console.log(res.data.blogs);
+        setBlogRequests(res.data.blogs);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -3,24 +3,25 @@ import { authUser } from "../../App";
 
 function PostList(props) {
   const [blog, setBlog] = useState({});
-const viewHandle = ()=>{
-  
-}
-const editHandle = ()=>{
-  
-}
-const deleteHandle = ()=>{
-  
-}
-  // useEffect(() => {
-  //   authUser
-  //     .get(`/blogs/${props.blogid}`)
-  //     .then((res) => {
-  //       // setBlog(res.data.blog);
-  //      console.log(res.data.blog)
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+
+  const viewHandle = () => {};
+  const editHandle = () => {};
+  const deleteHandle = () => {
+authUser.delete(`/blogs/${props.blogid}`).then(res =>{
+  console.log(res)
+}).catch(err => console.log(err))
+
+  };
+
+  useEffect(() => {
+    authUser
+      .get(`/blogs/${props.blogid}`)
+      .then((res) => {
+        setBlog(res.data.blog);
+        console.log(res.data.blog);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <div className="container-fluid">
@@ -44,9 +45,24 @@ const deleteHandle = ()=>{
                       <p className="card-text">{blog.Body}</p>
                     </div>
                     <div className="">
-                      <button className="btn btn-primary mx-1" onClick={viewHandle}>View</button>
-                      <button className="btn btn-success mx-1" onClick={editHandle}>Edit</button>
-                      <button className="btn btn-danger  mx-1" onClick={deleteHandle}>Delete</button>
+                      <button
+                        className="btn btn-primary mx-1"
+                        onClick={viewHandle}
+                      >
+                        View
+                      </button>
+                      <button
+                        className="btn btn-success mx-1"
+                        onClick={editHandle}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-danger mx-1"
+                        onClick={deleteHandle}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>

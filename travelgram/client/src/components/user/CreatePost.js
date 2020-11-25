@@ -45,6 +45,7 @@ function CreatePost() {
   };
   const sendHandler = () => {
     if (blog.Title && blog.Body && blog.Tags && blog.Pictures) {
+
       setModalIsOpen(false);
       authUser
         .post(`/blogs`, blog)
@@ -53,6 +54,7 @@ function CreatePost() {
           console.log(response);
         })
         .catch((error) => console.log(error));
+        alert("Your request has been Sent to get approved !!")
     } else alert("Please Fill all fields ");
   };
 
