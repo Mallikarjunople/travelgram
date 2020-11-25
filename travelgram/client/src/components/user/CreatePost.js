@@ -1,11 +1,31 @@
 import React, { useState } from "react";
 import { authUser } from "../../App";
+import Modal from "react-modal";
+Modal.setAppElement("#root");
 
-
+// YET-TODO : after submitting the form it doesn't get cleared
 
 const userId = localStorage.getItem("userId");
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 function CreatePost() {
-  
+  //Modal Handlers
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const modalOpener = () => {
+    setModalIsOpen(true);
+  };
+  const onRequestClose = () => {
+    setModalIsOpen(false);
+  };
+
   const [blog, setBlog] = useState({
     Tags: "",
     Body: "",
@@ -24,8 +44,8 @@ function CreatePost() {
     });
   };
   const sendHandler = () => {
-    
     if (blog.Title && blog.Body && blog.Tags && blog.Pictures) {
+      setModalIsOpen(false);
       authUser
         .post(`/blogs`, blog)
         .then((response) => {
@@ -38,7 +58,7 @@ function CreatePost() {
 
   return (
     <>
-    <p>{blog.date}</p>
+      <p>{blog.date}</p>
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-10">
@@ -112,20 +132,40 @@ function CreatePost() {
                     required
                   />
                 </div>
+
+                <Modal isOpen={modalIsOpen} style={customStyles}>
+                  <p> Are you sure you want to send the blog to approve ?</p>
+
+                  <button
+                    type="button"
+                    id="aprove"
+                    name="approve"
+                    className="btn btn-primary pull-right mx-1 my-3"
+                    onClick={sendHandler}
+                  >
+                    Yes, Send to Approve.
+                  </button>
+
+                  <button
+                    className="btn btn-danger mx-1"
+                    onClick={onRequestClose}
+                  >
+                    NO
+                  </button>
+                </Modal>
                 <button
+                  className="btn btn-success mx-1"
                   type="button"
-                  id="submit"
-                  name="submit"
-                  className="btn btn-primary pull-right mx-1 my-3"
-                  onClick={sendHandler}
+                  onClick={modalOpener}
                 >
-                  Send to Approve
+                  Send To Approve
                 </button>
+
                 <button
                   type="button"
                   name="goback"
-                  className="btn btn-success pull-right mx-1 my-3"
-                  onClick={()=> window.location="/userprofile"}
+                  className="btn btn-danger pull-right mx-1 my-3"
+                  onClick={() => (window.location = "/userprofile")}
                 >
                   Go Back
                 </button>

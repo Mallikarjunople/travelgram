@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { authUser } from "../../../App";
 
-function BlogRequest(props) {
+function BlogRequest({ id }) {
   const [blog, setBlog] = useState({
-      id:""
-  });
-const viewHandle = ()=>{
-  
-}
 
-  // useEffect(() => {
-  //   authUser
-  //     .get(`/admin`)
-  //     .then((res) => {
-  //       // setBlog(res.data.blog);
-  //       console.log(res.data)
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  });
+  const viewHandle = () => {};
+  const approveHandle = () => {
+    // setBlog({
+    //   flag:"1",
+    // })
+
+    // authUser.patch(`/admin/blogreq/${id}`,blog)
+    // .then((res)=> {
+    //  console.log(res)
+    //  console.log(blog.flag)
+    // })
+    // .catch((err)=>console.log(err))
+
+  };
+  const disapproveHandle = () => {};
+
+  useEffect(() => {
+    authUser
+      .get(`/admin/blogreq/${id}`)
+      .then((res) => {
+        setBlog(res.data);
+        // console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <div className="container-fluid">
@@ -41,8 +53,24 @@ const viewHandle = ()=>{
                       <p className="card-text">{blog.Body}</p>
                     </div>
                     <div className="">
-                      <button className="btn btn-primary mx-1" onClick={viewHandle}>View</button>
-               
+                      <button
+                        className="btn btn-primary mx-1"
+                        onClick={viewHandle}
+                      >
+                        View
+                      </button>
+                      <button
+                        className="btn btn-primary mx-1"
+                        onClick={approveHandle}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="btn btn-primary mx-1"
+                        onClick={disapproveHandle}
+                      >
+                        Disapprove
+                      </button>
                     </div>
                   </div>
                 </div>
