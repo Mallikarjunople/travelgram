@@ -3,6 +3,8 @@ import { authUser } from "../../App";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
+// YET-TODO : after submitting the form it doesn't get cleared
+
 const userId = localStorage.getItem("userId");
 const customStyles = {
   content: {
@@ -43,6 +45,7 @@ function CreatePost() {
   };
   const sendHandler = () => {
     if (blog.Title && blog.Body && blog.Tags && blog.Pictures) {
+      setModalIsOpen(false);
       authUser
         .post(`/blogs`, blog)
         .then((response) => {
@@ -135,8 +138,8 @@ function CreatePost() {
 
                   <button
                     type="button"
-                    id="submit"
-                    name="submit"
+                    id="aprove"
+                    name="approve"
                     className="btn btn-primary pull-right mx-1 my-3"
                     onClick={sendHandler}
                   >
@@ -147,18 +150,22 @@ function CreatePost() {
                     className="btn btn-danger mx-1"
                     onClick={onRequestClose}
                   >
-                   NO
+                    NO
                   </button>
                 </Modal>
-                <button className="btn btn-danger mx-1" onClick={modalOpener}>
+                <button
+                  className="btn btn-success mx-1"
+                  type="button"
+                  onClick={modalOpener}
+                >
                   Send To Approve
                 </button>
 
                 <button
                   type="button"
                   name="goback"
-                  className="btn btn-success pull-right mx-1 my-3"
-                  onClick={()=> window.location="/userprofile"}
+                  className="btn btn-danger pull-right mx-1 my-3"
+                  onClick={() => (window.location = "/userprofile")}
                 >
                   Go Back
                 </button>
