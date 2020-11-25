@@ -10,7 +10,7 @@ const PBlog = require('../models/pendingBlog');
 router.get('/',async(req,res,next)=>{
     
     try{
-        const allBlogs =await PBlog.find().populate('user','name email _id');
+        const allBlogs =await PBlog.find({flag:1}).populate('user','name email _id');
         res.status(200).json({
             count:allBlogs.length,
             blogs:allBlogs.map(allBlogs => {
@@ -22,6 +22,7 @@ router.get('/',async(req,res,next)=>{
                     Title:allBlogs.Title,
                     Pictures:allBlogs.Pictures,
                     date:allBlogs.date,
+                    flag:allBlogs.flag,
                     request:{
                         type:'GET',
                         url:'http://localhost:5000/blogs/'+allBlogs._id
