@@ -7,29 +7,43 @@ const PBlog = require('../models/pendingBlog');
 
 router.get('/blogreq',async (req,res,next)=>{
     try{
-      const allpendingblogs = await PBlog.find({flag:0});
-    //   const response = {
-    //       count: allUsers.length,
-    //       users:allUsers.map(allUsers => {
-    //           return {
-    //               name:allUsers.name,
-    //               email:allUsers.email,
-    //               phone:allUsers.phone,
-    //               password:allUsers.password,
-    //               _id:allUsers._id,
-    //                 request:{
-    //                     type:'GET',
-    //                     url:"http://localhost:5000/users/"+allUsers._id
-    //                 }
-    //           }
-    //       })
-    //   };
-    for(var i =0;i<allpendingblogs.length;i++){
-        console.log(allpendingblogs[i]);
+      const allpendingnewblogs = await PBlog.aggregate([
+          { $match: { flag: 0}}
+    ]);
+
+    const allpendingupdatedblogs = await PBlog.aggregate([
+        { $match: { flag: 2}}
+  ]);
+    
+    var allpendingblogs = [];
+    for(var i=0;i<allpendingnewblogs.length;i++){
+        allpendingblogs.push(allpendingnewblogs[i]);
     }
-      res.status(200).json({
-          message:'all unvalidated blogs'
-      });  
+
+    for(var i=0;i<allpendingupdatedblogs.length;i++){
+        allpendingblogs.push(allpendingupdatedblogs[i]);
+    }
+
+    res.status(200).json({
+        count:allpendingblogs.length,
+        blogs:allpendingblogs.map(allpendingblogs => {
+            return{
+                _id: allpendingblogs._id,
+                user:allpendingblogs.user,
+                Body:allpendingblogs.Body,
+                Location:allpendingblogs.Location,
+                Title:allpendingblogs.Title,
+                flag:allpendingblogs.flag,
+                Pictures:allpendingblogs.Pictures,
+                date:allpendingblogs.date,
+                request:{
+                    type:'GET',
+                    url:'http://localhost:5000/blogs/'+allpendingblogs._id
+                }
+            }
+        })
+        
+    }); 
     }catch(err){
         console.log(err);
         res.status(500).json({message:err});
@@ -55,7 +69,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
 
         const pblog = await PBlog.findById(req.params.blogId);
         console.log(pblog);
-        if(pblog.flag==0){
+        if(pblog.flag == 0){
             await PBlog.findByIdAndDelete(pblog._id,function(err,docs){
                 if(err){
                     
