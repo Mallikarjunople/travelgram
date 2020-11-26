@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { authUser } from "../../App";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
@@ -17,6 +18,7 @@ const customStyles = {
   },
 };
 function CreatePost() {
+  const { register, handleSubmit }= useForm();
   //Modal Handlers
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalOpener = () => {
@@ -26,56 +28,59 @@ function CreatePost() {
     setModalIsOpen(false);
   };
 
-  const [blog, setBlog] = useState({
-    Tags: "",
-    Body: "",
-    Location: "",
-    Title: "",
-    Pictures: "",
-  });
-  const inputEvent = (e) => {
-    const { name, value } = e.target;
+  // const [blog, setBlog] = useState({
+  //   Tags: "",
+  //   Body: "",
+  //   Location: "",
+  //   Title: "",
+  //   Pictures: "",
+  // });
+  // const inputEvent = (e) => {
+  //   const { name, value } = e.target;
 
-    setBlog((preValue) => {
-      return {
-        ...preValue,
-        [name]: value,
-      };
-    });
-  };
-  const sendHandler = () => {
-    if (blog.Title && blog.Body && blog.Tags && blog.Pictures) {
-
+  //   setBlog((preValue) => {
+  //     return {
+  //       ...preValue,
+  //       [name]: value,
+  //     };
+  //   });
+  // };
+  const sendHandler = (blog) => {
+    // if (blog.Title && blog.Body && blog.Tags ) 
+    {
+      console.log(blog);
       setModalIsOpen(false);
       authUser
         .post(`/blogs`, blog)
         .then((response) => {
-          // console.log(blog);
-          // console.log(response);
+          console.log(blog);
+          console.log(response);
         })
         .catch((error) => console.log(error));
-        alert("Your request has been Sent to get approved !!")
-    } else alert("Please Fill all fields ");
+      alert("Your request has been Sent to get approved !!");
+    }
+    //  else alert("Please Fill all fields ");
   };
 
   return (
     <>
-      <p>{blog.date}</p>
+      {/* <p>{blog.date}</p> */}
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-10">
             <h1 className=" ">Add your post</h1>
             <div className="form-area">
-              <form role="form">
+              <form onSubmit={handleSubmit(sendHandler)}>
                 <br styles="clear:both" />
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control"
-                    id="title"
+                    id="Title"
+                    ref={register}
                     name="Title"
-                    value={blog.Title}
-                    onChange={inputEvent}
+                    // value={blog.Title}
+                    // onChange={inputEvent}
                     placeholder="Title"
                     required
                   />
@@ -83,12 +88,14 @@ function CreatePost() {
                 <div className="form-group">
                   <div className="form-group">
                     <input
-                      type="text"
-                      className="form-control"
-                      id="pictures"
+                      type="file"
+                      // className="form-control"
+                    ref={register}
+
+                      id="Pictures"
                       name="Pictures"
-                      value={blog.Pictures}
-                      onChange={inputEvent}
+                      // value={blog.Pictures}
+                      // onChange={inputEvent}
                       placeholder="Pictures"
                       required
                     />
@@ -99,10 +106,11 @@ function CreatePost() {
                   <textarea
                     className="form-control"
                     type="textarea"
-                    id="body"
+                    ref={register}
+                    id="Body"
                     name="Body"
-                    value={blog.Body}
-                    onChange={inputEvent}
+                    // value={blog.Body}
+                    // onChange={inputEvent}
                     placeholder="Content"
                     maxlength="700"
                     rows="7"
@@ -113,10 +121,11 @@ function CreatePost() {
                     <input
                       type="text"
                       className="form-control"
-                      id="tags"
+                    ref={register}
+                    id="Tags"
                       name="Tags"
-                      value={blog.Tags}
-                      onChange={inputEvent}
+                      // value={blog.Tags}
+                      // onChange={inputEvent}
                       placeholder="Tags"
                       required
                     />
@@ -126,16 +135,30 @@ function CreatePost() {
                   <input
                     type="text"
                     className="form-control"
-                    id="location"
+                    ref={register}
+                    id="Location"
                     name="Location"
-                    value={blog.Location}
-                    onChange={inputEvent}
+                    // value={blog.Location}
+                    // onChange={inputEvent}
                     placeholder="Location"
                     required
                   />
                 </div>
+                {/* <div className="form-group">
+                  <input
+                    type="text"
+                    // className="form-control"
+                    ref={register}
+                    id="date"
+                    name="date"
+                    // value={blog.Location}
+                    // onChange={inputEvent}
+                    placeholder="date"
+                    required
+                  />
+                </div> */}
 
-                <Modal isOpen={modalIsOpen} style={customStyles}>
+                {/* <Modal isOpen={modalIsOpen} style={customStyles}>
                   <p> Are you sure you want to send the blog to approve ?</p>
 
                   <button
@@ -154,11 +177,11 @@ function CreatePost() {
                   >
                     NO
                   </button>
-                </Modal>
+                </Modal> */}
                 <button
                   className="btn btn-success mx-1"
-                  type="button"
-                  onClick={modalOpener}
+                  type="submit"
+                  // onClick={sendHandler}
                 >
                   Send To Approve
                 </button>
