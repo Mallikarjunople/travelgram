@@ -9,6 +9,21 @@ const checkAuth = require('../middleware/check-auth');
 const jwt_decode = require('jwt-decode');
 
 
+const multer = require('multer');
+
+
+const storage = multer.diskStorage({
+  destination: function(req,file,cb){
+    cb(null,'./uploads/')
+  },
+  filename:function(req,file,cb){
+    cb(null,file.originalname);
+  } 
+});
+
+const upload = multer({storage:storage});
+
+
 router.get('/',async (req,res,next)=>{
     try{
       const allUsers = await User.find().select('name email phone _id password');
@@ -36,7 +51,7 @@ router.get('/',async (req,res,next)=>{
   });
 
 
-  router.post('/signup',(req,res,next)=>{
+  router.post('/signup',upload.single('Pictures'),(req,res,next)=>{
     User.find({email:req.body.email})
     .exec()
     .then(user => {
@@ -52,13 +67,14 @@ router.get('/',async (req,res,next)=>{
                         error :err
                     })
                 }else{
+                    console.log(req.file);
                     const user = new User({
                         _id:new mongoose.Types.ObjectId(),
                         name:req.body.name,
                         email:req.body.email,
                         phone:req.body.phone,
                         password:hash,
-                        profilePhoto:req.body.profilePhoto
+                        profilePhoto:req.file.path
                     });
                     user
                     .save()
