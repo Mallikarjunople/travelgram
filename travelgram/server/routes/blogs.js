@@ -7,10 +7,24 @@ const Blog = require('../models/blog');
 const checkAuth = require('../middleware/check-auth');
 const PBlog = require('../models/pendingBlog');
 
+const multer = require('multer');
+
+
+const storage = multer.diskStorage({
+  destination: function(req,file,cb){
+    cb(null,'./uploads/')
+  },
+  filename:function(req,file,cb){
+    cb(null,file.originalname);
+  } 
+});
+
+const upload = multer({storage:storage});
+
 router.get('/',async(req,res,next)=>{
     
     try{
-        const allBlogs =await PBlog.find({flag:1}).populate('user','name email _id');
+        const allBlogs =await PBlog.find({}).populate('user','name email _id');
         res.status(200).json({
             count:allBlogs.length,
             blogs:allBlogs.map(allBlogs => {
@@ -39,7 +53,7 @@ router.get('/',async(req,res,next)=>{
 });
 
 
-router.post('/',checkAuth,async(req,res,next)=>{
+router.post('/',checkAuth,upload.single('Pictures'),async(req,res,next)=>{
     const token = req.headers.authorization.split(" ")[1];
     var decoded = jwt_decode(token);
     
@@ -65,6 +79,8 @@ console.log(decoded.userId);
             //     date:req.body.date
             // });
 
+            console.log(req.file);
+
             const pblog = new PBlog({
                 _id: new mongoose.Types.ObjectId(),
                 Tags:req.body.Tags,
@@ -72,7 +88,7 @@ console.log(decoded.userId);
                 Body:req.body.Body,
                 Location:req.body.Location,
                 Title:req.body.Title,
-                Pictures:req.body.Pictures,
+                Pictures:req.file.path,
                 date:req.body.date
             });
         

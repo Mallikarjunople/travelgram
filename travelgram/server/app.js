@@ -4,9 +4,10 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require('cors');
 const bodyParser=require('body-parser');
-const postsRoute = require('./routes/posts');
+
 const userRoute = require('./routes/users');
 const blogRoute = require('./routes/blogs');
+const cityRoute = require('./routes/Cities');
 var socket = require('socket.io');
 const morgan = require('morgan');
 const checkAuth = require('./middleware/check-auth');
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan('dev'));
+app.use('/uploads',express.static('uploads'));
 
 //connect to db
 mongoose.connect(process.env.DB_CONNECTION,{ 
@@ -50,6 +52,7 @@ app.use('/blogs',blogRoute);
 
 app.use('/admin',checkAuth,isAdmin,adminRoute);
 
+app.use('/City',checkAuth,cityRoute);
 
 app.use((req,res,next)=>{
   const error = new Error('Not Found');
