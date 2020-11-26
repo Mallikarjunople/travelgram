@@ -62,7 +62,7 @@ function UserProfile() {
     authUser
       .get(`/users/${userId}`)
       .then((res) => {
-        console.log(res.data.user);
+        // console.log(res.data.user);
         setUser(res.data.user);
       })
       .catch((err) => {

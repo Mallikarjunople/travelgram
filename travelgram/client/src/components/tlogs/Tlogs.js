@@ -10,7 +10,7 @@ export default function Tlogs() {
   useEffect(() => {
     axios
       .get("/blogs") //NEED CHANGES
-      .then((res) => setData(res.data.blogs))
+      .then((res) => console(res.data.blogs))
       .catch((err) => console.log(err));
    
   }, []);

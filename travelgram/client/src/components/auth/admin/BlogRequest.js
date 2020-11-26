@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { authUser } from "../../../App";
-
 function BlogRequest({ id }) {
-  const [blog, setBlog] = useState({
-
-  });
-  const viewHandle = () => {};
+  const [blog, setBlog] = useState({});
+ 
   const approveHandle = () => {
-    // setBlog({
-    //   flag:"1",
-    // })
-
-    // authUser.patch(`/admin/blogreq/${id}`,blog)
-    // .then((res)=> {
-    //  console.log(res)
-    //  console.log(blog.flag)
-    // })
-    // .catch((err)=>console.log(err))
-
+    authUser
+      .patch(`/admin/blogreq/${id}`, { flag: 1 })
+      .then((res) => {
+        // console.log(res);
+        //  console.log(blog.flag)
+      })
+      .catch((err) => console.log(err));
   };
-  const disapproveHandle = () => {};
+
+  const disapproveHandle = () => {
+    authUser
+      .patch(`/admin/blogreq/${id}`, { flag: 2 })
+      .then((res) => {
+        // console.log(res);
+        //  console.log(blog.flag)
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     authUser
@@ -53,19 +56,22 @@ function BlogRequest({ id }) {
                       <p className="card-text">{blog.Body}</p>
                     </div>
                     <div className="">
-                      <button
+                      <Link to={`/viewblog/${id}`}><button
+                      type="button"
                         className="btn btn-primary mx-1"
-                        onClick={viewHandle}
+                        // onClick={viewHandle}
                       >
                         View
-                      </button>
+                      </button></Link>
                       <button
+                      type="button"
                         className="btn btn-primary mx-1"
                         onClick={approveHandle}
                       >
                         Approve
                       </button>
                       <button
+                      type="button"
                         className="btn btn-primary mx-1"
                         onClick={disapproveHandle}
                       >
