@@ -24,8 +24,7 @@ const pblogSchema = mongoose.Schema({
         required:true
     },
     Pictures:{
-        type:String,
-        required:true
+        type:String
     },
     date: { type: Date, default: Date.now },
       flag:{
