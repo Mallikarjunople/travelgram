@@ -13,7 +13,7 @@ import Tlogpost from "./components/pages/Tlogpost";
 
 import ThemePage from "./components/pages/ThemePage";
 import Landing from "./components/Landing";
-import AdminLogin from "./components/auth/admin/AdminLogin";
+import PopularCities from "./components/auth/admin/PopularCities";
 import UserSignup from "./components/auth/user/UserSignup";
 import UserLogin from "./components/auth/user/UserLogin";
 import CreatePost from "./components/user/CreatePost";
@@ -23,6 +23,7 @@ import PageNotFound from "./components/pages/PageNotFound";
 import AdminPage from "./components/auth/admin/AdminPage";
 import Role from "./components/auth/Role";
 import ViewBlog from "./components/auth/admin/ViewBlog";
+import RequestSection from "./components/auth/admin/RequestSection";
 
 const token = localStorage.getItem("token");
 export const authUser = axios.create({
@@ -44,6 +45,8 @@ function App() {
           <Route path="/usersignup" exact component={UserSignup} />
           <Route path="/userlogin" exact component={UserLogin} />
           <Route path="/adminpage" exact component={AdminPage} />
+          <Route path="/PopularCities" exact component={PopularCities} />
+          <Route path="/requestsection" exact component={RequestSection} />
           <Route path="/viewblog/:getId" exact component={ViewBlog} />
           <Route path="/role" exact component={Role} />
 
