@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { authUser } from "../../App";
 
 function Tlogpost() {
-  const getId = useParams();
+const {getId} = useParams();
   const [blog, setBlog] = useState([]);
   const [userDetail, setUserDetail] = useState([]);
   const token = localStorage.getItem("token");

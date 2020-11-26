@@ -5,12 +5,16 @@ function PostList(props) {
   const [blog, setBlog] = useState({});
 
   const viewHandle = () => {};
-  const editHandle = () => {};
+  const editHandle = () => {
+    
+  };
   const deleteHandle = () => {
-authUser.delete(`/blogs/${props.blogid}`).then(res =>{
-  console.log(res)
-}).catch(err => console.log(err))
-
+    authUser
+      .delete(`/blogs/${props.blogid}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -46,18 +50,21 @@ authUser.delete(`/blogs/${props.blogid}`).then(res =>{
                     </div>
                     <div className="">
                       <button
+                      type="button"
                         className="btn btn-primary mx-1"
                         onClick={viewHandle}
                       >
                         View
                       </button>
                       <button
+                      type="button"
                         className="btn btn-success mx-1"
                         onClick={editHandle}
                       >
                         Edit
                       </button>
                       <button
+                      type="button"
                         className="btn btn-danger mx-1"
                         onClick={deleteHandle}
                       >

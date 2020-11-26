@@ -11,8 +11,8 @@ DELETE /users/:userId (NOT USEFUL YET)
 
 ## /blogs routes
 
-GET /blogs - GETS all blogs (needs fixes)
-POST /blogs - ADDS new blog 
+GET /blogs - GETS all blogs For the Main Travlogues Component
+POST /blogs - ADDS new blog for a user to get approved first
 
 GET /blogs/:blogId - GETS blog by blogId for logged in user
 PATCH /blogs/:blogId -  UPDATEes blog details for logged in user

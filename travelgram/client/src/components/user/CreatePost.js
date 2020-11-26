@@ -50,8 +50,8 @@ function CreatePost() {
       authUser
         .post(`/blogs`, blog)
         .then((response) => {
-          console.log(blog);
-          console.log(response);
+          // console.log(blog);
+          // console.log(response);
         })
         .catch((error) => console.log(error));
         alert("Your request has been Sent to get approved !!")

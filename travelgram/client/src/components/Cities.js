@@ -1,7 +1,9 @@
 import React from "react";
 import "./css/main.css";
+// import authUser from '../../../App';
 
 function Cities() {
+
   const lorem =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ex pulvinar est laoreet ullamcorper.";
   return (
