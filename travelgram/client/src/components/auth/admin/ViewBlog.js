@@ -9,10 +9,10 @@ function ViewBlog() {
 
   useEffect(() => {
     authUser
-      .get(`/admin/blogreq/${getId}`)
+      .get(`/blogs/${getId}`)
       .then((res) => {
-        console.log(res.data);
-        setBlog(res.data);
+        console.log(res.data.blog);
+        setBlog(res.data.blog);
         // let onlyDate = blog.date.split('T')[0];
         // alert(onlyDate);
       })

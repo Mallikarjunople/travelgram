@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { authUser } from "../../../App";
-import BlogRequest from "../admin/BlogRequest";
+import React from "react";
+import { Route, BrowserRouter, NavLink, Switch } from "react-router-dom";
+import Navbar from "../../Navbar";
 
-
+import PopularCities from "./PopularCities";
+import LeftBar from "./LeftBar";
+import RequestSection from "./RequestSection";
 
 function AdminPage() {
-  const [blogRequests, setBlogRequests] = useState([]);
-
-  useEffect(() => {
-    authUser
-      .get("/admin/blogreq")
-      .then((res) => {
-        console.log(res.data.blogs);
-        setBlogRequests(res.data.blogs);
-      })
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <>
-      <h2>Admin page</h2>
-      <h2>Popular Cities </h2>
-      
-
-      <h2>Blog requests</h2>
-      <div>
-        {blogRequests.map((item) => (
-         <div key={item._id}> <BlogRequest id={item._id} /></div>
-        ))}
-      </div>
+    <Navbar/>
+      <BrowserRouter>
+        <Switch>
+          <>
+          <div className="row">
+            <div className="col-2">
+              <LeftBar />
+            </div>
+            <div className="col-10">
+              <Route
+                path="/requestsection"
+                exact
+                component={RequestSection}
+              ></Route>
+              <Route path="/PopularCities" exact component={PopularCities}></Route>
+            </div>
+            </div>
+          </>
+        </Switch>
+      </BrowserRouter>
+     
     </>
   );
 }

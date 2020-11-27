@@ -1,40 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { authUser } from "../../../App";
-function BlogRequest({ id }) {
-  const [blog, setBlog] = useState({});
- 
-  const approveHandle = () => {
-    authUser
-      .patch(`/admin/blogreq/${id}`, { flag: 1 })
-      .then((res) => {
-        // console.log(res);
-        //  console.log(blog.flag)
-      })
-      .catch((err) => console.log(err));
-  };
+import React,{useState} from 'react'
+import authUser from '../../../App'
+function EachCity() {
+    const [blog, setBlog] = useState({});
 
-  const disapproveHandle = () => {
-    authUser
-      .patch(`/admin/blogreq/${id}`, { flag: 2 })
-      .then((res) => {
-        // console.log(res);
-        //  console.log(blog.flag)
-      })
-      .catch((err) => console.log(err));
-  };
+    const viewHandle = () => {};
+    const editHandle = () => {
+      
+    };
+    const deleteHandle = () => {
+    //   authUser
+    //     .delete(`/blogs/${props.blogid}`)
+    //     .then((res) => {
+    //       console.log(res);
+    //     })
+    //     .catch((err) => console.log(err));
+    };
+  
+    // useEffect(() => {
+    //   authUser
+    //     .get(`/blogs/${props.blogid}`)
+    //     .then((res) => {
+    //       setBlog(res.data.blog);
+    //       console.log(res.data.blog);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }, []);
+    return (
+        <>
 
-  useEffect(() => {
-    authUser
-      .get(`/admin/blogreq/${id}`)
-      .then((res) => {
-        setBlog(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  return (
-    <>
+
+        
       <div className="container-fluid">
         <div className="row">
           <div className="col-12  mt-3 my-3">
@@ -52,30 +47,35 @@ function BlogRequest({ id }) {
                   </div>
                   <div className="col-lg-8 col-sm-12">
                     <div className="card-body mx-2">
-                      <h4 className="card-title">{blog.Title}</h4>
-                      <p className="card-text">{blog.Body}</p>
+                      <h4 className="card-title">sdhfjhsdf
+                          {/* {blog.Title} */}
+                          </h4>
+                      <p className="card-text">sdfsdnflksnsdfsdnflksnsdfsdnflksnsdfsdnflksn
+                      
+                          {/* {blog.Body} */}
+                          </p>
                     </div>
                     <div className="">
-                      <NavLink to={`/viewblog/${id}`}><button
+                      <button
                       type="button"
                         className="btn btn-primary mx-1"
-                        // onClick={viewHandle}
+                        onClick={viewHandle}
                       >
                         View
-                      </button></NavLink>
+                      </button>
                       <button
                       type="button"
                         className="btn btn-success mx-1"
-                        onClick={approveHandle}
+                        onClick={editHandle}
                       >
-                        Approve
+                        Edit
                       </button>
                       <button
                       type="button"
                         className="btn btn-danger mx-1"
-                        onClick={disapproveHandle}
+                        onClick={deleteHandle}
                       >
-                        Disapprove
+                        Delete
                       </button>
                     </div>
                   </div>
@@ -85,8 +85,9 @@ function BlogRequest({ id }) {
           </div>
         </div>
       </div>
-    </>
-  );
+            
+        </>
+    )
 }
 
-export default BlogRequest;
+export default EachCity
