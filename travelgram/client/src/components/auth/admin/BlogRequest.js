@@ -44,14 +44,16 @@ function BlogRequest({ id }) {
                   <div className="col-lg-4 col-sm-12">
                     <div className="img-square-wrapper">
                       <img
+                      height="200px"
+                      width="300px"
                         className=""
-                        src="http://via.placeholder.com/300x180"
+                        src="../images/large.jpg"
                         alt="Card image cap"
                       />
                     </div>
                   </div>
                   <div className="col-lg-8 col-sm-12">
-                    <div className="card-body mx-2">
+                    <div className="card-body mx-2 ml-5">
                       <h4 className="card-title">{blog.Title}</h4>
                       <p className="card-text">{blog.Body}</p>
                     </div>

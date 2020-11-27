@@ -45,15 +45,15 @@ function AddCity() {
   //     };
   //   });
   // };
-  const sendHandler = (blog) => {
+  const sendHandler = (city) => {
     // if (blog.Title && blog.Body && blog.Tags ) 
     {
-      console.log(blog);
+      console.log(city);
       setModalIsOpen(false);
       authUser
-        .post(``, blog)
+        .post(`/admin/addcity`, city)
         .then((response) => {
-          console.log(blog);
+          console.log(city);
           console.log(response);
         })
         .catch((error) => console.log(error));
@@ -68,7 +68,7 @@ function AddCity() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-10">
-            <h1 className=" ">Add your post</h1>
+            <h1 className=" ">Add New City</h1>
             <div className="form-area">
               <form onSubmit={handleSubmit(sendHandler)}>
                 <br styles="clear:both" />
@@ -85,7 +85,7 @@ function AddCity() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <div className="form-group">
                     <input
                       type="text"
@@ -100,18 +100,18 @@ function AddCity() {
                       required
                     />
                   </div>{" "}
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <textarea
                     className="form-control"
                     type="textarea"
                     ref={register}
-                    id="Body"
-                    name="Body"
+                    id="Desc"
+                    name="Desc"
                     // value={blog.Body}
                     // onChange={inputEvent}
-                    placeholder="Content"
+                    placeholder="Description"
                     maxlength="700"
                     rows="7"
                   ></textarea>

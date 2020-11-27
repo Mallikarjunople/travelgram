@@ -13,9 +13,9 @@ function About() {
         <div className="row">
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
-              <img src="/images/ople.jpg" className="about_image" alt="..." />
+              <img src="/images/.jpg" className="about_image" alt="..." />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Mallikarjun Ople</h5>
+                <h5 className="card-title mb-0">Moderator</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>
@@ -24,7 +24,6 @@ function About() {
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
-                src="https://source.unsplash.com/9UVmlIb0wJU/500x350"
                 className="card-img-top"
                 alt="..."
               />

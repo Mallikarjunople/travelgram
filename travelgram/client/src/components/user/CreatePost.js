@@ -85,7 +85,7 @@ function CreatePost() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <div className="form-group">
                     <input
                       type="text"
@@ -100,7 +100,7 @@ function CreatePost() {
                       required
                     />
                   </div>{" "}
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <textarea

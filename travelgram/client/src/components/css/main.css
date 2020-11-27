@@ -940,7 +940,7 @@ body .themepage{
 .usersignupbody  {
   height: 100vh;
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background: linear-gradient(to right, #33AEFF, #d0d4da);
 }
 
 .card-signin {

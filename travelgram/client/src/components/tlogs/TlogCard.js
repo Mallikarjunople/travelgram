@@ -6,7 +6,7 @@ function TlogCard(props) {
   return (
     <>
       <div className="card tlog__card ">
-        <img src="../images/img-7.jpg" className="card-img-top" alt="..." />
+        <img src="../images/nature.jpg" className="card-img-top" alt="..." />
         <div className="card-body tlog__card__body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">

@@ -11,7 +11,7 @@ const {getId} = useParams();
 
   useEffect(() => {
     authUser
-      .get(`/blogs/${getId.id}`)
+      .get(`/blogs/${getId}`)
       .then((res) => {
        
         setBlog(res.data.blog);
@@ -39,7 +39,7 @@ const {getId} = useParams();
 
             <img
               className="img-fluid rounded"
-              src="http://placehold.it/900x300"
+              src="../images/nature.jpg" 
               alt=""
             />
 
@@ -95,7 +95,7 @@ const {getId} = useParams();
               <h5 className="card-header">Related posts </h5>
               <div className="card-body">
                 <img
-                  src=""
+                 src="../images/nature.jpg" 
                   style={{
                     backgroundColor: "grey",
                     width: "200px",

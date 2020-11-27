@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { authUser } from "../../App";
 import Modal from "react-modal";
-import {NavLink} from 'react-router-dom';
-import EditPost from './EditPost';
+import { NavLink } from "react-router-dom";
+import EditPost from "./EditPost";
 
 Modal.setAppElement("#root");
 function PostList(props) {
@@ -15,10 +15,8 @@ function PostList(props) {
     setModalIsOpen(false);
   };
 
-  const editHandle = () => {
-    
-  };
-  
+  const editHandle = () => {};
+
   const inputEvent = (e) => {
     const { name, value } = e.target;
 
@@ -30,8 +28,7 @@ function PostList(props) {
     });
   };
 
-
-   const saveChanges = (e) => {
+  const saveChanges = (e) => {
     e.preventDefault();
     // console.log(blog);
     authUser
@@ -52,7 +49,6 @@ function PostList(props) {
 
     setModalIsOpen(false);
   };
-
 
   const deleteHandle = () => {
     authUser
@@ -83,9 +79,10 @@ function PostList(props) {
                   <div className="col-lg-4 col-sm-12">
                     <div className="img-square-wrapper">
                       <img
+                        height="200px"
+                        width="300px"
                         className=""
-                        src="http://via.placeholder.com/300x180"
-                        alt="Card image cap"
+                        src="../images/nature.jpg"
                       />
                     </div>
                   </div>
@@ -95,23 +92,21 @@ function PostList(props) {
                       <p className="card-text">{blog.Body}</p>
                     </div>
                     <div className="">
-                    <NavLink to={`/viewblog/${props.blogid}`}>  <button
-                      type="button"
-                        className="btn btn-primary mx-1"
-                        
-                      >
-                        View
-                      </button>
+                      <NavLink to={`/viewblog/${props.blogid}`}>
+                        {" "}
+                        <button type="button" className="btn btn-primary mx-1">
+                          View
+                        </button>
                       </NavLink>
                       <button
-                      type="button"
+                        type="button"
                         className="btn btn-success mx-1"
-                        onClick={()=>setModalIsOpen(true)}
+                        onClick={() => setModalIsOpen(true)}
                       >
                         Edit
                       </button>
                       <button
-                      type="button"
+                        type="button"
                         className="btn btn-danger mx-1"
                         onClick={deleteHandle}
                       >
@@ -126,91 +121,90 @@ function PostList(props) {
         </div>
       </div>
 
-      
       <Modal isOpen={modalIsOpen}>
-              <div className="modal-body">
-                <form onSubmit={saveChanges}>
-                  <div className="form-group">
-                    <label for="editname" className="col-form-label">
-                      Title:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editname"
-                      name="Title"
-                      value={blog.Title}
-                      onChange={inputEvent}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label for="editemail" className="col-form-label">
-                      Tags:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editemail"
-                      name="Tags"
-                      value={blog.Tags}
-                      onChange={inputEvent}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label for="editphone" className="col-form-label">
-                      Location:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editphone"
-                      name="Location"
-                      value={blog.Location}
-                      onChange={inputEvent}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label for="Pictures" className="col-form-label">
-                    Pictures:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="editphone"
-                      name="Pictures"
-                      value={blog.Pictures}
-                      onChange={inputEvent}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label for="editabout" className="col-form-label">
-                      About:
-                    </label>
-                    <textarea
-                      type="text"
-                      className="form-control"
-                      id="editphone"
-                      name="Body"
-                      value={blog.Body}
-                      onChange={inputEvent}
-                    />
-                  </div>
-                </form>
-              </div>
-              <button
-                className="btn btn-danger mx-1"
-                onClick={() => setModalIsOpen(false)}
-              >
-                Close
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary mx-1"
-                onClick={saveChanges}
-              >
-                Save changes
-              </button>
-            </Modal>
+        <div className="modal-body">
+          <form onSubmit={saveChanges}>
+            <div className="form-group">
+              <label for="editname" className="col-form-label">
+                Title:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="editname"
+                name="Title"
+                value={blog.Title}
+                onChange={inputEvent}
+              />
+            </div>
+            <div className="form-group">
+              <label for="editemail" className="col-form-label">
+                Tags:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="editemail"
+                name="Tags"
+                value={blog.Tags}
+                onChange={inputEvent}
+              />
+            </div>
+            <div className="form-group">
+              <label for="editphone" className="col-form-label">
+                Location:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="editphone"
+                name="Location"
+                value={blog.Location}
+                onChange={inputEvent}
+              />
+            </div>
+            <div className="form-group">
+              <label for="Pictures" className="col-form-label">
+                Pictures:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="editphone"
+                name="Pictures"
+                value={blog.Pictures}
+                onChange={inputEvent}
+              />
+            </div>
+            <div className="form-group">
+              <label for="editabout" className="col-form-label">
+                About:
+              </label>
+              <textarea
+                type="text"
+                className="form-control"
+                id="editphone"
+                name="Body"
+                value={blog.Body}
+                onChange={inputEvent}
+              />
+            </div>
+          </form>
+        </div>
+        <button
+          className="btn btn-danger mx-1"
+          onClick={() => setModalIsOpen(false)}
+        >
+          Close
+        </button>
+        <button
+          type="submit"
+          className="btn btn-primary mx-1"
+          onClick={saveChanges}
+        >
+          Save changes
+        </button>
+      </Modal>
     </>
   );
 }

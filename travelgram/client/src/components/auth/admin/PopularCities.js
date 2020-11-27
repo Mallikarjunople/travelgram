@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../Navbar";
+import { authUser } from "../../../App";
 import EachCity from "./EachCity";
 
 function PopularCities() {
-
+  const [cities, setCities] = useState([]);
   
+  useEffect(() => {
+    authUser
+      .get(`/admin/addCity`)
+      .then((res) => {
+        setCities(res.data.cities);
+        console.log(res.data.cities);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <h2 className="mt-4 ml-3">Popular cities</h2>
@@ -25,10 +35,13 @@ function PopularCities() {
                 </button>
               </div>
             </div>
-            <EachCity/>
-            {/* {user.blogs.map((blogid) => (
-                  <PostList blogid={blogid} />
-                ))} */}
+            
+          
+            {cities.map((city) => (
+              <div key={city._id}>
+                   <EachCity location={city.Location} />
+                   </div>
+                ))}
           </div>
         </div>
       </div>

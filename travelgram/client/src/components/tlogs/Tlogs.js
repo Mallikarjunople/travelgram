@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import "../../App.css";
 import TlogCard from "./TlogCard";
 import "../css/main.css";
-import axios from "axios";
+import { authUser } from "../../App";
+
 
 export default function Tlogs() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
+    authUser
       .get("/blogs") //NEED CHANGES
-      .then((res) => console(res.data.blogs))
+      .then((res) => setData(res.data.blogs))
       .catch((err) => console.log(err));
    
   }, []);
@@ -33,7 +34,7 @@ export default function Tlogs() {
                 <div className="col-lg-6" key={item._id}>
                   <TlogCard
                     title={item.Title}
-                    desc={item.desc}
+                    desc={item.Body}
                     id={item._id}
                     lastupdated={item.date}
                   />
