@@ -88,8 +88,8 @@ function CreatePost() {
                 <div className="form-group">
                   <div className="form-group">
                     <input
-                      type="file"
-                      // className="form-control"
+                      type="text"
+                      className="form-control"
                     ref={register}
 
                       id="Pictures"
