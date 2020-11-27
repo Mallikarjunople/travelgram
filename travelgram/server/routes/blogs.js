@@ -53,7 +53,7 @@ router.get('/',async(req,res,next)=>{
 });
 
 
-router.post('/',checkAuth,upload.single('Pictures'),async(req,res,next)=>{
+router.post('/',checkAuth,async(req,res,next)=>{
     const token = req.headers.authorization.split(" ")[1];
     var decoded = jwt_decode(token);
     
@@ -79,7 +79,7 @@ console.log(decoded.userId);
             //     date:req.body.date
             // });
 
-            console.log(req.file);
+            
 
             const pblog = new PBlog({
                 _id: new mongoose.Types.ObjectId(),
@@ -88,7 +88,7 @@ console.log(decoded.userId);
                 Body:req.body.Body,
                 Location:req.body.Location,
                 Title:req.body.Title,
-                Pictures:req.file.path,
+                //Pictures:req.file.path,
                 date:req.body.date
             });
         
@@ -241,7 +241,7 @@ router.delete('/:blogId',checkAuth,async (req,res,next)=>{
                 
                 flag=true;
                 blogsArray.splice(i,1);
-                break;
+                
             }
             
             
