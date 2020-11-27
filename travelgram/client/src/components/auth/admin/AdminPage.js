@@ -5,6 +5,7 @@ import Navbar from "../../Navbar";
 import PopularCities from "./PopularCities";
 import LeftBar from "./LeftBar";
 import RequestSection from "./RequestSection";
+import ViewBlog from "./ViewBlog";
 
 function AdminPage() {
   return (
@@ -24,6 +25,7 @@ function AdminPage() {
                 component={RequestSection}
               ></Route>
               <Route path="/PopularCities" exact component={PopularCities}></Route>
+              <Route path="/viewblog/:getId" exact component={ViewBlog} />
             </div>
             </div>
           </>

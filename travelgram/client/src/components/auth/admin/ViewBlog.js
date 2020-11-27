@@ -24,6 +24,9 @@ function ViewBlog() {
       <div className="row">
         <div className="container col-10">
           <div className="row">
+            <div className="col-lg-2">
+              <button className="btn btn-danger mt-3" onClick={()=>window.location='/adminpage'} >Go Back</button>
+            </div>
             <div className="col-lg-10">
               <h1 className="mt-4 my-5">{blog.Title}</h1>
               <p>Posted on {blog.date}</p>

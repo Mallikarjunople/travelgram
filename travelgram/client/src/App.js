@@ -49,7 +49,7 @@ function App() {
           <Route path="/addcity" exact component={AddCity} />
           <Route path="/PopularCities" exact component={PopularCities} />
           <Route path="/requestsection" exact component={RequestSection} />
-          <Route path="/viewblog/:getId" exact component={ViewBlog} />
+          {/* <Route path="/viewblog/:getId" exact component={ViewBlog} /> */}
           <Route path="/role" exact component={Role} />
 
           <Route path="/landing" exact component={Landing} />
