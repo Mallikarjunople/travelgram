@@ -59,7 +59,7 @@ function BlogRequest({ id }) {
                       <NavLink to={`/viewblog/${id}`}><button
                       type="button"
                         className="btn btn-primary mx-1"
-                        // onClick={viewHandle}
+                        // onClick={window.location=""}
                       >
                         View
                       </button></NavLink>

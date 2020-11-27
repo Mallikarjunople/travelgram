@@ -360,7 +360,6 @@ router.delete('/popularPlace/:placeId',async (req,res,next)=>{
             
             flag=true;
             placesArray.splice(i,1);
-            break;
         }
         
         
