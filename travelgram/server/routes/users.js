@@ -51,7 +51,7 @@ router.get('/',async (req,res,next)=>{
   });
 
 
-  router.post('/signup',upload.single('Pictures'),(req,res,next)=>{
+  router.post('/signup',(req,res,next)=>{
     User.find({email:req.body.email})
     .exec()
     .then(user => {
@@ -63,9 +63,10 @@ router.get('/',async (req,res,next)=>{
         
             bcrypt.hash(req.body.password,10,(err,hash)=> {
                 if(err){
+                    console.log(err);
                     return res.status(500).json({
                         error :err
-                    })
+                    });
                 }else{
                     console.log(req.file);
                     const user = new User({
@@ -74,7 +75,7 @@ router.get('/',async (req,res,next)=>{
                         email:req.body.email,
                         phone:req.body.phone,
                         password:hash,
-                        profilePhoto:req.file.path
+                        profilePhoto:req.body.profilePhoto
                     });
                     user
                     .save()
