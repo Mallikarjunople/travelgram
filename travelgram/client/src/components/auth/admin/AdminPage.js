@@ -25,7 +25,7 @@ function AdminPage() {
                 component={RequestSection}
               ></Route>
               <Route path="/PopularCities" exact component={PopularCities}></Route>
-              <Route path="/viewblog/:getId" exact component={ViewBlog} />
+              <Route path="/viewblog/:getId" exact component={ViewBlog} ></Route>
             </div>
             </div>
           </>

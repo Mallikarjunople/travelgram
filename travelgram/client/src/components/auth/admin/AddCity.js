@@ -27,7 +27,7 @@ function AddCity() {
   const onRequestClose = () => {
     setModalIsOpen(false);
   };
-
+// If we don't use react-hook-form then this commented code can be use   
   // const [blog, setBlog] = useState({
   //   Tags: "",
   //   Body: "",
