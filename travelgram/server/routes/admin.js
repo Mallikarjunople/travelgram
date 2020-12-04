@@ -198,7 +198,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
 });
 
 
-router.post('/addCity',async(req,res,next)=>{
+router.post('/addCity',upload.single('Pictures'),async(req,res,next)=>{
  // console.log(req.file);
   const popularCity = new City({
       _id: new mongoose.Types.ObjectId(),
@@ -206,7 +206,7 @@ router.post('/addCity',async(req,res,next)=>{
       Desc:req.body.Desc,
       Tags:req.body.Tags,
       Location:req.body.Location,
-      //Pictures: req.file.path
+      Pictures: req.file.path
       
                 
   });
@@ -225,7 +225,7 @@ router.post('/addCity',async(req,res,next)=>{
  
 });
 
-router.post('/addCity/popularPlace',async(req,res,next)=>{
+router.post('/addCity/popularPlace',upload.single('Pictures'),async(req,res,next)=>{
   //console.log(req.file);
   const newPlace = new PCity({
       _id: new mongoose.Types.ObjectId(),
@@ -233,7 +233,7 @@ router.post('/addCity/popularPlace',async(req,res,next)=>{
       Desc:req.body.Desc,
       Tags:req.body.Tags,
       Location:req.body.Location,
-      //Pictures:req.file.path,
+      Pictures:req.file.path,
       City:req.body.City
                 
   });

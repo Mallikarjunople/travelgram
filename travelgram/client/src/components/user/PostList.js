@@ -80,9 +80,9 @@ function PostList(props) {
                     <div className="img-square-wrapper">
                       <img
                         height="200px"
-                        width="300px"
+                        width="350px"
                         className=""
-                        src="../images/nature.jpg"
+                        src={`http://localhost:5000/${blog.Pictures}`}
                       />
                     </div>
                   </div>

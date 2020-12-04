@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { appendErrors, useForm } from "react-hook-form";
 import { authUser } from "../../App";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
@@ -19,6 +19,7 @@ const customStyles = {
 };
 function CreatePost() {
   const { register, handleSubmit }= useForm();
+ 
   //Modal Handlers
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalOpener = () => {
@@ -48,12 +49,19 @@ function CreatePost() {
   const sendHandler = (blog) => {
     // if (blog.Title && blog.Body && blog.Tags ) 
     {
-      console.log(blog);
+      const formData = new FormData();
+      formData.append("Title",blog.Title);
+      formData.append("Pictures",blog.Pictures[0]);
+      formData.append("Location",blog.Location);
+      formData.append("Body",blog.Body);
+      formData.append("Tags",blog.Tags);
+     
+      console.log(formData);
       setModalIsOpen(false);
       authUser
-        .post(`/blogs`, blog)
+        .post(`/blogs`, formData)
         .then((response) => {
-          console.log(blog);
+          // console.log(blog);
           console.log(response);
         })
         .catch((error) => console.log(error));
@@ -85,10 +93,10 @@ function CreatePost() {
                     required
                   />
                 </div>
-                {/* <div className="form-group">
+                <div className="form-group">
                   <div className="form-group">
                     <input
-                      type="text"
+                      type="file"
                       className="form-control"
                     ref={register}
 
@@ -100,7 +108,7 @@ function CreatePost() {
                       required
                     />
                   </div>{" "}
-                </div> */}
+                </div>
 
                 <div className="form-group">
                   <textarea

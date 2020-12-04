@@ -47,7 +47,7 @@ function BlogRequest({ id }) {
                       height="200px"
                       width="300px"
                         className=""
-                        src="../images/large.jpg"
+                        src={`http://localhost:5000/${blog.Pictures}`}
                         alt="Card image cap"
                       />
                     </div>
