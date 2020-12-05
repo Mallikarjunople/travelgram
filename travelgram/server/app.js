@@ -13,6 +13,7 @@ const morgan = require('morgan');
 const checkAuth = require('./middleware/check-auth');
 const isAdmin = require('./middleware/isadmin');
 const adminRoute = require('./routes/admin');
+const tagRoute = require('./routes/tag');
 require('dotenv/config');
 
 //require the route handlers
@@ -53,6 +54,7 @@ app.use('/blogs',blogRoute);
 app.use('/admin',checkAuth,isAdmin,adminRoute);
 
 app.use('/City',checkAuth,cityRoute);
+app.use('/tags',checkAuth,tagRoute);
 
 app.use((req,res,next)=>{
   const error = new Error('Not Found');
