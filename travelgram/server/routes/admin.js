@@ -104,7 +104,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
                 service: 'gmail',
                 auth: {
                   user: 'dukedummont@gmail.com',
-                  pass: 'reeboknike'
+                  pass: 'Vaibhav@1999'
                 }
               });
               
