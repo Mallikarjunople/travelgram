@@ -8,7 +8,7 @@ function Cities() {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ex pulvinar est laoreet ullamcorper.";
   return (
     <>
-      <div class="container-fluid">
+      <div class="container-fluid my-5">
         <div class="title-arch">Popular Cities</div>
 
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft">

@@ -17,12 +17,12 @@ function PopularCities() {
   }, []);
   return (
     <>
-      <h2 className="mt-4 ml-3">Popular cities</h2>
+      <h2 className="mt-4 ml-5">Popular cities</h2>
 
       <div className="">
-        <div className="card mb-3">
+        <div className="card mb-3 mx-4">
           <div className="card-body w-auto">
-            <div className="row">
+            <div className="row ">
               <div className="col-lg-10 col-md-9 col-8">
                 <h3>Existing Cities</h3>
               </div>

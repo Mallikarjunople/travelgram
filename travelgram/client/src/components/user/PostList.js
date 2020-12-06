@@ -41,7 +41,7 @@ function PostList(props) {
       ])
       .then((response) => {
         console.log(response);
-        alert("User Information Updated Successfully");
+        alert("Information Updated Successfully");
       })
       .catch((error) => {
         console.log(error);

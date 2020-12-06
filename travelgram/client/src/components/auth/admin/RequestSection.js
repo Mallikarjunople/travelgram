@@ -18,7 +18,7 @@ function RequestSection() {
   }, []);
   return (
     <>
-      <h2 className="mt-4 ml-3">Blog requests</h2>
+      <h2 className="mt-4 ml-5">Blog requests</h2>
       <div>
         {blogRequests.map((item) => (
           <div key={item._id}>
