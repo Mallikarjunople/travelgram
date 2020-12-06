@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import "../css/main.css";
 
 function TlogCard(props) {
+
   return (
     <>
       <div className="card tlog__card ">
-        <img src="../images/nature.jpg" className="card-img-top" alt="..." />
+        <img   src={`http://localhost:5000/${props.Pictures}`} className="card-img-top" alt="..." />
         <div className="card-body tlog__card__body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">

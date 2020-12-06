@@ -3,23 +3,23 @@ import { useParams } from "react-router-dom";
 import { authUser } from "../../App";
 
 function Tlogpost() {
-const {getId} = useParams();
+  const { ID } = useParams();
   const [blog, setBlog] = useState([]);
   const [userDetail, setUserDetail] = useState([]);
   const token = localStorage.getItem("token");
-  
 
+  console.log(ID);
   useEffect(() => {
     authUser
-      .get(`/blogs/${getId}`)
+      .get(`/blogs/${ID}`)
       .then((res) => {
-       
         setBlog(res.data.blog);
         setUserDetail(res.data.blog.user);
         console.log(userDetail);
+        console.log(res.data.blog);
         // let onlyDate = blog.date.split('T')[0];
         // alert(onlyDate);
-       })
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -32,14 +32,16 @@ const {getId} = useParams();
 
             <p className="lead ">
               by
-              <a href="google.com" style={{marginLeft:"5px"}}>{userDetail.name}</a>
+              <a href="google.com" style={{ marginLeft: "5px" }}>
+                {userDetail.name}
+              </a>
             </p>
 
             <p>Posted on January 1, 2019 at 12:00 PM</p>
 
             <img
               className="img-fluid rounded"
-              src="../images/nature.jpg" 
+              src={`http://localhost:5000/${blog.Pictures}`}
               alt=""
             />
 
@@ -95,7 +97,7 @@ const {getId} = useParams();
               <h5 className="card-header">Related posts </h5>
               <div className="card-body">
                 <img
-                 src="../images/nature.jpg" 
+                  src="../images/nature.jpg"
                   style={{
                     backgroundColor: "grey",
                     width: "200px",
