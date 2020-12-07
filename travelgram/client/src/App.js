@@ -25,6 +25,7 @@ import Role from "./components/auth/Role";
 import ViewBlog from "./components/auth/admin/ViewBlog";
 import RequestSection from "./components/auth/admin/RequestSection";
 import AddCity from "./components/auth/admin/AddCity";
+import Feedback from "./components/pages/Feedback";
 
 const token = localStorage.getItem("token");
 export const authUser = axios.create({
@@ -62,7 +63,7 @@ function App() {
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/userprofile" exact component={UserProfile} />
-
+          <Route path="/feedback" exact component={Feedback} />
           <Route path="/themepage" exact component={ThemePage} />
 
           <Route component={PageNotFound} />
