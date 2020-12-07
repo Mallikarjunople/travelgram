@@ -1,9 +1,13 @@
 import React from "react";
 import "./css/main.css";
+import{ NavLink } from 'react-router-dom';
 // import authUser from '../../../App';
 
 function Cities() {
-
+const mumbai="Mumbai";
+const pune="Pune";
+const delhi="Delhi";
+const banglore="Banglore";
   const lorem =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ex pulvinar est laoreet ullamcorper.";
   return (
@@ -16,15 +20,15 @@ function Cities() {
             <h2>Delhi</h2>
             <hr />
             <p>{lorem}</p>
-            <a href="/citypage">Explore</a>
+            <NavLink to={`/citypage/${delhi}`}>Explore</NavLink>
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-2 wow animated animated3 fadeInLeft">
           <div class="project-hover">
-            <h2>Mumbai</h2>
+            <h2>{mumbai}</h2>
             <hr />
             <p>{lorem}</p>
-            <a href="/citypage">Explore</a>
+            <NavLink to={`/citypage/${mumbai}`}>Explore</NavLink>
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-3 wow animated animated2 fadeInLeft">
@@ -32,7 +36,7 @@ function Cities() {
             <h2>Pune</h2>
             <hr />
             <p>{lorem}</p>
-            <a href="/citypage">Explore</a>
+            <NavLink to={`/citypage/${pune}`}>Explore</NavLink>
           </div>
         </div>
         
@@ -41,7 +45,7 @@ function Cities() {
             <h2>Banglore</h2>
             <hr />
             <p>{lorem}</p>
-            <a href="/citypage">Explore</a>
+            <NavLink to={`/citypage/${banglore}`}>Explore</NavLink>
           </div>
         </div>
         <div class="clearfix"></div>

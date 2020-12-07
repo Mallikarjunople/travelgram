@@ -3,19 +3,19 @@ import { useParams } from "react-router-dom";
 import { authUser } from "../../App";
 
 function Tlogpost() {
-  const { ID } = useParams();
+  const { id } = useParams();
   const [blog, setBlog] = useState([]);
   const [userDetail, setUserDetail] = useState([]);
   const token = localStorage.getItem("token");
 
-  console.log(ID);
+  console.log(id);
   useEffect(() => {
     authUser
-      .get(`/blogs/${ID}`)
+      .get(`/blogs/${id}`)
       .then((res) => {
         setBlog(res.data.blog);
         setUserDetail(res.data.blog.user);
-        console.log(userDetail);
+        // console.log(userDetail);
         console.log(res.data.blog);
         // let onlyDate = blog.date.split('T')[0];
         // alert(onlyDate);
@@ -40,7 +40,9 @@ function Tlogpost() {
             <p>Posted on January 1, 2019 at 12:00 PM</p>
 
             <img
-              className="img-fluid rounded"
+              className="my-4 border-black"
+              width="650px"
+              height="330px"
               src={`http://localhost:5000/${blog.Pictures}`}
               alt=""
             />

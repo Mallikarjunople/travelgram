@@ -59,6 +59,7 @@ function App() {
           <Route path="/tlogpost/:id" exact component={Tlogpost} />
           <Route path="/about" exact component={About} />
           <Route path="/citypage" exact component={Citypage} />
+          <Route path="/citypage/:city" exact component={Citypage} />
 
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/editpost" exact component={EditPost} />
