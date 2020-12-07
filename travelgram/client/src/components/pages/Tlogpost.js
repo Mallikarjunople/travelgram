@@ -25,9 +25,9 @@ function Tlogpost() {
 
   return (
     <>
-      <div className="container">
+      <div className="container align-content-center">
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-10">
             <h1 className="mt-4">{blog.Title}</h1>
 
             <p className="lead ">
@@ -41,17 +41,14 @@ function Tlogpost() {
 
             <img
               className="my-4 border-black"
-              width="650px"
-              height="330px"
+              width="750px"
+              height="400px"
               src={`http://localhost:5000/${blog.Pictures}`}
               alt=""
             />
 
             <p className="lead">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
-              vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit
-              excepturi nam quia corporis eligendi eos magni recusandae laborum
-              minus inventore?
+             {blog.Body}
             </p>
 
             <p>
@@ -94,7 +91,7 @@ function Tlogpost() {
             </p>
           </div>
 
-          <div className="col-lg-4">
+          {/* <div className="col-lg-4">
             <div className="card my-4">
               <h5 className="card-header">Related posts </h5>
               <div className="card-body">
@@ -111,7 +108,7 @@ function Tlogpost() {
                 <button className="btn btn-danger  ">view post</button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
