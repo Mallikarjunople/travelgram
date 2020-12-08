@@ -26,6 +26,9 @@ import ViewBlog from "./components/auth/admin/ViewBlog";
 import RequestSection from "./components/auth/admin/RequestSection";
 import AddCity from "./components/auth/admin/AddCity";
 import Feedback from "./components/pages/Feedback";
+import AdminFeedback from "./components/auth/admin/AdminFeedback";
+import Feed from "./components/auth/admin/Feed";
+import ViewFeedback from "./components/auth/admin/ViewFeedback";
 
 const token = localStorage.getItem("token");
 export const authUser = axios.create({
@@ -50,8 +53,12 @@ function App() {
           <Route path="/addcity" exact component={AddCity} />
           <Route path="/PopularCities" exact component={PopularCities} />
           <Route path="/requestsection" exact component={RequestSection} />
-          {/* <Route path="/viewblog/:getId" exact component={ViewBlog} /> */}
+          <Route path="/viewblog/:getId" exact component={ViewBlog} />
           <Route path="/role" exact component={Role} />
+          <Route path="/adminfeedback" exact component={AdminFeedback} />
+          <Route path="/feed" exact component={Feed} /> 
+            <Route path="/viewfeedback/:id" exact component={ViewFeedback} />
+
 
           <Route path="/landing" exact component={Landing} />
           <Route path="/" exact component={Home} />
