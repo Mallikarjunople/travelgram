@@ -7,6 +7,7 @@ import LeftBar from "./LeftBar";
 import RequestSection from "./RequestSection";
 import ViewBlog from "./ViewBlog";
 import AdminFeedback from "./AdminFeedback";
+import ViewFeedback from "./ViewFeedback";
 
 function AdminPage() {
   return (
@@ -28,6 +29,7 @@ function AdminPage() {
               <Route path="/PopularCities" exact component={PopularCities}></Route>
               <Route path="/viewblog/:getId" exact component={ViewBlog} ></Route>
               <Route path="/adminfeedback" exact component={AdminFeedback}></Route>
+              <Route path="/viewfeedback/:id" exact component={ViewFeedback}></Route>
             </div>
             </div>
           </>

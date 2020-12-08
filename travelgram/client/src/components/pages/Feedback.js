@@ -5,16 +5,15 @@ import Navbar from "../Navbar";
 function Feedback() {
   const { register, handleSubmit } = useForm();
   const sendHandler = (data) => {
-    
+    {
       authUser
-        .post('/feedback',data)
+        .post(`/feedback`, data)
         .then((response) => {
           console.log(response);
-          alert("Feedback sent successfully !!");
         })
         .catch((error) => console.log(error));
-     
-    
+      alert("Feedback sent successfully !!");
+    }
     //  else alert("Please Fill all fields ");
   };
 

@@ -10,8 +10,8 @@ function AdminFeedback() {
     authUser
       .get(`/admin/feedback`)
       .then((res) => {
-        // setFeeds(res.data);
-        console.log(res.data);
+        setFeeds(res.data.cities);
+        // console.log(res.data.cities);
       })
       .catch((err) => console.log(err));
   }, []);
