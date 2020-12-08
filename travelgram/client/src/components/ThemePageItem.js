@@ -1,26 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { authUser } from "../App";
 
-function ThemePageItem() {
+import { NavLink } from "react-router-dom";
+function ThemePageItem(props) {
+  const [blog, setBlog] = useState([]);
+
+  useEffect(() => {
+    authUser
+      .get(`/blogs/${props.id}`)
+      .then((res) => {
+        setBlog(res.data.blog);
+        console.log(res.data.blog);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
-      <div className="card">
-        <div className="row ">
-          <div className="col-md-5">
-            <img src="/images/pune.jpg" className="w-100" />
-          </div>
-          <div className="col-md-7 px-3">
-            <div className="card-block px-3">
-              <h4 className="card-title pt-3">Title</h4>
-              <p className="card-text">
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.{" "}
-              </p>
+    {props.Title}
 
-              <a href="google.com" className="btn btn-primary float-right mt-5">
-                Read More
-              </a>
+
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12  mt-3 my-3">
+            <div className="card">
+              <div className="card-horizontal">
+                <div className="row">
+                  <div className="col-lg-4 col-sm-12">
+                    <div className="img-square-wrapper">
+                      <img
+                        height="200px"
+                        width="350px"
+                        className=""
+                        src={`http://localhost:5000/${blog.Pictures}`}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-sm-12">
+                    <div className="card-body mx-2">
+                      <h4 className="card-title">{blog.Title}</h4>
+                      <p className="card-text">{blog.Body}</p>
+
+                      <NavLink to='/tlogpost/'><button className="btn btn-danger">Go to Blog </button></NavLink>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

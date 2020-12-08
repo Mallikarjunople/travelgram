@@ -79,7 +79,7 @@ const UserSignup = () => {
                     </div>
                     <div class="form-label-group">
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         placeholder="Enter Your Phone no."
                         name="phone"

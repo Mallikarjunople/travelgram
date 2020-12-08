@@ -5,14 +5,14 @@ import ThemePageItem from "../ThemePageItem";
 
 function ThemePage() {
   const { tags } = useParams();
-  const [blog, setBlog] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   console.log(tags);
   useEffect(() => {
     authUser
       .get(`/tags/${tags}`)
       .then((res) => {
-        // setBlog(res.data.blog);
+        setBlogs(res.data.blogs);
         console.log(res.data);
       })
       .catch((err) => console.log(err));
@@ -24,10 +24,9 @@ function ThemePage() {
       <div className="container-fluid backimg">
         <div className="container py-3">
           <h1> {tags}</h1>
-
-          <ThemePageItem />
-          <ThemePageItem />
-          <ThemePageItem />
+          {blogs.map((each) => (
+                  <ThemePageItem id={each._id} />
+                ))}
         </div>
       </div>
     </>
