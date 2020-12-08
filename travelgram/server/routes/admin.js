@@ -111,7 +111,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
               
               var mailOptions = {
                 from: 'dukedummont@gmail.com',
-                to: 'vamahindra1999@gmail.com',
+                to: findUser.email,
                 subject: 'Regarding your blog on travelgram',
                 text: `Greetings,
                 We found that the blog that you have posted on our site contained graphic content and inappropriate information and did not meet the community guidelines. 
@@ -169,7 +169,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
                   
                   var mailOptions = {
                     from: 'dukedummont@gmail.com',
-                    to: 'vamahindra1999@gmail.com',
+                    to: findUser.email,
                     subject: 'Regarding your blog on travelgram',
                     text: `Greetings,
                     The blog that you have written meets all the community guidelines and thank you for posting on our website .
