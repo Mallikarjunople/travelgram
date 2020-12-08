@@ -56,9 +56,8 @@ function App() {
           <Route path="/viewblog/:getId" exact component={ViewBlog} />
           <Route path="/role" exact component={Role} />
           <Route path="/adminfeedback" exact component={AdminFeedback} />
-          <Route path="/feed" exact component={Feed} /> 
-            <Route path="/viewfeedback/:id" exact component={ViewFeedback} />
-
+          <Route path="/feed" exact component={Feed} />
+          <Route path="/viewfeedback/:id" exact component={ViewFeedback} />
 
           <Route path="/landing" exact component={Landing} />
           <Route path="/" exact component={Home} />
@@ -72,8 +71,8 @@ function App() {
           <Route path="/editpost" exact component={EditPost} />
           <Route path="/userprofile" exact component={UserProfile} />
           <Route path="/feedback" exact component={Feedback} />
-          <Route path="/themepage" exact component={ThemePage} />
 
+          <Route path="/tag/:tags" exact component={ThemePage} />
           <Route component={PageNotFound} />
         </Switch>
         {/* <Footer /> */}

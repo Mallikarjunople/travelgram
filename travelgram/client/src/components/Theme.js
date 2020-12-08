@@ -1,8 +1,10 @@
 import React from "react";
 import "./css/main.css";
 import ThemeItem from "./ThemeItem";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 function Theme() {
+
+  const Hot="Hot";
   return (
     <>
       <div className="section-theme col-10 mx-auto my-5">
@@ -10,19 +12,18 @@ function Theme() {
           Travel themes
         </p>
         <div className="theme-list ">
-          <Link to="/themepage" exact className="text-decoration-none">
+          <NavLink to={`/tag/${Hot}`} exact className="text-decoration-none">
             <ThemeItem src="../images/img-8.jpg" label="Hot" />
-          </Link>
-          <Link to="/themepage" exact className="text-decoration-none">
+          </NavLink>
+          <NavLink to="/tag/Peace" exact className="text-decoration-none">
             <ThemeItem src="../images/img-7.jpg" label="Peace" />
-          </Link>
-          <Link to="/themepage" exact className="text-decoration-none">
-            {" "}
+          </NavLink>
+          <NavLink to="/tag/Aqua" exact className="text-decoration-none">
             <ThemeItem src="../images/img-9.jpg" label="Aqua" />
-          </Link>
-          <Link to="/themepage" exact className="text-decoration-none">
+          </NavLink>
+          <NavLink to="/tag/Mountain" exact className="text-decoration-none">
             <ThemeItem src="../images/img-home.jpg" label="Mountain" />
-          </Link>
+          </NavLink>
         </div>
       </div>
     </>

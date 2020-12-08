@@ -7,7 +7,7 @@ function Feedback() {
   const sendHandler = (data) => {
     {
       authUser
-        .patch(`/blogs`, data)
+        .post(`/feedback`, data)
         .then((response) => {
           console.log(response);
         })
@@ -19,7 +19,7 @@ function Feedback() {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className="container mx-auto my-5">
         <div className="row">
           <div className="col-10">
@@ -30,9 +30,9 @@ function Feedback() {
                   <input
                     type="text"
                     className="form-control"
-                    id="Name"
+                    id="name"
                     ref={register}
-                    name="Name"
+                    name="name"
                     placeholder="Name"
                     required
                   />
@@ -43,8 +43,8 @@ function Feedback() {
                       type="textarea"
                       className="form-control"
                       ref={register}
-                      id="Answer"
-                      name="Answer"
+                      id="description"
+                      name="description"
                       placeholder="Answer"
                       maxlength="700"
                       rows="7"
@@ -53,7 +53,9 @@ function Feedback() {
                   </div>
                 </div>
                 <div>
-                    <button className="btn btn-primary mt-2">Submit Feedback</button>
+                  <button type="submit" className="btn btn-primary mt-2">
+                    Submit Feedback
+                  </button>
                 </div>
               </form>
             </div>
