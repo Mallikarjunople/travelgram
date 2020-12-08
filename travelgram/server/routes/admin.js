@@ -418,14 +418,41 @@ router.delete('/popularPlace/:placeId',async (req,res,next)=>{
 });
 
 router.get('/feedback',async (req,res)=>{
+    // try{
+    //   const feedbacks = await feedBack.find();
+    //   res.staus(200).json(feedbacks);  
+    // }catch(err){
+    //     res.json({message:err});
+    // }
+
+
     try{
-      const feedbacks = await feedBack.find();
-      res.staus(200).json(feedbacks);  
+        const allfeedback =await feedBack.find();
+        res.status(200).json({
+            count:allfeedback.length,
+            cities:allfeedback.map(allfeedback => {
+                return{
+                    _id: allfeedback._id,
+                    name:allfeedback.name,
+                    description:allfeedback.description
+                    
+                }
+            })
+            
+        });
     }catch(err){
-        res.json({message:err});
+        res.status(500).json({
+            error:err
+        });
     }
+    
+
+
   });
 
+
+
+  
   router.get('/feedback/:feedbackId',async (req,res)=>{
     try{
         const feedback = await feedBack.findById(req.params.feedbackId);
