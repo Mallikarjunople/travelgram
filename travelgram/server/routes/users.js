@@ -7,7 +7,7 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const checkAuth = require('../middleware/check-auth');
 const jwt_decode = require('jwt-decode');
-
+const nodemailer = require('nodemailer');
 
 const multer = require('multer');
 
@@ -81,9 +81,41 @@ router.get('/',async (req,res,next)=>{
                     .save()
                     .then(result => {
                         console.log(result);
+
+                        var transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                              user: 'dukedummont@gmail.com',
+                              pass: 'Vaibhav@1999'
+                            }
+                          });
+                          
+                          var mailOptions = {
+                            from: 'dukedummont@gmail.com',
+                            to: user.email,
+                            subject: 'Successful Registration',
+                            text: `Greetings,
+                            You have successfully registered an account at Travelgram.We look forward to hearing stories from you
+                                                       -Team Travelgram`
+                          };
+                          
+                          transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                              console.log(error);
+                            } else {
+                              console.log('Email sent: ' + info.response);
+                            }
+                          });
+
+
+
                         res.status(201).json({
                             message:'User created'
                         });
+
+
+
+
                     })
                     .catch( err => {
                         console.log(err);
@@ -129,6 +161,35 @@ router.post('/login',async(req,res,next)=>{
     
                 );
                 var decoded = jwt_decode(token);
+                
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                      user: 'dukedummont@gmail.com',
+                      pass: 'Vaibhav@1999'
+                    }
+                  });
+                  
+                  var mailOptions = {
+                    from: 'dukedummont@gmail.com',
+                    to: req.body.email,
+                    subject: 'Successful login',
+                    text: `Greetings,
+                    You have successfully logged  into your  account at Travelgram.We look forward to hearing stories from you
+                                               -Team Travelgram`
+                  };
+                  
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log('Email sent: ' + info.response);
+                    }
+                  });
+
+
+
+
                 return res.status(200).json({
                     message:"Auth successful",
                     token:token,
