@@ -9,6 +9,7 @@ const feedBack = require('../models/feedback');
 
 router.post('/',checkAuth,async(req,res)=>{
     const feedback = new feedBack({
+        _id: new mongoose.Types.ObjectId(),
         name:req.body.name,
         description:req.body.description
     });
