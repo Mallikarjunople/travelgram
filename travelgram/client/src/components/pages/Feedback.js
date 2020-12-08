@@ -5,21 +5,22 @@ import Navbar from "../Navbar";
 function Feedback() {
   const { register, handleSubmit } = useForm();
   const sendHandler = (data) => {
-    {
+    
       authUser
-        .patch(`/blogs`, data)
+        .post('/feedback',data)
         .then((response) => {
           console.log(response);
+          alert("Feedback sent successfully !!");
         })
         .catch((error) => console.log(error));
-      alert("Feedback sent successfully !!");
-    }
+     
+    
     //  else alert("Please Fill all fields ");
   };
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className="container mx-auto my-5">
         <div className="row">
           <div className="col-10">
@@ -30,9 +31,9 @@ function Feedback() {
                   <input
                     type="text"
                     className="form-control"
-                    id="Name"
+                    id="name"
                     ref={register}
-                    name="Name"
+                    name="name"
                     placeholder="Name"
                     required
                   />
@@ -43,8 +44,8 @@ function Feedback() {
                       type="textarea"
                       className="form-control"
                       ref={register}
-                      id="Answer"
-                      name="Answer"
+                      id="description"
+                      name="description"
                       placeholder="Answer"
                       maxlength="700"
                       rows="7"
@@ -53,7 +54,9 @@ function Feedback() {
                   </div>
                 </div>
                 <div>
-                    <button className="btn btn-primary mt-2">Submit Feedback</button>
+                  <button type="submit" className="btn btn-primary mt-2">
+                    Submit Feedback
+                  </button>
                 </div>
               </form>
             </div>

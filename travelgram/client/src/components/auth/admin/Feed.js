@@ -8,8 +8,8 @@ function Feed(props) {
     authUser
       .get(`/admin/feedback/${props.id}`)
       .then((res) => {
-        setBlog(res.data);
-        // console.log(res.data);
+        // setBlog(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
