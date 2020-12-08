@@ -6,9 +6,10 @@ const jwt_decode = require('jwt-decode');
 const PBlog = require('../models/pendingBlog');
 const PCity = require('../models/popularcities');
 const City = require('../models/City');
-
+const feedBack = require('../models/feedback');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
+const isadmin = require('../middleware/isadmin');
 
 
 const storage = multer.diskStorage({
@@ -162,7 +163,7 @@ router.patch('/blogreq/:blogId',async (req,res) => {
                     service: 'gmail',
                     auth: {
                       user: 'dukedummont@gmail.com',
-                      pass: 'reeboknike'
+                      pass: 'Vaibhav@1999'
                     }
                   });
                   
@@ -244,6 +245,7 @@ router.post('/addCity/popularPlace',upload.single('Pictures'),async(req,res,next
 
       const findCity = await City.findOne({Location:addedCity.City}).exec();
         
+      console.log(findCity);
         
         findCity.popularcities.push(addedCity._id);
         console.log(findCity.popularcities);
@@ -258,6 +260,7 @@ router.post('/addCity/popularPlace',upload.single('Pictures'),async(req,res,next
 
       res.status(200).json(addedCity);
   }catch(err){
+        console.log(err);
       res.status(500).json({ message : err});
   }
 
@@ -412,6 +415,34 @@ router.delete('/popularPlace/:placeId',async (req,res,next)=>{
       res.status(500).json({message:err});
   }
   
+});
+
+router.get('/feedback',async (req,res)=>{
+    try{
+      const feedbacks = await feedBack.find();
+      res.staus(200).json(feedbacks);  
+    }catch(err){
+        res.json({message:err});
+    }
+  });
+
+  router.get('/feedback/:feedbackId',async (req,res)=>{
+    try{
+        const feedback = await feedBack.findById(req.params.feedbackId);
+    res.status(200).json(feedback);
+    }catch(err){
+        res.json({message:err});
+    }
+    
+});
+
+router.delete('/feedback/:feedbackId',async (req,res)=>{
+    try{
+        const removedfeedback = await feedBack.remove({_id:req.params.feedbackId});
+        res.status(200).json(removedfeedback);
+    }catch(err){
+        res.json({ message : err});
+    }
 });
 
 
