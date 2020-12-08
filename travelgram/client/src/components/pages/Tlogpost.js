@@ -3,51 +3,52 @@ import { useParams } from "react-router-dom";
 import { authUser } from "../../App";
 
 function Tlogpost() {
-const {getId} = useParams();
+  const { id } = useParams();
   const [blog, setBlog] = useState([]);
   const [userDetail, setUserDetail] = useState([]);
   const token = localStorage.getItem("token");
-  
 
+  console.log(id);
   useEffect(() => {
     authUser
-      .get(`/blogs/${getId}`)
+      .get(`/blogs/${id}`)
       .then((res) => {
-       
         setBlog(res.data.blog);
         setUserDetail(res.data.blog.user);
-        console.log(userDetail);
+        // console.log(userDetail);
+        console.log(res.data.blog);
         // let onlyDate = blog.date.split('T')[0];
         // alert(onlyDate);
-       })
+      })
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <>
-      <div className="container">
+      <div className="container align-content-center">
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-10">
             <h1 className="mt-4">{blog.Title}</h1>
 
             <p className="lead ">
               by
-              <a href="google.com" style={{marginLeft:"5px"}}>{userDetail.name}</a>
+              <a href="google.com" style={{ marginLeft: "5px" }}>
+                {userDetail.name}
+              </a>
             </p>
 
             <p>Posted on January 1, 2019 at 12:00 PM</p>
 
             <img
-              className="img-fluid rounded"
-              src="../images/nature.jpg" 
+              className="my-4 border-black"
+              width="750px"
+              height="400px"
+              src={`http://localhost:5000/${blog.Pictures}`}
               alt=""
             />
 
             <p className="lead">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
-              vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit
-              excepturi nam quia corporis eligendi eos magni recusandae laborum
-              minus inventore?
+             {blog.Body}
             </p>
 
             <p>
@@ -90,12 +91,12 @@ const {getId} = useParams();
             </p>
           </div>
 
-          <div className="col-lg-4">
+          {/* <div className="col-lg-4">
             <div className="card my-4">
               <h5 className="card-header">Related posts </h5>
               <div className="card-body">
                 <img
-                 src="../images/nature.jpg" 
+                  src="../images/nature.jpg"
                   style={{
                     backgroundColor: "grey",
                     width: "200px",
@@ -107,7 +108,7 @@ const {getId} = useParams();
                 <button className="btn btn-danger  ">view post</button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

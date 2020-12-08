@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require('cors');
 const bodyParser=require('body-parser');
-
+const feedbackRoute =  require('./routes/feedbacks');
 const userRoute = require('./routes/users');
 const blogRoute = require('./routes/blogs');
 const cityRoute = require('./routes/Cities');
@@ -55,6 +55,7 @@ app.use('/admin',checkAuth,isAdmin,adminRoute);
 
 app.use('/City',checkAuth,cityRoute);
 app.use('/tags',checkAuth,tagRoute);
+app.use('/feedback',feedbackRoute);
 
 app.use((req,res,next)=>{
   const error = new Error('Not Found');

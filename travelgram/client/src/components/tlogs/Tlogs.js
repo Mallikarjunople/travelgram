@@ -11,7 +11,10 @@ export default function Tlogs() {
   useEffect(() => {
     authUser
       .get("/blogs") //NEED CHANGES
-      .then((res) => setData(res.data.blogs))
+      .then((res) => {
+        setData(res.data.blogs) 
+      console.log(res.data.blogs)
+    })
       .catch((err) => console.log(err));
    
   }, []);
@@ -37,6 +40,7 @@ export default function Tlogs() {
                     desc={item.Body}
                     id={item._id}
                     lastupdated={item.date}
+                    Pictures={item.Pictures}
                   />
                 </div>
               );

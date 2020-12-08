@@ -67,7 +67,7 @@ function Navbar() {
                 Login
               </Link>
             </li>
-         { usertoken && ( <Link to="/role" className="btn btn-success acti" ><li >MY Profile</li></Link>)}
+         { usertoken && ( <Link to="/role" className="btn btn-success action my-4" ><li >MY Profile</li></Link>)}
           </ul>
 
           {button && !usertoken && (

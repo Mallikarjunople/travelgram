@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Theme() {
   return (
     <>
-      <div className="section-theme col-10 mx-auto">
+      <div className="section-theme col-10 mx-auto my-5">
         <p className="section-heading text-center mt-3 mb-1 mx-3 ">
           Travel themes
         </p>

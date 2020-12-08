@@ -36,7 +36,7 @@ function BlogRequest({ id }) {
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row ml-4">
           <div className="col-12  mt-3 my-3">
             <div className="card">
               <div className="card-horizontal">
