@@ -86,19 +86,7 @@ const UserLogin = () => {
                         />
                       </div>
 
-                      <div className="custom-control custom-checkbox mb-3">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customCheck1"
-                        />
-                        <label
-                          className="custom-control-label"
-                          for="customCheck1"
-                        >
-                          Remember password
-                        </label>
-                      </div>
+                     
                       <button
                         className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                         type="submit"
@@ -106,9 +94,7 @@ const UserLogin = () => {
                         LOGIN
                       </button>
                       <div className="text-center">
-                        <a className="small" href="userlogin">
-                          Forgot password?
-                        </a>
+                       
 
                         <NavLink
                           exact

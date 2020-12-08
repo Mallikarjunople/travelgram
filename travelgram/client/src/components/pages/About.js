@@ -1,11 +1,21 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function About() {
   return (
     <>
-      <header className="bg-dark text-center py-5 mb-4">
+      <header className="bg-dark  py-5 mb-4">
         <div className="container">
           <h1 className="font-weight-light text-white">Meet The Team</h1>
+
+         
+          
+            <NavLink to="/feedback">
+              <button className="btn btn-success ">
+                Give Feedback
+              </button>
+            </NavLink>
+         
         </div>
       </header>
 
@@ -23,10 +33,7 @@ function About() {
 
           <div className="col-xl-6 col-md-6 mb-4">
             <div className="card border-0 shadow">
-              <img
-                className="card-img-top"
-                alt="..."
-              />
+              <img className="card-img-top" alt="..." />
               <div className="card-body text-center">
                 <h5 className="card-title mb-0">Team Member</h5>
                 <div className="card-text text-black-50">Web Developer</div>

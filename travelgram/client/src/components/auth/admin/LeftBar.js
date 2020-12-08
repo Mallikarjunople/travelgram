@@ -61,6 +61,28 @@ function LeftBar() {
               Popular Cities
             </button>
           </NavLink>
+          <NavLink
+            exact
+            to="/adminFeedback"
+            // activeClassName="page-switch-active"
+            
+          >
+             <button
+              className=" btn btn-danger my-2 py-2 mx-2"
+              style={{
+                // backgroundColor: "#e7e7e7",
+                color: "black",
+                padding: "5px 20px",
+                textAlign: "center",
+                textDecoration: "none",
+                display: "inline-block",
+                fontSize: "16px",
+                width: "100%",
+              }}
+            >
+              Feedbacks 
+            </button>
+          </NavLink>
         </div>
       </div>
     </>

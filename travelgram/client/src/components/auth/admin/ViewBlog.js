@@ -32,15 +32,14 @@ function ViewBlog() {
               <p>Posted on {blog.date}</p>
               <p>Location :{blog.Location}</p>
               <img
-                className="img-fluid rounded mb-5 "
-                src="http://placehold.it/900x300"
-                alt=""
-              />
+                      className="my-4 border-black"
+                      width="750px"
+                      height="400px"
+                        src={`http://localhost:5000/${blog.Pictures}`}
+                        alt="Card image cap"
+                      />
               <p className="lead my-4 my-auto">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe
-                quibusdam sit excepturi nam quia corporis eligendi eos magni
-                recusandae laborum minus inventore?
+               {blog.Body}
               </p>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
