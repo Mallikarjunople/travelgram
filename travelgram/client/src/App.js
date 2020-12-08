@@ -19,6 +19,7 @@ import UserLogin from "./components/auth/user/UserLogin";
 import CreatePost from "./components/user/CreatePost";
 import EditPost from "./components/user/EditPost";
 import UserProfile from "./components/user/UserProfile";
+import ViewUserBlog from "./components/user/ViewUserBlog";
 import PageNotFound from "./components/pages/PageNotFound";
 import AdminPage from "./components/auth/admin/AdminPage";
 import Role from "./components/auth/Role";
@@ -63,6 +64,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/tlogs" exact component={Tlogs} />
           <Route path="/tlogpost/:id" exact component={Tlogpost} />
+          <Route path="/viewuserblog/:getId" exact component={ViewUserBlog} />
           <Route path="/about" exact component={About} />
           <Route path="/citypage" exact component={Citypage} />
           <Route path="/citypage/:city" exact component={Citypage} />

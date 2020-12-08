@@ -6,6 +6,7 @@ import EditPost from "./EditPost";
 
 Modal.setAppElement("#root");
 function PostList(props) {
+  const [status, setStatus] = useState("");
   const [blog, setBlog] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalOpener = () => {
@@ -59,15 +60,26 @@ function PostList(props) {
       .catch((err) => console.log(err));
   };
 
+const statusFunc=()=>
+{
+  if(blog.flag==1){
+    setStatus("Approved")
+  }
+  else{
+    setStatus("Not Approved")
+  }
+}
+
   useEffect(() => {
     authUser
       .get(`/blogs/${props.blogid}`)
       .then((res) => {
         setBlog(res.data.blog);
         console.log(res.data.blog);
+       statusFunc();
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [status]);
   return (
     <>
       <div className="container-fluid">
@@ -86,13 +98,13 @@ function PostList(props) {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-8 col-sm-12">
+                  <div className="col-lg-6 col-sm-12">
                     <div className="card-body mx-2">
                       <h4 className="card-title">{blog.Title}</h4>
                       <p className="card-text">{blog.Body}</p>
                     </div>
-                    <div className="">
-                      <NavLink to={`/viewblog/${props.blogid}`}>
+                    <div className="mx-4">
+                      <NavLink to={`/viewuserblog/${props.blogid}`}>
                         {" "}
                         <button type="button" className="btn btn-primary mx-1">
                           View
@@ -112,8 +124,20 @@ function PostList(props) {
                       >
                         Delete
                       </button>
+                      
                     </div>
                   </div>
+                  <div className="col-lg-2 mt-3" ><h5>
+                        <span
+                          className={
+                            blog.flag == 1
+                              ? "badge badge-success"
+                              : "badge badge-danger"
+                          }
+                        >
+                          {status}
+                        </span>
+                      </h5></div>
                 </div>
               </div>
             </div>

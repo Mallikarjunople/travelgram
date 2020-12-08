@@ -41,6 +41,7 @@ export default function Tlogs() {
                     id={item._id}
                     lastupdated={item.date}
                     Pictures={item.Pictures}
+                    
                   />
                 </div>
               );
