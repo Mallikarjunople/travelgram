@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../css/main.css";
 import { NavLink } from "react-router-dom";
+import{ useForm }from 'react-hook-form';
 import axios from "axios";
 
 //check whole code ...needs a lot of changes
 const UserLogin = () => {
+  const {register, handleSubmit, errors}=useForm();
   const initialState = localStorage.getItem("token");
   const [custToken, setCustToken] = useState(initialState);
   const [user, setUser] = useState({
@@ -16,19 +18,19 @@ const UserLogin = () => {
     if (custToken) window.location = "/";
   }, [custToken]);
 
-  const inputEvent = (e) => {
-    const { name, value } = e.target;
+  // const inputEvent = (e) => {
+  //   const { name, value } = e.target;
 
-    setUser((preValue) => {
-      return {
-        ...preValue,
-        [name]: value,
-      };
-    });
-  };
+  //   setUser((preValue) => {
+  //     return {
+  //       ...preValue,
+  //       [name]: value,
+  //     };
+  //   });
+  // };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (user) => {
+    // e.preventDefault();
     console.log(user); // sent object
     axios
       .post("/users/login", {
@@ -44,7 +46,7 @@ const UserLogin = () => {
         window.location = "/";
       })
       .catch((error) => {
-        alert("Wrong username or password");
+       alert("wrong email or password")
         console.log(error);
       });
   };
@@ -62,17 +64,19 @@ const UserLogin = () => {
                     <h3 className="login-heading mb-4">
                       Welcome to Travelgram
                     </h3>
-                    <form onSubmit={onSubmit} autoComplete="on">
+                    <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
                       <div className="form-label-group">
                         <input
                           type="email"
                           name="email"
                           className="form-control"
                           placeholder="Enter Your EmailID"
-                          onChange={inputEvent}
-                          value={user.email}
+                          ref={register({required:true}) }
+                          // onChange={inputEvent}
+                          // value={user.email}
                           autoFocus
                         />
+                        {errors.email && <p style={{color:"red", fontSize:"small"}}>This Field is required</p>}
                       </div>
 
                       <div className="form-label-group">
@@ -81,9 +85,11 @@ const UserLogin = () => {
                           name="password"
                           className="form-control"
                           placeholder="Enter Your password"
-                          onChange={inputEvent}
-                          value={user.password}
+                          ref={register({required:true})}
+                          // onChange={inputEvent}
+                          // value={user.password}
                         />
+                         {errors.password &&<p style={{color:"red", fontSize:"small"}}>This field is required</p>}
                       </div>
 
                      

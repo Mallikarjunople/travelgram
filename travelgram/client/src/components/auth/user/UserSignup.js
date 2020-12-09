@@ -23,6 +23,8 @@ const UserSignup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(user.email && user.fullName && user.password && user.phone){
+   
     // console.log(user); //data sent by form
     axios
       .post("/users/signup", {
@@ -39,6 +41,9 @@ const UserSignup = () => {
       .catch((error) => {
         console.log(error);
       });
+
+    }
+    else alert("please fill in all the details")
   };
 
   return (
