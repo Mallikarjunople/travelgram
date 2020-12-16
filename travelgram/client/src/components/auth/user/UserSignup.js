@@ -90,6 +90,7 @@ const UserSignup = () => {
                         name="phone"
                         onChange={inputEvent}
                         value={user.phone}
+                        
                       />
                     </div>
                     <div class="form-label-group">
