@@ -1,9 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import Navbar from '../Navbar'
 function About() {
   return (
     <>
+    <Navbar/>
       <header className="bg-dark  py-5 mb-4">
         <div className="container">
           <h1 className="font-weight-light text-white">Meet The Team</h1>
@@ -21,49 +22,49 @@ function About() {
 
       <div className="container">
         <div className="row">
-          <div className="col-xl-6 col-md-6 mb-4">
+          <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
-              <img src="/images/.jpg" className="about_image" alt="..." />
+              <img src="/images/ople.jpg" className="about_image" alt="..." />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Moderator</h5>
+                <h5 className="card-title mb-0">Mallikarjun Ople</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>
           </div>
 
-          <div className="col-xl-6 col-md-6 mb-4">
+          <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
-              <img className="card-img-top" alt="..." />
+              <img className=" about_image" src="https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png" alt="..." />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Team Member</h5>
+                <h5 className="card-title mb-0">Vaibhav Mahindra</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>
           </div>
 
-          <div className="col-xl-6 col-md-6 mb-4">
+          <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
-                src="https://source.unsplash.com/sNut2MqSmds/500x350"
-                className="card-img-top"
+                src="https://res.cloudinary.com/practicaldev/image/fetch/s--_HBZhuhF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/nweeqf97l2md3tlqkjyt.jpg"
+                className="about_image"
                 alt="..."
               />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Team Member</h5>
+                <h5 className="card-title mb-0">Mayur Jagtap</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>
           </div>
 
-          <div className="col-xl-6 col-md-6 mb-4">
+          <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
-                src="https://source.unsplash.com/ZI6p3i9SbVU/500x350"
-                className="card-img-top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMeXbmn2_9-Y6lvkDJ_XuDVkNdcHj1OTAzQg&usqp=CAU"
+                className="about_image"
                 alt="..."
               />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Team Member</h5>
+                <h5 className="card-title mb-0">Mrunal Ingale</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 /* All css styles are combined with their section names as
     this helps to load the content faster in the Deployment.
 */
-@import url('https://fonts.googleapis.com/css2?family=Ovo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ovo&display=swap");
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -27,7 +27,6 @@ input::-webkit-inner-spin-button {
 .card-img-top {
   height: 300px;
   width: 500px;
-  
 }
 
 /* ****************** Tlogs css *****************/
@@ -401,7 +400,6 @@ h1 {
 }
 .section-heading {
   font-size: 70px;
-
 }
 
 .theme-list {
@@ -451,10 +449,9 @@ h1 {
   box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
     -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
-.theme:hover .theme_title{
+.theme:hover .theme_title {
   letter-spacing: 1px;
- text-emphasis-color: yellow;
-  
+  text-emphasis-color: yellow;
 }
 
 .title-white {
@@ -789,33 +786,28 @@ h1 {
 
 /*  ********************* Cities css *********************** */
 
-
 /*  ********************* ThemePage css *********************** */
 
 /* .themepage{
   background-color: #b1b1b1;
 } */
-body .themepage{
-  background: url('/images/delhi.jpg') no-repeat center center fixed;
+body .themepage {
+  background: url("/images/delhi.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
 }
 
-.theme__card__item{
- 
-  height:300px;
-  width:650px;
+.theme__card__item {
+  height: 300px;
+  width: 650px;
   background-color: grey;
   border-radius: 30px;
-  
 }
-.theme__card__title{
+.theme__card__title {
   margin: 50px;
 }
-
-
 
 /*  ********************* Themepage css *********************** */
 
@@ -831,7 +823,7 @@ body .themepage{
 }
 
 .bg-image {
-  background-image: url('/images/delhi.jpg');
+  background-image: url("/images/delhi.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -852,14 +844,14 @@ body .themepage{
   margin-bottom: 1rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
+.form-label-group > input,
+.form-label-group > label {
   padding: var(--input-padding-y) var(--input-padding-x);
   height: auto;
   border-radius: 2rem;
 }
 
-.form-label-group>label {
+.form-label-group > label {
   position: absolute;
   top: 0;
   left: 0;
@@ -872,8 +864,8 @@ body .themepage{
   cursor: text;
   /* Match the input under the label */
   border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
@@ -901,7 +893,7 @@ body .themepage{
   padding-bottom: calc(var(--input-padding-y) / 3);
 }
 
-.form-label-group input:not(:placeholder-shown)~label {
+.form-label-group input:not(:placeholder-shown) ~ label {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
@@ -912,7 +904,7 @@ body .themepage{
 -------------------------------------------------- */
 
 @supports (-ms-ime-align: auto) {
-  .form-label-group>label {
+  .form-label-group > label {
     display: none;
   }
   .form-label-group input::-ms-input-placeholder {
@@ -923,9 +915,8 @@ body .themepage{
 /* Fallback for IE
 -------------------------------------------------- */
 
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
-  .form-label-group>label {
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .form-label-group > label {
     display: none;
   }
   .form-label-group input:-ms-input-placeholder {
@@ -935,16 +926,15 @@ body .themepage{
 /*  ********************* UserLogin css *********************** */
 /*  ********************* UserSignUp css *********************** */
 
-
 :root {
   --input-padding-x: 1.5rem;
-  --input-padding-y: .75rem;
+  --input-padding-y: 0.75rem;
 }
 
-.usersignupbody  {
+.usersignupbody {
   height: 100vh;
   background: #007bff;
-  background: linear-gradient(to right, #33AEFF, #d0d4da);
+  background: linear-gradient(to right, #33aeff, #d0d4da);
 }
 
 .card-signin {
@@ -963,7 +953,8 @@ body .themepage{
 .card-signin .card-img-left {
   width: 45%;
   /* Link to your background image using in the property below! */
-  background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+  background: scroll center
+    url("https://source.unsplash.com/WEQbe2jBg40/414x512");
   background-size: cover;
 }
 
@@ -978,7 +969,7 @@ body .themepage{
 .form-signin .btn {
   font-size: 80%;
   border-radius: 5rem;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   font-weight: bold;
   padding: 1rem;
   transition: all 0.2s;
@@ -994,12 +985,12 @@ body .themepage{
   border-radius: 2rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
+.form-label-group > input,
+.form-label-group > label {
   padding: var(--input-padding-y) var(--input-padding-x);
 }
 
-.form-label-group>label {
+.form-label-group > label {
   position: absolute;
   top: 0;
   left: 0;
@@ -1010,8 +1001,8 @@ body .themepage{
   line-height: 1.5;
   color: #495057;
   border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
@@ -1039,7 +1030,7 @@ body .themepage{
   padding-bottom: calc(var(--input-padding-y) / 3);
 }
 
-.form-label-group input:not(:placeholder-shown)~label {
+.form-label-group input:not(:placeholder-shown) ~ label {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
@@ -1054,14 +1045,16 @@ body .themepage{
 .btn-facebook {
   color: white;
   background-color: #3b5998;
-}/*  ********************* UserSignUp css *********************** */
+} /*  ********************* UserSignUp css *********************** */
 
 /* About page css */
 
-.about_image{
-
-  width: 550px;
-  height:450px;
+.about_image {
+  padding: 20px;
+  margin: 0px;
+  align-self: center;
+  width: 240px;
+  height: 360px;
   object-fit: cover;
 }
 /* About page css */
@@ -1077,7 +1070,7 @@ body .themepage{
   padding: 15px;
 }
 .card {
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .card {
@@ -1088,8 +1081,8 @@ body .themepage{
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 0 solid rgba(0,0,0,.125);
-  border-radius: .25rem;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 .card-body {
@@ -1103,30 +1096,30 @@ body .themepage{
   margin-left: -8px;
 }
 
-.gutters-sm>.col, .gutters-sm>[class*=col-] {
+.gutters-sm > .col,
+.gutters-sm > [class*="col-"] {
   padding-right: 8px;
   padding-left: 8px;
 }
-.mb-3, .my-3 {
-  margin-bottom: 1rem!important;
+.mb-3,
+.my-3 {
+  margin-bottom: 1rem !important;
 }
 
 .bg-gray-300 {
   background-color: #e2e8f0;
 }
 .h-100 {
-  height: 100%!important;
+  height: 100% !important;
 }
 .shadow-none {
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
-.userpersonalinfo{
+.userpersonalinfo {
   font-size: 20px;
 }
 
 /*  ********************* UserProfile css *********************** */
-
-
 
 /*  */
 
@@ -1141,35 +1134,32 @@ body .themepage{
   object-fit: cover;
   margin-top: 0;
 }
-.helpbtn{
+.helpbtn {
   margin-top: 300px;
   font-size: 25px;
   background-color: rgb(27, 29, 68);
-  border: 2px solid ;
-
+  border: 2px solid;
 }
 
-.navlink_{
+.navlink_ {
   color: white;
 }
-.navlink_:hover{
-color: rgb(27, 29, 68);
-text-decoration: none;
-}
-
-
-/*  */
-/* My classes */
-.textdeco{
+.navlink_:hover {
+  color: rgb(27, 29, 68);
   text-decoration: none;
 }
 
-.backimg{
+/*  */
+/* My classes */
+.textdeco {
+  text-decoration: none;
+}
+
+.backimg {
   background: url(/images/delhi.jpg);
 }
 
-
-.modaledit{
+.modaledit {
   height: 400px;
   width: 400px;
 }
