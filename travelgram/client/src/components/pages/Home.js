@@ -35,7 +35,7 @@ function Home() {
   // const Scroll = ({to})=><span className="btn btn-success" onClick={()=>document.getElementById(to).scrollIntoView({behavior:"smooth"})} >Go to Top</span>
   return (
     <>
-      {/* <Navbar/> */}
+      <Navbar/>
       <HeroSection />
       <Cities />
       {/* <City/> */}
