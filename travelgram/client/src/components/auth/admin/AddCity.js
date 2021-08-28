@@ -6,27 +6,27 @@ Modal.setAppElement("#root");
 
 // YET-TODO : after submitting the form it doesn't get cleared
 
-const userId = localStorage.getItem("userId");
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+// const userId = localStorage.getItem("userId");
+// const customStyles = {
+//   content: {
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)",
+//   },
+// };
 function AddCity() {
   const { register, handleSubmit }= useForm();
   //Modal Handlers
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const modalOpener = () => {
-    setModalIsOpen(true);
-  };
-  const onRequestClose = () => {
-    setModalIsOpen(false);
-  };
+  // const modalOpener = () => {
+  //   setModalIsOpen(true);
+  // };
+  // const onRequestClose = () => {
+  //   setModalIsOpen(false);
+  // };
 // If we don't use react-hook-form then this commented code can be use   
   // const [blog, setBlog] = useState({
   //   Tags: "",
@@ -190,7 +190,7 @@ function AddCity() {
                   type="button"
                   name="goback"
                   className="btn btn-danger pull-right mx-1 my-3"
-                  onClick={() => (window.location = "/adminpage")}
+                  onClick={() => (window.location = "/role/PopularCities")}
                 >
                   Go Back
                 </button>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { authUser } from "../../App";
+import { authUser, baseUrl } from "../../App";
 
 function ViewBlog() {
   const { getId } = useParams();
   const [blog, setBlog] = useState({});
-  const [userDetail, setUserDetail] = useState({});
+  // const [userDetail, setUserDetail] = useState({});
 
   useEffect(() => {
     authUser
@@ -25,22 +25,25 @@ function ViewBlog() {
         <div className="container col-10">
           <div className="row">
             <div className="col-lg-2">
-              <button className="btn btn-danger mt-3" onClick={()=>window.history.back()} >Go Back</button>
+              <button
+                className="btn btn-danger mt-3"
+                onClick={() => window.history.back()}
+              >
+                Go Back
+              </button>
             </div>
             <div className="col-lg-10">
               <h1 className="mt-4 my-5">{blog.Title}</h1>
               <p>Posted on {blog.date}</p>
               <p>Location :{blog.Location}</p>
               <img
-                      className="my-4 border-black"
-                      width="750px"
-                      height="400px"
-                        src={`http://localhost:5000/${blog.Pictures}`}
-                        alt="Card image cap"
-                      />
-              <p className="lead my-4 my-auto">
-               {blog.Body}
-              </p>
+                className="my-4 border-black"
+                width="750px"
+                height="400px"
+                src={baseUrl + `${blog.Pictures}`}
+                alt="Card image cap"
+              />
+              <p className="lead my-4 my-auto">{blog.Body}</p>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
                 tenetur natus doloremque laborum quos iste ipsum rerum obcaecati

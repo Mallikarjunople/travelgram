@@ -36,7 +36,7 @@ function Feed(props) {
                     </div>
                   </div>
                   <div className="col-lg-4 col-sm-12" >
-                    <NavLink to={`/viewfeedback/${props.id}`}>
+                    <NavLink to={`/role/viewfeedback/${props.id}`}>
                       <button
                         type="button"
                         className="btn btn-success"

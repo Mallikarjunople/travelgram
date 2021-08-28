@@ -14,7 +14,7 @@ function HeroSection() {
           buttonStyle="btn--outline"
           buttonSize="btn--large"
           onClick={()=>{
-            window.scrollTo({top:0,behavior:"smooth"})
+            window.scrollTo({top:760,behavior:"smooth"})
           }}
         >
           Explore

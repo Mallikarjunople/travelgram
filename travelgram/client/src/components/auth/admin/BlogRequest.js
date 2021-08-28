@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { authUser } from "../../../App";
+import { authUser, baseUrl } from "../../../App";
 function BlogRequest({ id }) {
   const [blog, setBlog] = useState({});
- 
+
   const approveHandle = () => {
     authUser
       .patch(`/admin/blogreq/${id}`, { flag: 1 })
       .then((res) => {
         // console.log(res);
         //  console.log(blog.flag)
+        alert("Approved!!!");
       })
       .catch((err) => console.log(err));
   };
@@ -20,6 +21,7 @@ function BlogRequest({ id }) {
       .then((res) => {
         // console.log(res);
         //  console.log(blog.flag)
+        alert("Disapproved!!!");
       })
       .catch((err) => console.log(err));
   };
@@ -44,10 +46,10 @@ function BlogRequest({ id }) {
                   <div className="col-lg-4 col-sm-12">
                     <div className="img-square-wrapper">
                       <img
-                      height="200px"
-                      width="300px"
+                        height="200px"
+                        width="300px"
                         className=""
-                        src={`http://localhost:5000/${blog.Pictures}`}
+                        src={baseUrl + `${blog.Pictures}`}
                         alt="Card image cap"
                       />
                     </div>
@@ -57,23 +59,25 @@ function BlogRequest({ id }) {
                       <h4 className="card-title">{blog.Title}</h4>
                       <p className="card-text">{blog.Body}</p>
                     </div>
-                    <div className="">
-                      <NavLink to={`/viewblog/${id}`}><button
-                      type="button"
-                        className="btn btn-primary mx-1"
-                        // onClick={viewHandle}
-                      >
-                        View
-                      </button></NavLink>
+                    <div className="ml-5">
+                      <NavLink to={`/role/viewblog/${id}`}>
+                        <button
+                          type="button"
+                          className="btn btn-primary mx-1"
+                          // onClick={viewHandle}
+                        >
+                          View
+                        </button>
+                      </NavLink>
                       <button
-                      type="button"
+                        type="button"
                         className="btn btn-success mx-1"
                         onClick={approveHandle}
                       >
                         Approve
                       </button>
                       <button
-                      type="button"
+                        type="button"
                         className="btn btn-danger mx-1"
                         onClick={disapproveHandle}
                       >

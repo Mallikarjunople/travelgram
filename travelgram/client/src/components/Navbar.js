@@ -7,6 +7,7 @@ function Navbar() {
   const [click, setClick] = useState(false); //states
   const [button, setButton] = useState(true);
   const usertoken = localStorage.getItem("token");
+  // console.log(usertoken);
 
   const handleClick = () => setClick(!click); //handlers
   const closeMobileMenu = () => setClick(false);
@@ -49,27 +50,53 @@ function Navbar() {
                 About us
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/usersignup"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Sign up
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/userlogin"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Login
-              </Link>
-            </li>
-         { usertoken && ( <Link to="/role" className="btn btn-success action my-4" ><li >MY Profile</li></Link>)}
-          </ul>
+            {!usertoken && (
+                <li className="nav-item">
+                  <Link
+                    to="/usersignup"
+                    className="nav-links-mobile"
+                    onClick={closeMobileMenu}
+                  >
+                    Sign up
+                  </Link>
+                </li>
+              )}
 
+              {!usertoken && (
+                <li className="nav-item">
+                  <Link
+                    to="/userlogin"
+                    className="nav-links-mobile"
+                    onClick={closeMobileMenu}
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
+            
+
+            {usertoken && (
+              <Link to="/role/requestsection" className="btn btn-success action my-4">
+                <li>My Profile</li>
+              </Link>
+            )}
+            {usertoken && (
+              <li className="nav-item">
+                <Link
+                  to="/userlogin"
+                  className="nav-links-mobile"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("userId");
+                    closeMobileMenu();
+                  }}
+                >
+                  Logout
+                </Link>
+              </li>
+            )}
+          </ul>
+          <div style={{ marginBottom: "18px", marginLeft: "5rem" }}>
           {button && !usertoken && (
             <Button route="/usersignup" buttonStyle="btn--outline">
               Sign Up
@@ -83,7 +110,6 @@ function Navbar() {
           )}
           {button && usertoken && (
             <Button
-           
               route="/userlogin"
               buttonStyle="btn--outline"
               onClick={() => {
@@ -94,6 +120,7 @@ function Navbar() {
               Logout
             </Button>
           )}
+          </div>
         </div>
       </nav>
     </>

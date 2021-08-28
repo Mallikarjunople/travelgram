@@ -7,13 +7,13 @@ function ThemePage() {
   const { tags } = useParams();
   const [blogs, setBlogs] = useState([]);
 
-  console.log(tags);
+  // console.log(tags);
   useEffect(() => {
     authUser
       .get(`/tags/${tags}`)
       .then((res) => {
         setBlogs(res.data.blogs);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

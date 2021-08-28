@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter, NavLink, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Navbar from "../../Navbar";
 
 import PopularCities from "./PopularCities";
@@ -12,30 +12,43 @@ import ViewFeedback from "./ViewFeedback";
 function AdminPage() {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <BrowserRouter>
         <Switch>
-          <>
-          <div className="row">
-            <div className="col-2">
-              <LeftBar />
+            <div className="row">
+              <div className="col-2">
+                <LeftBar />
+              </div>
+              <div className="col-10">
+                <Route
+                  path="/role/requestsection"
+                  exact
+                  component={RequestSection}
+                ></Route>
+                <Route
+                  path="/role/PopularCities"
+                  exact
+                  component={PopularCities}
+                ></Route>
+                <Route
+                  path="/role/viewblog/:getId"
+                  exact
+                  component={ViewBlog}
+                ></Route>
+                <Route
+                  path="/role/adminfeedback"
+                  exact
+                  component={AdminFeedback}
+                ></Route>
+                <Route
+                  path="/role/viewfeedback/:id"
+                  exact
+                  component={ViewFeedback}
+                ></Route>
+              </div>
             </div>
-            <div className="col-10">
-              <Route
-                path="/requestsection"
-                exact
-                component={RequestSection}
-              ></Route>
-              <Route path="/PopularCities" exact component={PopularCities}></Route>
-              <Route path="/viewblog/:getId" exact component={ViewBlog} ></Route>
-              <Route path="/adminfeedback" exact component={AdminFeedback}></Route>
-              <Route path="/viewfeedback/:id" exact component={ViewFeedback}></Route>
-            </div>
-            </div>
-          </>
         </Switch>
       </BrowserRouter>
-     
     </>
   );
 }

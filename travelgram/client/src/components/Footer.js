@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/main.css";
-import { Button } from "./Button";
+// import { Button } from "./Button";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -67,7 +67,6 @@ function Footer() {
           <a
               className="social-icon-link twitter"
               href="https://www.linkedin.com/in/mallikarjunople/"
-              target="_blank"
               aria-label="LinkedIn"
             >
               <i className="fab fa-linkedin" />
@@ -75,7 +74,6 @@ function Footer() {
             <a
               className="social-icon-link github"
               href="https://www.github.com/MallikarjunOple/"
-              target="_blank"
               aria-label="Github"
             >
               <i className="fab fa-github" />
@@ -83,7 +81,6 @@ function Footer() {
             <a
               className="social-icon-link instagram"
               href="https://www.instagram.com/the_mallikarjun_/"
-              target="_blank"
               aria-label="Instagram"
             >
               <i className="fab fa-instagram" />
@@ -99,7 +96,6 @@ function Footer() {
             <a
               className="social-icon-link twitter"
               href="https://www.twitter.com/mallikarjunople/"
-              target="_blank"
               aria-label="Twitter"
             >
               <i className="fab fa-twitter" />

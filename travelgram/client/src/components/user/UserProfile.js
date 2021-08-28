@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import { authUser } from "../../App";
 import PostList from "./PostList";
 
-
 Modal.setAppElement("#root");
 
 function UserProfile() {
@@ -36,7 +35,7 @@ function UserProfile() {
       };
     });
   };
- 
+
   const saveChanges = (e) => {
     e.preventDefault();
     // console.log(user);
@@ -57,7 +56,7 @@ function UserProfile() {
     setModalIsOpen(false);
   };
   useEffect(() => {
-    //REQUEST FOR USER INFORMATION 
+    //REQUEST FOR USER INFORMATION
 
     authUser
       .get(`/users/${userId}`)
@@ -104,7 +103,7 @@ function UserProfile() {
                         Full Stack Developer
                       </p>
                       <p className="text-muted font-size-sm">
-                        Bay Area, San Francisco, CA
+                        Pune , Maharashtra
                       </p>
                       {/* <button className="btn btn-primary">Follow</button>
                       <button className="btn btn-outline-primary">
@@ -143,7 +142,7 @@ function UserProfile() {
                       </svg>
                       Instagram
                     </h6>
-                    <span className="text-secondary">bootdey</span>
+                    <span className="text-secondary">instagram.com</span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">
@@ -163,7 +162,7 @@ function UserProfile() {
                       </svg>
                       Facebook
                     </h6>
-                    <span className="text-secondary">bootdey</span>
+                    <span className="text-secondary">facebook.com</span>
                   </li>
                 </ul>
               </div>
@@ -280,11 +279,12 @@ function UserProfile() {
                       <div className="mb-0">About me</div>
                     </div>
                     <div className="col-sm-9 my-3 text-secondary">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longerThis is a wider card with supporting text
-                      below as a natural lead-in to additional content. This
-                      content is a little bit longer..
+                      I'm an experienced software engineer who constantly seeks
+                      out innovative solutions to everyday problems. In my seven
+                      years in this industry, I've honed my analytical thinking
+                      and collaboration skills, and I love working with a team.
+                      I've also had the opportunity to serve as the software
+                      engineer lead for three projects with First Technology
                     </div>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ function UserProfile() {
                   <div className="col-lg-2 col-md-3 col-4 justify-content-end">
                     <button
                       className="btn btn-primary mx-1 "
-                      onClick={()=>window.location= "/createpost"}
+                      onClick={() => (window.location = "/createpost")}
                     >
                       Add post
                     </button>

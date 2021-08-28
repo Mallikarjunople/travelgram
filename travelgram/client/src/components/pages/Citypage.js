@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../../App.css";
 import CitypageItem from "../city/CitypageItem";
-import { authUser } from "../../App";
-import axios from "axios";
+import { authUser , baseUrl } from "../../App";
+// import axios from "axios";
 import Navbar from "../Navbar";
 export default function Citypage() {
   const { city } = useParams();
   const [blog, setBlog] = useState([]);
   const [popcity, setPopcity] = useState([]);
-  const lorem =
-    "This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!";
+  // const lorem =
+  //   "This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!";
 
   useEffect(() => {
     authUser
@@ -25,7 +25,7 @@ export default function Citypage() {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div>
         <div className="container">
           <div className="row align-items-center my-5">
@@ -33,7 +33,7 @@ export default function Citypage() {
               <img
                 className="img-fluid rounded mb-4 mb-lg-0"
                 style={{ height: "300px", width: "800px" }}
-                src={`http://localhost:5000/${blog.Pictures}`}
+                src={baseUrl + `${blog.Pictures}`}
                 alt=""
               />
             </div>
