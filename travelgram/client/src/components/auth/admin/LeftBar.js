@@ -17,21 +17,23 @@ function LeftBar() {
         >
           <NavLink
             exact
-            to="/requestsection"
-            // activeClassName="selected"
+            to="/role/requestsection"
+            activeClassName="selected"
             className="text-decoration-none "
           
           >
             <button
-              className=" btn btn-danger my-2 py-2 mx-2"
+              className=" btn btn-outline-success my-2 py-2 mx-2"
               style={{
                 // backgroundColor: "#e7e7e7",
-                color: "black",
+                color: "white",
                 padding: "5px 20px",
                 textAlign: "center",
                 textDecoration: "none",
                 display: "inline-block",
                 fontSize: "16px",
+                fontWeight:"bolder",
+                fontFamily:"sans-serif",
                 width: "100%",
               }}
             >
@@ -41,20 +43,22 @@ function LeftBar() {
 
           <NavLink
             exact
-            to="/PopularCities"
-            // activeClassName="page-switch-active"
+            to="/role/PopularCities"
+            activeClassName="page-switch-active"
             
           >
              <button
-              className=" btn btn-danger my-2 py-2 mx-2"
+              className=" btn btn-outline-success my-2 py-2 mx-2"
               style={{
-                // backgroundColor: "#e7e7e7",
-                color: "black",
+                // backgroundColor: "#28a745",
+                color: "white",
                 padding: "5px 20px",
                 textAlign: "center",
                 textDecoration: "none",
                 display: "inline-block",
                 fontSize: "16px",
+                fontWeight:"bolder",
+                fontFamily:"sans-serif",
                 width: "100%",
               }}
             >
@@ -63,20 +67,22 @@ function LeftBar() {
           </NavLink>
           <NavLink
             exact
-            to="/adminFeedback"
-            // activeClassName="page-switch-active"
+            to="/role/adminFeedback"
+            activeClassName="page-switch-active"
             
           >
              <button
-              className=" btn btn-danger my-2 py-2 mx-2"
+              className=" btn btn-outline-success my-2 py-2 mx-2"
               style={{
                 // backgroundColor: "#e7e7e7",
-                color: "black",
+                color: "white",
                 padding: "5px 20px",
                 textAlign: "center",
                 textDecoration: "none",
                 display: "inline-block",
                 fontSize: "16px",
+                fontWeight:"bolder",
+                fontFamily:"sans-serif",
                 width: "100%",
               }}
             >

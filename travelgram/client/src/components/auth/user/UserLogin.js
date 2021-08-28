@@ -99,19 +99,35 @@ const UserLogin = () => {
                       >
                         LOGIN
                       </button>
+                      <h6 className="text-center font-weight-bolder">OR</h6>
                       <div className="text-center">
-                       
-
                         <NavLink
                           exact
                           to="usersignup"
                           className="text-decoration-none"
                         >
                           <button
-                            className="btn btn-lg  mt-5 btn-warning btn-block btn-login text-uppercase font-weight-bold mb-2"
+                            className="btn btn-lg btn-warning btn-block btn-login text-uppercase font-weight-bold mb-2"
                             type="button"
                           >
                             Register
+                          </button>
+                        </NavLink>
+                      </div>
+                      <h6 className="text-center font-weight-bolder">OR</h6>
+                      <div className="text-center">
+                       
+
+                        <NavLink
+                          exact
+                          to="/"
+                          className="text-decoration-none"
+                        >
+                          <button
+                            className="btn btn-lg btn-success btn-block btn-login text-uppercase font-weight-bold mb-2"
+                            type="button"
+                          >
+                            Guest Login
                           </button>
                         </NavLink>
                       </div>

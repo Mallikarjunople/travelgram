@@ -3,8 +3,7 @@ import "./css/main.css";
 import ThemeItem from "./ThemeItem";
 import { NavLink } from "react-router-dom";
 function Theme() {
-
-  const Hot="Hot";
+  const Hot = "Hot";
   return (
     <>
       <div className="section-theme col-10 mx-auto my-5">

@@ -23,27 +23,24 @@ const UserSignup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if(user.email && user.fullName && user.password && user.phone){
-   
-    // console.log(user); //data sent by form
-    axios
-      .post("/users/signup", {
-        name: user.fullName,
-        email: user.email,
-        password: user.password,
-        phone: user.phone,
-      })
-      .then((response) => {
-        // console.log(response.data);
-        alert("sign Up successfully");
-        if (response.status === 201) window.location = "/userlogin"; //add the location for stats 200 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    }
-    else alert("please fill in all the details")
+    if (user.email && user.fullName && user.password && user.phone) {
+      // console.log(user); //data sent by form
+      axios
+        .post("/users/signup", {
+          name: user.fullName,
+          email: user.email,
+          password: user.password,
+          phone: user.phone,
+        })
+        .then((response) => {
+          // console.log(response.data);
+          alert("sign Up successfully");
+          if (response.status === 201) window.location = "/userlogin"; //add the location for stats 200
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else alert("please fill in all the details");
   };
 
   return (
@@ -66,7 +63,9 @@ const UserSignup = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter Your Name"
+                        pattern="[a-zA-Z]+ [a-zA-Z]+"
                         name="fullName"
+                        title="Enter Full name (first & last name) eg John Doe"
                         onChange={inputEvent}
                         value={user.fullName}
                         autoFocus
@@ -84,13 +83,14 @@ const UserSignup = () => {
                     </div>
                     <div class="form-label-group">
                       <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         placeholder="Enter Your Phone no."
+                        pattern="(7|8|9)\d{9}"
                         name="phone"
+                        title="Enter a valid 10-digit no"
                         onChange={inputEvent}
                         value={user.phone}
-                        
                       />
                     </div>
                     <div class="form-label-group">
@@ -110,7 +110,10 @@ const UserSignup = () => {
                     >
                       Register
                     </button>
-                    <NavLink class="d-block text-center mt-2 small" to="/userlogin">
+                    <NavLink
+                      class="d-block text-center mt-2 small"
+                      to="/userlogin"
+                    >
                       Sign In
                     </NavLink>
                   </form>

@@ -17,7 +17,7 @@ function AdminFeedback() {
   }, []);
   return (
     <>
-      <h1>Feeeedback</h1>
+      <h1>Feedback</h1>
       <div>
         {feeds.map((item) => (
           <div key={item._id}>

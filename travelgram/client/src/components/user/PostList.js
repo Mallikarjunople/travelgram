@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { authUser } from "../../App";
+import { authUser, baseUrl } from "../../App";
 import Modal from "react-modal";
 import { NavLink } from "react-router-dom";
-import EditPost from "./EditPost";
+// import EditPost from "./EditPost";
 
 Modal.setAppElement("#root");
 function PostList(props) {
   const [status, setStatus] = useState("");
   const [blog, setBlog] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const modalOpener = () => {
-    setModalIsOpen(true);
-  };
-  const onRequestClose = () => {
-    setModalIsOpen(false);
-  };
+  // const modalOpener = () => {
+  //   setModalIsOpen(true);
+  // };
+  // const onRequestClose = () => {
+  //   setModalIsOpen(false);
+  // };
 
-  const editHandle = () => {};
+  // const editHandle = () => {};
 
   const inputEvent = (e) => {
     const { name, value } = e.target;
@@ -55,20 +55,19 @@ function PostList(props) {
     authUser
       .delete(`/blogs/${props.blogid}`)
       .then((res) => {
+        alert("Post has been deleted successfully");
         console.log(res);
       })
       .catch((err) => console.log(err));
   };
 
-const statusFunc=()=>
-{
-  if(blog.flag==1){
-    setStatus("Approved")
-  }
-  else{
-    setStatus("Not Approved")
-  }
-}
+  const statusFunc = () => {
+    if (blog.flag === 1) {
+      setStatus("Approved");
+    } else {
+      setStatus("Not Approved");
+    }
+  };
 
   useEffect(() => {
     authUser
@@ -76,7 +75,7 @@ const statusFunc=()=>
       .then((res) => {
         setBlog(res.data.blog);
         console.log(res.data.blog);
-       statusFunc();
+        statusFunc();
       })
       .catch((err) => console.log(err));
   }, [status]);
@@ -93,8 +92,9 @@ const statusFunc=()=>
                       <img
                         height="200px"
                         width="350px"
+                        alt="image"
                         className=""
-                        src={`http://localhost:5000/${blog.Pictures}`}
+                        src={baseUrl + `${blog.Pictures}`}
                       />
                     </div>
                   </div>
@@ -124,20 +124,21 @@ const statusFunc=()=>
                       >
                         Delete
                       </button>
-                      
                     </div>
                   </div>
-                  <div className="col-lg-2 mt-3" ><h5>
-                        <span
-                          className={
-                            blog.flag == 1
-                              ? "badge badge-success"
-                              : "badge badge-danger"
-                          }
-                        >
-                          {status}
-                        </span>
-                      </h5></div>
+                  <div className="col-lg-2 mt-3">
+                    <h5>
+                      <span
+                        className={
+                          blog.flag === 1
+                            ? "badge badge-success"
+                            : "badge badge-danger"
+                        }
+                      >
+                        {status}
+                      </span>
+                    </h5>
+                  </div>
                 </div>
               </div>
             </div>

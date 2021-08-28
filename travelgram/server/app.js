@@ -1,33 +1,41 @@
 //dependencies
-const express = require('express');
+const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const cors = require('cors');
-const bodyParser=require('body-parser');
-const feedbackRoute =  require('./routes/feedbacks');
-const userRoute = require('./routes/users');
-const blogRoute = require('./routes/blogs');
-const cityRoute = require('./routes/Cities');
-var socket = require('socket.io');
-const morgan = require('morgan');
-const checkAuth = require('./middleware/check-auth');
-const isAdmin = require('./middleware/isadmin');
-const adminRoute = require('./routes/admin');
-const tagRoute = require('./routes/tag');
-require('dotenv/config');
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const feedbackRoute = require("./routes/feedbacks");
+const userRoute = require("./routes/users");
+const blogRoute = require("./routes/blogs");
+const cityRoute = require("./routes/Cities");
+var socket = require("socket.io");
+const morgan = require("morgan");
+const checkAuth = require("./middleware/check-auth");
+const isAdmin = require("./middleware/isadmin");
+const adminRoute = require("./routes/admin");
+const tagRoute = require("./routes/tag");
+require("dotenv/config");
 
 //require the route handlers
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(morgan('dev'));
-app.use('/uploads',express.static('uploads'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+app.use("/uploads", express.static("uploads"));
 
 //connect to db
-mongoose.connect(process.env.DB_CONNECTION,{ 
-  useCreateIndex: true,useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false},function(){
-  console.log("connected to database");
-});
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  },
+  function () {
+    console.log("connected to database");
+  }
+);
 
 mongoose.Promise = global.Promise;
 
@@ -44,51 +52,50 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 //routes
 //app.use('/posts',postsRoute);
-app.use('/users',userRoute);
-app.use('/blogs',blogRoute);
+app.use("/users", userRoute);
+app.use("/blogs", blogRoute);
 
-app.use('/admin',checkAuth,isAdmin,adminRoute);
+app.use("/admin", checkAuth, isAdmin, adminRoute);
 
-app.use('/City',checkAuth,cityRoute);
-app.use('/tags',checkAuth,tagRoute);
-app.use('/feedback',feedbackRoute);
+app.use("/City", checkAuth, cityRoute);
+app.use("/tags", checkAuth, tagRoute);
+app.use("/feedback", feedbackRoute);
 
-app.use((req,res,next)=>{
-  const error = new Error('Not Found');
-  error.status=404;
- 
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+
   next(error);
 });
 
-app.use((error,req,res,next)=>{
+app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
-      error:{
-          message : error.message
-      }
-  })
-})
+    error: {
+      message: error.message,
+    },
+  });
+});
 
-
-app.get('/',function(req,res){
+app.get("/", function (req, res) {
   res.send("we are at home");
 });
 
-
-server = app.listen(5000,function(){
+server = app.listen(5000, function () {
   console.log("Server started at port 5000");
 });
 
 io = socket(server);
 
-io.on('connection', (socket) => {
-    console.log(socket.id);
+io.on("connection", (socket) => {
+  console.log(socket.id);
 
-    socket.on('SEND_MESSAGE', function(data){
-      io.emit('RECEIVE_MESSAGE', data);
-  })
+  socket.on("SEND_MESSAGE", function (data) {
+    io.emit("RECEIVE_MESSAGE", data);
+  });
 });
+
+//baseUrl 
+module.exports.link = "http://localhost:5000/";

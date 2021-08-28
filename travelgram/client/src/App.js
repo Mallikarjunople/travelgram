@@ -5,7 +5,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./components/pages/Home";
 // import Footer from "./components/Footer";
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Tlogs from "./components/tlogs/Tlogs";
 import About from "./components/pages/About";
 import Citypage from "./components/pages/Citypage";
@@ -31,6 +31,7 @@ import AdminFeedback from "./components/auth/admin/AdminFeedback";
 import Feed from "./components/auth/admin/Feed";
 import ViewFeedback from "./components/auth/admin/ViewFeedback";
 
+export const baseUrl = "http://localhost:5000/";
 const token = localStorage.getItem("token");
 export const authUser = axios.create({
   baseURL: "http://localhost:5000/",
@@ -48,26 +49,30 @@ function App() {
         {/* <Navbar /> */}
         <Switch>
           {/* Authentication routes */}
+          <Route path="/" exact component={Home} />
+          <Route path="/role/:action" component={Role} />
           <Route path="/usersignup" exact component={UserSignup} />
           <Route path="/userlogin" exact component={UserLogin} />
-          <Route path="/adminpage" exact component={AdminPage} />
-          <Route path="/addcity" exact component={AddCity} />
-          <Route path="/PopularCities" exact component={PopularCities} />
-          <Route path="/requestsection" exact component={RequestSection} />
-          <Route path="/viewblog/:getId" exact component={ViewBlog} />
-          <Route path="/role" exact component={Role} />
-          <Route path="/adminfeedback" exact component={AdminFeedback} />
-          <Route path="/feed" exact component={Feed} />
-          <Route path="/viewfeedback/:id" exact component={ViewFeedback} />
 
+          {/* Admin routes */}
+          <Route path="/adminpage" exact component={AdminPage} />
+          <Route path="/role/viewblog/:getId" component={ViewBlog} />
+          <Route path="/role/adminfeedback" exact component={AdminFeedback} />
+          <Route path="/role/viewfeedback/:id" component={ViewFeedback} />
+          <Route path="/role/requestsection" exact component={RequestSection} />
+          <Route path="/addcity" component={AddCity} />
+          <Route path="/PopularCities" exact component={PopularCities} />
+    
+          <Route path="/feed" exact component={Feed} />
           <Route path="/landing" exact component={Landing} />
-          <Route path="/" exact component={Home} />
+
+          {/* Users Routes */}
           <Route path="/tlogs" exact component={Tlogs} />
-          <Route path="/tlogpost/:id" exact component={Tlogpost} />
+          <Route path="/tlogpost/:id" component={Tlogpost} />
           <Route path="/viewuserblog/:getId" exact component={ViewUserBlog} />
           <Route path="/about" exact component={About} />
           <Route path="/citypage" exact component={Citypage} />
-          <Route path="/citypage/:city" exact component={Citypage} />
+          <Route path="/citypage/:city" component={Citypage} />
 
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/editpost" exact component={EditPost} />

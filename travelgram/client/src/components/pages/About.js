@@ -50,25 +50,25 @@ function About() {
                 alt="..."
               />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Mayur Jagtap</h5>
-                <div className="card-text text-black-50">Web Developer</div>
+                <h5 className="card-title mb-0">Vrushabh Kulye</h5>
+                <div className="card-text text-black-50">Full Stack Developer</div>
               </div>
             </div>
           </div>
 
-          <div className="col-xl-3 col-md-6 mb-4">
+          {/* <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMeXbmn2_9-Y6lvkDJ_XuDVkNdcHj1OTAzQg&usqp=CAU"
+                src="https://cdn.iconscout.com/icon/free/png-512/laptop-user-1-1179329.png"
                 className="about_image"
                 alt="..."
               />
               <div className="card-body text-center">
-                <h5 className="card-title mb-0">Mrunal Ingale</h5>
+                <h5 className="card-title mb-0">Sudarshan Jamdar</h5>
                 <div className="card-text text-black-50">Web Developer</div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

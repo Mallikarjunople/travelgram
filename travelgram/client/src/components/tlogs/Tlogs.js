@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../../App.css";
 import TlogCard from "./TlogCard";
 import "../css/main.css";
+import { Button } from "../Button";
 import { authUser } from "../../App";
-
+import Navbar from '../Navbar'
 
 export default function Tlogs() {
   const [data, setData] = useState([]);
@@ -12,18 +13,30 @@ export default function Tlogs() {
     authUser
       .get("/blogs") //NEED CHANGES
       .then((res) => {
-        setData(res.data.blogs) 
-      console.log(res.data.blogs)
-    })
+        setData(res.data.blogs);
+        // console.log(res.data.blogs)
+      })
       .catch((err) => console.log(err));
-   
   }, []);
 
   return (
     <>
       {/* hero container for background hero image */}
-      <div className="hero-container">
+      <Navbar/>
+      <div className="travel-container">
         <h1>Travelogues</h1>
+        <div className="hero-btns">
+          <Button
+            className="btns"
+            buttonStyle="btn--outline"
+            buttonSize="btn--large"
+            onClick={() => {
+              window.scrollTo({ top: 760, behavior: "smooth" });
+            }}
+          >
+            Explore
+          </Button>
+        </div>
       </div>
       <div className="container">
         <div className="tlog__cards__group">
@@ -41,7 +54,6 @@ export default function Tlogs() {
                     id={item._id}
                     lastupdated={item.date}
                     Pictures={item.Pictures}
-                    
                   />
                 </div>
               );

@@ -62,7 +62,7 @@ function CreatePost() {
         .post(`/blogs`, formData)
         .then((response) => {
           // console.log(blog);
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => console.log(error));
       alert("Your request has been Sent to get approved !!");

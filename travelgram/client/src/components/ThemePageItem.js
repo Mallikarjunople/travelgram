@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { authUser } from "../App";
+import { authUser , baseUrl } from "../App";
 
 import { NavLink } from "react-router-dom";
 function ThemePageItem(props) {
@@ -16,8 +16,7 @@ function ThemePageItem(props) {
   }, []);
   return (
     <>
-    {props.Title}
-
+      {props.Title}
 
       <div className="container-fluid">
         <div className="row">
@@ -31,7 +30,7 @@ function ThemePageItem(props) {
                         height="200px"
                         width="350px"
                         className=""
-                        src={`http://localhost:5000/${blog.Pictures}`}
+                        src={baseUrl + `${blog.Pictures}`}
                       />
                     </div>
                   </div>
@@ -40,7 +39,9 @@ function ThemePageItem(props) {
                       <h4 className="card-title">{blog.Title}</h4>
                       <p className="card-text">{blog.Body}</p>
 
-                      <NavLink to='/tlogpost/'><button className="btn btn-danger">Go to Blog </button></NavLink>
+                      <NavLink to="/tlogpost/">
+                        <button className="btn btn-danger">Go to Blog </button>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
