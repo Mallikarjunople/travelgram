@@ -8,7 +8,7 @@ const PCity = require("../models/popularcities");
 const jwt = require("jsonwebtoken");
 const checkAuth = require("../middleware/check-auth");
 const jwt_decode = require("jwt-decode");
-const baseUrl = require("../app");
+const baseUrl = require("..");
 
 router.get("/:location", async (req, res, next) => {
   try {

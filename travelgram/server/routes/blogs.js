@@ -6,7 +6,7 @@ const jwt_decode = require("jwt-decode");
 const Blog = require("../models/blog");
 const checkAuth = require("../middleware/check-auth");
 const PBlog = require("../models/pendingBlog");
-const baseUrl = require("../app");
+const baseUrl = require("..");
 
 const multer = require("multer");
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt_decode = require("jwt-decode");
 const checkAuth = require("../middleware/check-auth");
 const PBlog = require("../models/pendingBlog");
-const baseUrl = require("../app");
+const baseUrl = require("..");
 
 router.get("/:tags", async (req, res, next) => {
   try {

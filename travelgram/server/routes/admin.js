@@ -10,7 +10,7 @@ const feedBack = require("../models/feedback");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
 const isadmin = require("../middleware/isadmin");
-const baseUrl = require("../app");
+const baseUrl = require("..");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

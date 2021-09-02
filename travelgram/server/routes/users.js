@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const checkAuth = require("../middleware/check-auth");
 const jwt_decode = require("jwt-decode");
 const nodemailer = require("nodemailer");
-const baseUrl = require("../app");
+const baseUrl = require("..");
 
 const multer = require("multer");
 

@@ -17,6 +17,7 @@ const tagRoute = require("./routes/tag");
 require("dotenv/config");
 
 //require the route handlers
+app.use(express.static("public"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -83,8 +84,8 @@ app.get("/", function (req, res) {
   res.send("we are at home");
 });
 
-server = app.listen(5000, function () {
-  console.log("Server started at port 5000");
+server = app.listen( process.env.PORT || 5000, function () {
+  console.log("Server started successfully");
 });
 
 io = socket(server);
@@ -98,4 +99,4 @@ io.on("connection", (socket) => {
 });
 
 //baseUrl 
-module.exports.link = "http://localhost:5000/";
+module.exports.link = "https://travelgram-project.herokuapp.com/";
