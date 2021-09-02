@@ -31,17 +31,17 @@ import AdminFeedback from "./components/auth/admin/AdminFeedback";
 import Feed from "./components/auth/admin/Feed";
 import ViewFeedback from "./components/auth/admin/ViewFeedback";
 
-export const baseUrl = "http://localhost:5000/";
+export const baseUrl = "https://travelgram-project.herokuapp.com/";
 const token = localStorage.getItem("token");
 export const authUser = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://travelgram-project.herokuapp.com/",
   headers: {
     Authorization: `Bearer ${token}`,
   },
 });
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:5000";
+  axios.defaults.baseURL = "https://travelgram-project.herokuapp.com";
 
   return (
     <>
